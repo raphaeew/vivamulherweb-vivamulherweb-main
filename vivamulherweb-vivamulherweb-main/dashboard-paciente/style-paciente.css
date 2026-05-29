@@ -1,0 +1,433 @@
+/* =========================================
+   NOVO DESIGN DO DASHBOARD (SOFISTICADO E ATRAENTE)
+   ========================================= */
+
+/* --- GERAL --- */
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #f8fafc; /* Um cinza muito claro para o fundo */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.dashboard-full-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* --- HEADER BANNER SUPERIOR GRADIENTE --- */
+.header-banner {
+    background: linear-gradient(to right, #6b21a8, #c084fc); /* Gradiente roxo profundo */
+    color: white;
+    padding: 40px;
+    border-radius: 0; /* Tela cheia */
+    margin-bottom: 20px;
+}
+
+.header-banner h2 {
+    font-family: 'Lora', serif; /* Fonte de título elegante */
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.header-banner p {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* --- MENU LATERAL (SUBSTITUIR O CINZA) --- */
+.sidebar {
+    background-color: #ffffff; /* Fundo branco limpo */
+    width: 250px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 16px 16px 0; /* Cantos arredondados na borda interna */
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.05); /* Sombra suave para o lado */
+}
+
+.sidebar h3 {
+    color: #6b21a8;
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sidebar ul li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: medium;
+    transition: 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #e2e8f0;
+    color: #6b21a8;
+}
+
+.sidebar ul li a.active {
+    background-color: #c084fc; /* Roxo para o item ativo */
+    color: #ffffff;
+}
+
+.sidebar ul li a i {
+    font-size: 20px;
+    margin-right: 15px;
+}
+
+/* Link Sair */
+.sidebar ul li a.sair-link {
+    margin-top: auto; /* Empurra para o fundo */
+    color: #ef4444; /* Vermelho para o item de saída */
+}
+
+/* --- ÁREA PRINCIPAL --- */
+.main-content {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* Estilo de Cartão Flutuante */
+.card-flutuante {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Sombra difusa e suave */
+}
+
+/* Cartões de Ação (Topo) */
+.action-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card-action {
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.card-action:hover {
+    transform: translateY(-5px); /* Efeito de elevação */
+}
+
+.card-action i {
+    font-size: 48px;
+    color: #5ab4b2; /* Azul/Teal dos ícones */
+    margin-bottom: 20px;
+}
+
+.card-action h4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.card-action p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Seção do Meio */
+.secao-meio {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+/* Calendário */
+.card-calendar {
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-visual {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.calendar-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+.calendar-grid span {
+    text-align: center;
+    padding: 8px;
+}
+
+.calendar-grid span.day-marked {
+    background-color: #6b21a8; /* Roxo da data marcada */
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.calendar-details {
+    width: 150px;
+    font-size: 14px;
+    color: #333;
+}
+
+.calendar-details strong {
+    font-size: 18px;
+    color: #6b21a8;
+}
+
+/* Notificações */
+.card-notifications {
+    display: flex;
+    flex-direction: column;
+}
+
+.notif-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.notif-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.notif-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.notif-item i {
+    font-size: 24px;
+    color: #6b21a8;
+}
+
+.notif-text h5 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.notif-text p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* --- RODAPÉ (SUBSTITUIR O AZUL SÓLIDO) --- */
+.footer-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card-info {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Para a imagem de fundo */
+    overflow: hidden; /* Corta a imagem excedente */
+}
+
+.card-info h4 {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.card-info p {
+    font-size: 14px;
+    color: #333;
+}
+
+/* Imagens de fundo para Campanhas (suturadas) */
+.card-info-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.15; /* Saturação baixa */
+    z-index: 1; /* Atrás do texto */
+}
+
+.card-info-content {
+    position: relative;
+    z-index: 2; /* Texto na frente */
+}
+
+/* Emergência (Vermelho mais contido) */
+.card-info-emerg {
+    background-color: #ef4444; /* Vermelho para o fundo */
+    color: white;
+}
+
+.card-info-emerg h4 {
+    background-color: white;
+    color: black;
+}
+
+.card-info-emerg p {
+    color: white;
+}
+
+/* ========================================================
+   VISUALIZADOR DE EXAMES (RF11)
+   ======================================================== */
+.modal-exame-oculto {
+    display: none !important;
+}
+
+.modal-exame-ativo {
+    display: flex !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(15, 23, 42, 0.85); /* Fundo bem escuro */
+    backdrop-filter: blur(5px);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* O fundo que simula o ecrã de um leitor de PDF */
+.pdf-container {
+    background-color: #334155;
+    width: 100%;
+    max-width: 800px;
+    height: 85vh;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    overflow: hidden;
+}
+
+.pdf-header-actions {
+    background-color: #1e293b;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-pdf-action {
+    background-color: transparent;
+    color: #cbd5e1;
+    border: 1px solid #cbd5e1;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: 0.3s;
+}
+
+.btn-pdf-action:hover {
+    background-color: #cbd5e1;
+    color: #1e293b;
+}
+
+/* A "folha" de exame em si */
+.pdf-folha {
+    background-color: white;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 700px;
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 40px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* ========================================================
+   REGRAS PARA VERSÃO MOBILE (MAX 768px)
+   ======================================================== */
+@media (max-width: 768px) {
+    /* Ajuste do Ecrã Inteiro */
+    body {
+        overflow-x: hidden;
+    }
+
+    /* Transformar Menu Lateral em Menu Suspenso */
+    .sidebar {
+        position: fixed;
+        left: -100%; /* Escondido por padrão */
+        top: 0;
+        width: 250px;
+        height: 100vh;
+        z-index: 9999;
+        transition: 0.3s;
+        box-shadow: 5px 0 15px rgba(0,0,0,0.2);
+    }
+
+    .sidebar.active {
+        left: 0; /* Mostra o menu ao clicar */
+    }
+
+    /* Ajuste dos Cards para ficarem em uma única coluna */
+    .cards-grid, .grid-gestao {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .main-content {
+        padding: 15px !important;
+    }
+
+    /* Ajuste da Hero Section (Index) */
+    .hero-conteudo {
+        padding: 20px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .badge-pink {
+        font-size: 30px !important; /* Letra menor no celular */
+    }
+
+    /* Botões de especialidades em coluna */
+    .botoes-fundo {
+        flex-direction: column;
+        bottom: 20px !important;
+        gap: 10px;
+    }
+}

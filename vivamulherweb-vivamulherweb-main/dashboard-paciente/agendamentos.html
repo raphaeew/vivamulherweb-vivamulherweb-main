@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Agendamentos</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style-paciente.css">
+</head>
+<body>
+    <div class="dashboard-full-container">
+        
+        <aside class="sidebar">
+            <h3>Minha conta</h3>
+           <ul>
+                <li><a style="cursor: pointer;" onclick="navegarPara('dashboard.html')"><i class="fas fa-th-large" style="margin-right: 10px;"></i> Visão Geral</a></li>
+                <li><a style="cursor: pointer;" onclick="navegarPara('agendamentos.html')"><i class="fas fa-calendar-alt" style="margin-right: 10px;"></i> Agendamentos</a></li>
+                <li><a style="cursor: pointer;" onclick="navegarPara('ciclo-menstrual.html')"><i class="fas fa-venus" style="margin-right: 10px;"></i> Ciclo Menstrual</a></li>
+                <li><a style="cursor: pointer;" onclick="navegarPara('exames.html')"><i class="fas fa-file-medical" style="margin-right: 10px;"></i> Exames</a></li>
+                <li><a style="cursor: pointer;" onclick="navegarPara('configuracoes.html')"><i class="fas fa-cog" style="margin-right: 10px;"></i> Configurações</a></li>
+                <br>
+                <li><a style="cursor: pointer;" onclick="navegarPara('../index.html')" class="sair-link"><i class="fas fa-sign-out-alt" style="margin-right: 10px;"></i> Sair da conta</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            
+            <div class="header-banner">
+                <h2>Meus Agendamentos</h2>
+                <p>Acompanhe todo o seu histórico de consultas médicas na rede Viva Mulher.</p>
+            </div>
+
+            <div class="card-flutuante" style="width: 100%;">
+                <h4>Histórico Completo</h4>
+                <table class="tabela-consultas">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Especialidade</th>
+                            <th>Médico(a)</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>15/05/2026</td>
+                            <td>Ginecologia</td>
+                            <td>Dra. Silva</td>
+                            <td><span style="color: green; font-weight: bold;">Realizada</span></td>
+                        </tr>
+                        <tr>
+                            <td>22/08/2026</td>
+                            <td>Mastologia</td>
+                            <td>Dr. Roberto</td>
+                            <td><span style="color: #0d9488; font-weight: bold;">Agendada</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </div>
+
+<script src="../script.js"></script>
+</body>
+</html>

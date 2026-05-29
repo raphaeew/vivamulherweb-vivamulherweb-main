@@ -1,0 +1,247 @@
+/* =========================================
+   DESIGN SOFISTICADO DO PAINEL DA RECEÇÃO
+   ========================================= */
+
+:root {
+    --cor-teal: #0d9488;
+    --cor-pink: #db2777;
+}
+
+/* --- GERAL --- */
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #f8fafc;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.dashboard-full-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* --- HEADER BANNER SUPERIOR (Rosa/Magenta para a Receção) --- */
+.header-banner {
+    background: linear-gradient(to right, #db2777, #f472b6); 
+    color: white;
+    padding: 40px;
+    border-radius: 0;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(219, 39, 119, 0.2);
+}
+
+.header-banner h2 {
+    font-family: 'Lora', serif;
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.header-banner p {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* --- MENU LATERAL --- */
+.sidebar {
+    background-color: #ffffff;
+    width: 250px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 16px 16px 0;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar h3 {
+    color: #db2777; /* Rosa Magenta */
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sidebar ul li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #fdf2f8; /* Fundo rosa muito clarinho */
+    color: #db2777;
+}
+
+.sidebar ul li a.active {
+    background-color: #db2777;
+    color: #ffffff;
+}
+
+.sidebar ul li a i {
+    font-size: 20px;
+    margin-right: 15px;
+    width: 25px;
+}
+
+.sidebar ul li a.sair-link {
+    margin-top: auto;
+    color: #ef4444;
+}
+
+/* --- ÁREA PRINCIPAL --- */
+.main-content {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.card-flutuante {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.card-flutuante h4 {
+    font-size: 18px;
+    color: #db2777;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 10px;
+}
+
+/* --- FILTRO E TABELAS DA RECEÇÃO --- */
+.filtro-clinica {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    color: #333;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.filtro-clinica:focus {
+    outline: none;
+    border-color: #db2777;
+}
+
+.tabela-consultas {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabela-consultas th, .tabela-consultas td {
+    padding: 15px 10px;
+    text-align: left;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 15px;
+}
+
+.tabela-consultas th {
+    color: #64748b;
+    font-weight: bold;
+}
+
+.btn-acao {
+    background-color: #f8fafc;
+    color: #db2777;
+    border: 1px solid #db2777;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.btn-acao:hover {
+    background-color: #db2777;
+    color: white;
+}
+
+.btn-alerta {
+    color: #ef4444;
+    border-color: #ef4444;
+    margin-left: 5px;
+}
+
+.btn-alerta:hover {
+    background-color: #ef4444;
+    color: white;
+}
+
+/* ========================================================
+   REGRAS PARA VERSÃO MOBILE (MAX 768px)
+   ======================================================== */
+@media (max-width: 768px) {
+    /* Ajuste do Ecrã Inteiro */
+    body {
+        overflow-x: hidden;
+    }
+
+    /* Transformar Menu Lateral em Menu Suspenso */
+    .sidebar {
+        position: fixed;
+        left: -100%; /* Escondido por padrão */
+        top: 0;
+        width: 250px;
+        height: 100vh;
+        z-index: 9999;
+        transition: 0.3s;
+        box-shadow: 5px 0 15px rgba(0,0,0,0.2);
+    }
+
+    .sidebar.active {
+        left: 0; /* Mostra o menu ao clicar */
+    }
+
+    /* Ajuste dos Cards para ficarem em uma única coluna */
+    .cards-grid, .grid-gestao {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .main-content {
+        padding: 15px !important;
+    }
+
+    /* Ajuste da Hero Section (Index) */
+    .hero-conteudo {
+        padding: 20px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .badge-pink {
+        font-size: 30px !important; /* Letra menor no celular */
+    }
+
+    /* Botões de especialidades em coluna */
+    .botoes-fundo {
+        flex-direction: column;
+        bottom: 20px !important;
+        gap: 10px;
+    }
+}

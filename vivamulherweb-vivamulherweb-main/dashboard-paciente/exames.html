@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Exames - Viva Mulher</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style-paciente.css">
+</head>
+<body>
+    <div class="dashboard-full-container">
+        
+        <aside class="sidebar">
+            <h3>Minha conta</h3>
+            <ul>
+                <li><a style="cursor: pointer;" onclick="navegarPara('dashboard.html')"><i class="fas fa-th-large" style="margin-right: 10px;"></i> Visão Geral</a></li>
+                <li><a style="cursor: pointer;" onclick="navegarPara('agendamentos.html')"><i class="fas fa-calendar-alt" style="margin-right: 10px;"></i> Agendamentos</a></li>
+                <li><a style="cursor: pointer;" onclick="navegarPara('ciclo-menstrual.html')"><i class="fas fa-venus" style="margin-right: 10px;"></i> Ciclo Menstrual</a></li>
+                <li><a style="cursor: pointer;" onclick="navegarPara('exames.html')"><i class="fas fa-file-medical" style="margin-right: 10px;"></i> Exames</a></li>
+                <li><a style="cursor: pointer;" onclick="navegarPara('configuracoes.html')"><i class="fas fa-cog" style="margin-right: 10px;"></i> Configurações</a></li>
+                <br>
+                <li><a style="cursor: pointer;" onclick="navegarPara('../index.html')" class="sair-link"><i class="fas fa-sign-out-alt" style="margin-right: 10px;"></i> Sair da conta</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            
+            <div class="header-banner">
+                <h2>Meus Exames</h2>
+                <p>Visualize e faça o download de todos os seus resultados laboratoriais e de imagem.</p>
+            </div>
+
+            <div class="card-flutuante" style="width: 100%;">
+                <h4>Laudos e Resultados</h4>
+                <table class="tabela-consultas" style="width: 100%; text-align: left; border-collapse: collapse;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid #f1f5f9;">
+                            <td style="padding: 15px 10px;">10/10/2025</td>
+                            <td style="padding: 15px 10px;">Preventivo (Papanicolau)</td>
+                            <td style="padding: 15px 10px;">Clínica da Mulher - Centro</td>
+                            <td style="padding: 15px 10px;">
+                                <button style="padding: 8px 15px; font-size: 13px; background-color: #5ab4b2; color: white; border: none; border-radius: 6px; cursor: pointer;" onclick="abrirVisualizadorExame('Preventivo (Papanicolau)', '10/10/2025', 'Negativo para malignidade. Alterações celulares benignas inflamatórias.')">
+                                    <i class="fas fa-eye"></i> Visualizar
+                                </button>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid #f1f5f9;">
+                            <td style="padding: 15px 10px;">10/10/2025</td>
+                            <td style="padding: 15px 10px;">Preventivo (Papanicolau)</td>
+                            <td style="padding: 15px 10px;">Clínica da Mulher - Centro</td>
+                            <td style="padding: 15px 10px;"><button style="padding: 8px 15px; font-size: 13px; background-color: #5ab4b2; color: white; border: none; border-radius: 6px; cursor: pointer;"><i class="fas fa-file-pdf"></i> Baixar PDF</button></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #f1f5f9;">
+                            <td style="padding: 15px 10px;">05/03/2026</td>
+                            <td style="padding: 15px 10px;">Mamografia Bilateral</td>
+                            <td style="padding: 15px 10px;">Hospital Municipal</td>
+                            <td style="padding: 15px 10px;"><button style="padding: 8px 15px; font-size: 13px; background-color: #94a3b8; color: white; border: none; border-radius: 6px; cursor: not-allowed;"><i class="fas fa-hourglass-half"></i> Em Análise</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </div>
+    
+    <div id="modal-visualizador" class="modal-exame-oculto">
+        <div class="pdf-container">
+            <div class="pdf-header-actions">
+                <span style="color: white; font-weight: bold;"><i class="fas fa-file-pdf"></i> Visualizador de Resultados</span>
+                <div>
+                    <button class="btn-pdf-action" onclick="alert('Iniciando download do PDF...')"><i class="fas fa-download"></i> Baixar</button>
+                    <button class="btn-pdf-action" onclick="fecharVisualizadorExame()"><i class="fas fa-times"></i> Fechar</button>
+                </div>
+            </div>
+            
+            <div class="pdf-folha">
+                <div style="text-align: center; border-bottom: 2px solid #0d9488; padding-bottom: 15px; margin-bottom: 20px;">
+                    <h2 style="color: #0d9488; font-family: 'Lora', serif; margin: 0;">VIVA MULHER</h2>
+                    <p style="color: #64748b; font-size: 12px; margin: 5px 0 0 0;">Laboratório de Análises Clínicas</p>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 14px; color: #333;">
+                    <div>
+                        <p><strong>Paciente:</strong> Maria da Silva</p>
+                        <p><strong>Médico(a) Solicitante:</strong> Dra. Ana Costa</p>
+                    </div>
+                    <div style="text-align: right;">
+                        <p><strong>Data da Colheita:</strong> <span id="pdf-data"></span></p>
+                        <p><strong>Exame:</strong> <span id="pdf-tipo" style="font-weight: bold;"></span></p>
+                    </div>
+                </div>
+
+                <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; border-left: 4px solid #0d9488;">
+                    <h4 style="color: #333; margin-top: 0;">RESULTADO / LAUDO</h4>
+                    <p id="pdf-resultado" style="font-size: 15px; line-height: 1.6; color: #475569;"></p>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px; font-size: 12px; color: #94a3b8;">
+                    <p>Documento assinado digitalmente por Viva Mulher Web.</p>
+                    <p>Este exame não substitui a avaliação médica.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Viva Mulher</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style-paciente.css">
+
+    <style>
+        body {
+            margin: 0; /* Tira a margem invisível padrão do navegador */
+            padding: 0; /* Remove aquele espaçamento antigo de 40px que estava aqui */
+            background-image: none !important;
+            background-color: white; /* Deixei branco para combinar com o novo design */
+        }
+        
+        #dashboard-view {
+            display: flex !important;
+            width: 100%;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-full-container">
+        <aside class="sidebar">
+            <h3>Minha conta</h3>
+           <ul>
+                <li><a style="cursor: pointer;" onclick="navegarPara('dashboard.html')"><i class="fas fa-th-large" style="margin-right: 10px;"></i> Visão Geral</a></li>
+                <li><a style="cursor: pointer;" onclick="navegarPara('agendamentos.html')"><i class="fas fa-calendar-alt" style="margin-right: 10px;"></i> Agendamentos</a></li>
+                <li><a style="cursor: pointer;" onclick="navegarPara('ciclo-menstrual.html')"><i class="fas fa-venus" style="margin-right: 10px;"></i> Ciclo Menstrual</a></li>
+                <li><a style="cursor: pointer;" onclick="navegarPara('exames.html')"><i class="fas fa-file-medical" style="margin-right: 10px;"></i> Exames</a></li>
+                <li><a style="cursor: pointer;" onclick="navegarPara('configuracoes.html')"><i class="fas fa-cog" style="margin-right: 10px;"></i> Configurações</a></li>
+                <br>
+                <li><a style="cursor: pointer;" onclick="navegarPara('../index.html')" class="sair-link"><i class="fas fa-sign-out-alt" style="margin-right: 10px;"></i> Sair da conta</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="header-banner">
+                <h2>Olá, <span id="nome-paciente-logado">Paciente</span>, como podemos te ajudar?</h2>
+            </div>
+
+            <div class="action-cards">
+                <div class="card-flutuante card-action" onclick="navegarPara('agendamentos.html')">
+                    <i class="fas fa-calendar-plus" style="margin-bottom: 15px; font-size: 32px; color: #5ab4b2;"></i>
+                    <h4>Agendar</h4>
+                    <p>Agendar consulta.</p>
+                </div>
+                <div class="card-flutuante card-action" onclick="navegarPara('agendamentos.html')">
+                    <i class="fas fa-search" style="margin-bottom: 15px; font-size: 32px; color: #5ab4b2;"></i>
+                    <h4>Acompanhar</h4>
+                    <p>Ver agendamentos.</p>
+                </div>
+                <div class="card-flutuante card-action" onclick="alert('Módulo de Cancelamento em construção')">
+                    <i class="fas fa-calendar-times" style="margin-bottom: 15px; font-size: 32px; color: #5ab4b2;"></i>
+                    <h4>Cancelar</h4>
+                    <p>Cancelar consulta.</p>
+                </div>
+            </div>
+
+            <div class="secao-meio">
+                <div class="card-flutuante card-calendar">
+                    <h4>Sua Próxima Consulta</h4>
+                    <div class="calendar-visual">
+                        <div class="calendar-grid">
+                            <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+                            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
+                            <span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
+                            <span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span>
+                            <span class="day-marked">22<div class="dot"></div></span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span>
+                            <span>29</span><span>30</span><span>31</span><span></span><span></span><span></span><span></span>
+                        </div>
+                        <div class="calendar-details">
+                            <p>Data:<br><strong>22/08/2026</strong><br>Horário:<br><strong>13:00 a 16:00</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-flutuante card-notifications">
+                    <div class="notif-title">Central de Notificações</div>
+                    <ul class="notif-list">
+                        <li class="notif-item">
+                            <i class="fas fa-bell"></i>
+                            <div class="notif-text">
+                                <h5>Lembrete de consulta</h5>
+                                <p>Sua consulta em 22/08.</p>
+                            </div>
+                        </li>
+                        <li class="notif-item">
+                            <i class="fas fa-file-medical"></i>
+                            <div class="notif-text">
+                                <h5>Resultado de exames</h5>
+                                <p>Preventivo disponível.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-info">
+                <div class="card-info">
+                    <img src="campanha-1.jpg" alt="Campanha 1" class="card-info-image"> <div class="card-info-content">
+                        <h4>CAMPANHAS</h4>
+                        <p>Prevenção é amor.</p>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <img src="campanha-2.jpg" alt="Campanha 2" class="card-info-image"> <div class="card-info-content">
+                        <h4>CAMPANHAS</h4>
+                        <p>Saúde é vida.</p>
+                    </div>
+                </div>
+                <div class="card-info card-info-emerg">
+                    <div class="card-info-content">
+                        <h4>EMERGÊNCIA</h4>
+                        <p>Ligue 192.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+ <script src="../script.js"></script>
+</body>
+</html>

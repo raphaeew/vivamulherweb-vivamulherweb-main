@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações - Viva Mulher</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style-paciente.css">
+</head>
+<body>
+    <div class="dashboard-full-container">
+        
+        <aside class="sidebar">
+            <h3>Minha conta</h3>
+           <ul>
+                <li><a style="cursor: pointer;" onclick="navegarPara('dashboard.html')"><i class="fas fa-th-large" style="margin-right: 10px;"></i> Visão Geral</a></li>
+                <li><a style="cursor: pointer;" onclick="navegarPara('agendamentos.html')"><i class="fas fa-calendar-alt" style="margin-right: 10px;"></i> Agendamentos</a></li>
+                <li><a style="cursor: pointer;" onclick="navegarPara('ciclo-menstrual.html')"><i class="fas fa-venus" style="margin-right: 10px;"></i> Ciclo Menstrual</a></li>
+                <li><a style="cursor: pointer;" onclick="navegarPara('exames.html')"><i class="fas fa-file-medical" style="margin-right: 10px;"></i> Exames</a></li>
+                <li><a style="cursor: pointer;" onclick="navegarPara('configuracoes.html')"><i class="fas fa-cog" style="margin-right: 10px;"></i> Configurações</a></li>
+                <br>
+                <li><a style="cursor: pointer;" onclick="navegarPara('../index.html')" class="sair-link"><i class="fas fa-sign-out-alt" style="margin-right: 10px;"></i> Sair da conta</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            
+            <div class="header-banner">
+                <h2>Configurações</h2>
+                <p>Gira as suas preferências de privacidade e notificações da aplicação.</p>
+            </div>
+
+            <div class="card-flutuante" style="width: 100%; max-width: 600px;">
+                <h4 style="margin-bottom: 30px;">Preferências da Aplicação</h4>
+                
+                <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; padding-bottom: 15px;">
+                    <span style="font-family: 'Nunito', sans-serif; color: #333; font-weight: 600;"><i class="fas fa-bell" style="color: #6b21a8; margin-right: 10px;"></i> Receber notificações de consultas (SMS/Email)</span>
+                    <input type="checkbox" checked style="width: 20px; height: 20px; cursor: pointer;">
+                </div>
+                
+                <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; padding-bottom: 15px;">
+                    <span style="font-family: 'Nunito', sans-serif; color: #333; font-weight: 600;"><i class="fas fa-volume-up" style="color: #6b21a8; margin-right: 10px;"></i> Sons da aplicação</span>
+                    <input type="checkbox" checked style="width: 20px; height: 20px; cursor: pointer;">
+                </div>
+
+                <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; padding-bottom: 15px;">
+                    <span style="font-family: 'Nunito', sans-serif; color: #333; font-weight: 600;"><i class="fas fa-shield-alt" style="color: #6b21a8; margin-right: 10px;"></i> Partilhar dados anónimos (Privacidade)</span>
+                    <input type="checkbox" style="width: 20px; height: 20px; cursor: pointer;">
+                </div>
+
+                <button style="margin-top: 20px; width: 100%; padding: 12px; background-color: #6b21a8; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;" onclick="alert('Configurações guardadas com sucesso!')">Guardar Configurações</button>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

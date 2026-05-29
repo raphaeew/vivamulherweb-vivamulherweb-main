@@ -1,0 +1,196 @@
+/* =========================================
+   DESIGN SOFISTICADO DO PAINEL DO MÉDICO
+   ========================================= */
+
+:root {
+    --cor-teal: #0d9488;
+    --cor-pink: #db2777;
+}
+
+/* --- GERAL --- */
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #f8fafc;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.dashboard-full-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* --- HEADER BANNER SUPERIOR (Verde Água para diferenciar do Roxo da paciente) --- */
+.header-banner {
+    background: linear-gradient(to right, #0d9488, #5ab4b2); 
+    color: white;
+    padding: 40px;
+    border-radius: 0;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
+}
+
+.header-banner h2 {
+    font-family: 'Lora', serif;
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.header-banner p {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* --- MENU LATERAL --- */
+.sidebar {
+    background-color: #ffffff;
+    width: 250px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 16px 16px 0;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar h3 {
+    color: #0d9488;
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sidebar ul li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #f1f5f9;
+    color: #0d9488;
+}
+
+.sidebar ul li a.active {
+    background-color: #5ab4b2;
+    color: #ffffff;
+}
+
+.sidebar ul li a i {
+    font-size: 20px;
+    margin-right: 15px;
+    width: 25px;
+}
+
+.sidebar ul li a.sair-link {
+    margin-top: auto;
+    color: #ef4444;
+}
+
+/* --- ÁREA PRINCIPAL --- */
+.main-content {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.card-flutuante {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.card-flutuante h4 {
+    font-size: 18px;
+    color: #0d9488;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 10px;
+}
+
+/* --- TABELAS E BOTÕES ESPECÍFICOS DO MÉDICO --- */
+.grid-medico {
+    display: flex;
+    gap: 30px;
+}
+
+.area-tabela {
+    flex: 2;
+}
+
+.area-bloqueio {
+    flex: 1;
+}
+
+/* ========================================================
+   REGRAS PARA VERSÃO MOBILE (MAX 768px)
+   ======================================================== */
+@media (max-width: 768px) {
+    /* Ajuste do Ecrã Inteiro */
+    body {
+        overflow-x: hidden;
+    }
+
+    /* Transformar Menu Lateral em Menu Suspenso */
+    .sidebar {
+        position: fixed;
+        left: -100%; /* Escondido por padrão */
+        top: 0;
+        width: 250px;
+        height: 100vh;
+        z-index: 9999;
+        transition: 0.3s;
+        box-shadow: 5px 0 15px rgba(0,0,0,0.2);
+    }
+
+    .sidebar.active {
+        left: 0; /* Mostra o menu ao clicar */
+    }
+
+    /* Ajuste dos Cards para ficarem em uma única coluna */
+    .cards-grid, .grid-gestao {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .main-content {
+        padding: 15px !important;
+    }
+
+    /* Ajuste da Hero Section (Index) */
+    .hero-conteudo {
+        padding: 20px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .badge-pink {
+        font-size: 30px !important; /* Letra menor no celular */
+    }
+
+    /* Botões de especialidades em coluna */
+    .botoes-fundo {
+        flex-direction: column;
+        bottom: 20px !important;
+        gap: 10px;
+    }
+}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Médico - Viva Mulher</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style-medico.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        body {
+            background-image: none !important;
+            background-color: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        #dashboard-view {
+            display: flex !important;
+            width: 100%;
+            justify-content: center;
+        }
+        /* Estilos exclusivos da Tabela do Médico */
+        .tabela-consultas {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .tabela-consultas th, .tabela-consultas td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-size: 14px;
+        }
+        .tabela-consultas th {
+            background-color: var(--cor-teal);
+            color: white;
+        }
+        .btn-secundario {
+            background-color: #888;
+            color: white;
+            border: none;
+            padding: 7px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-secundario:hover { background-color: #666; }
+        .btn-bloquear { background-color: var(--cor-pink); }
+        .btn-bloquear:hover { background-color: #c21555; }
+    </style>
+</head>
+<body>
+
+    <main id="dashboard-view" style="display: flex; width: 100%;">
+        <div class="dashboard-full-container">
+        
+        <aside class="sidebar">
+            <h3>Gestão Clínica</h3>
+            <ul>
+                <li><a style="cursor: pointer;" onclick="navegarPara('dashboard-medico.html')" class="active"><i class="fas fa-calendar-check"></i> Minha Agenda</a></li>
+                <li><a style="cursor: pointer;" onclick="alert('Página de Pacientes em construção')"><i class="fas fa-users"></i> Pacientes</a></li>
+                <li><a style="cursor: pointer;" onclick="alert('Página de Relatórios em construção')"><i class="fas fa-chart-line"></i> Relatórios</a></li>
+                <br>
+                <li><a style="cursor: pointer;" onclick="navegarPara('../index.html')" class="sair-link"><i class="fas fa-sign-out-alt"></i> Sair da Conta</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            
+            <div class="header-banner">
+                <h2>Olá, Dra. Silva!</h2>
+                <p>Este é o seu painel de gestão de consultas e horários.</p>
+            </div>
+
+            <div style="display: flex; gap: 20px; margin-bottom: 30px; flex-wrap: wrap;">
+                <div class="card-flutuante" style="flex: 1; min-width: 300px;">
+                    <h4 style="color: #0d9488; margin-bottom: 15px;">Atendimentos por Mês</h4>
+                    <canvas id="graficoAtendimentos"></canvas>
+                </div>
+                
+                <div class="card-flutuante" style="flex: 1; min-width: 300px;">
+                    <h4 style="color: #0d9488; margin-bottom: 15px;">Consultas por Especialidade</h4>
+                    <div style="max-height: 250px; display: flex; justify-content: center;">
+                        <canvas id="graficoEspecialidades"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid-medico">
+                
+                <div class="card-flutuante area-tabela">
+                    <h4>Consultas de Hoje</h4>
+                    <table class="tabela-consultas">
+                        <thead>
+                            <tr>
+                                <th>Horário</th>
+                                <th>Paciente</th>
+                                <th>Motivo</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong style="color: #0d9488;">09:00</strong></td>
+                                <td>Maria Clara Fernandes</td>
+                                <td>Exame de Rotina</td>
+                                <td><button class="btn-acao">Ver Ficha</button></td>
+                            </tr>
+                            <tr>
+                                <td><strong style="color: #0d9488;">10:30</strong></td>
+                                <td>Ana Beatriz Souza</td>
+                                <td>Retorno - Exames</td>
+                                <td><button class="btn-acao">Ver Ficha</button></td>
+                            </tr>
+                            <tr>
+                                <td><strong style="color: #0d9488;">14:00</strong></td>
+                                <td>Juliana Moraes</td>
+                                <td>Primeira Consulta</td>
+                                <td><button class="btn-acao">Ver Ficha</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card-flutuante area-bloqueio">
+                    <h4 style="color: #ef4444;"><i class="fas fa-ban"></i> Disponibilidade</h4>
+                    <p style="font-size: 14px; color: #64748b; margin-bottom: 20px;">Precisa de se ausentar? Bloqueie horários para que as pacientes não consigam agendar.</p>
+                    
+                    <label style="font-size: 14px; font-weight: bold; color: #333; display: block; margin-bottom: 8px;">Selecione o Dia:</label>
+                    <input type="date" class="input-calendario">
+                    
+                    <button class="btn-bloquear" onclick="alert('Horário bloqueado com sucesso!')">Bloquear Dia Selecionado</button>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viva Mulher - Início</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Nunito:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style-index.css">
+</head>
+
+<body>
+
+    <header class="header-transparente">
+        <div class="logo-container">
+            <img src="logo1.png" alt="Logo Viva Mulher" class="logo-img">
+        </div>
+        <nav id="main-nav">
+            <ul>
+                <li><a onclick="mostrarPagina('home')">INÍCIO</a></li>
+                <li><a onclick="mostrarPagina('login')">AGENDAMENTO</a></li>
+                <li><a onclick="mostrarPagina('login')">CLÍNICAS</a></li>
+                <li><a onclick="mostrarPagina('login')" class="nav-destaque">LOGIN/CADASTRO</a></li>
+            </ul>
+        </nav>
+    </header>
+    <button class="btn-mobile" onclick="toggleMenuMain()" style="display: none;">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <style>
+        /* CSS rápido para o botão aparecer apenas no mobile */
+        @media (max-width: 768px) {
+            .btn-mobile {
+                display: block !important;
+                position: fixed;
+                top: 15px;
+                right: 15px;
+                background: #0d9488;
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 5px;
+                z-index: 10000;
+                cursor: pointer;
+            }
+        }
+    </style>
+    <main id="home-view" class="view-ativa">
+        <video id="bg-video" muted playsinline preload="auto">
+            <source src="backgroundvideo.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+
+        <div class="hero-conteudo">
+            <div class="badge-teal">Bem vinda ao</div>
+            <div class="badge-pink">VIVA MULHER</div>
+
+            <div class="hero-texto">
+                <p>Menos filas.</p>
+                <p>Mais prevenção.</p>
+                <p>Mais cuidado.</p>
+            </div>
+        </div>
+
+        <div class="botoes-fundo">
+            <button class="btn-pilula" onclick="abrirDescricao('ginecologia')">GINECOLOGIA</button>
+            <button class="btn-pilula" onclick="abrirDescricao('obstetricia')">OBSTETRÍCIA</button>
+            <button class="btn-pilula" onclick="abrirDescricao('mastologia')">MASTOLOGIA</button>
+            <button class="btn-pilula" onclick="abrirDescricao('cirurgias')">CIRURGIAS</button>
+        </div>
+
+        <div class="scroll-hint">
+            <i class="fas fa-chevron-down"></i>
+            <span>Role para explorar</span>
+        </div>
+    </main>
+
+    <main id="login-view" class="view-oculta view-auth">
+        <div class="auth-card">
+            <h2>Acesse sua conta</h2>
+            <form onsubmit="realizarLogin(event)">
+                <div class="input-group">
+                    <label>Perfil de Acesso</label>
+                    <select id="tipo-acesso" required>
+                        <option value="paciente">Sou Paciente</option>
+                        <option value="medico">Sou Médico(a) / Gestão</option>
+                        <option value="recepcao">Sou da Recepção</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>E-mail</label>
+                    <input type="email" id="login-email" placeholder="seu@email.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Senha</label>
+                    <input type="password" id="login-senha" placeholder="Digite sua senha" required>
+                </div>
+                <button type="submit" class="btn-auth">Entrar</button>
+                <p class="auth-link">Não possui conta? <a onclick="mostrarPagina('cadastro')">Cadastre-se</a></p>
+            </form>
+        </div>
+    </main>
+
+    <main id="cadastro-view" class="view-oculta view-auth">
+        <div class="auth-card" style="max-width: 450px;">
+            <h2>Crie sua conta</h2>
+            <form onsubmit="realizarCadastro(event)">
+                <div class="input-group">
+                    <label>Que tipo de conta deseja criar?</label>
+                    <select id="tipo-cadastro" onchange="mudarCamposCadastro()" required>
+                        <option value="paciente">Sou Paciente</option>
+                        <option value="medico">Sou Médico(a) / Enfermagem</option>
+                        <option value="recepcao">Sou da Clínica / Gestão</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Nome Completo / Nome da Clínica</label>
+                    <input type="text" id="cad-nome" placeholder="Digite o nome" required>
+                </div>
+
+                <div id="campos-profissionais" style="display: none;">
+                    <div class="input-group">
+                        <label id="label-registro">Registro Profissional</label>
+                        <input type="text" id="input-registro" placeholder="Ex: CRM 12345-RJ">
+                    </div>
+                    <div class="input-group">
+                        <label>CNPJ da Clínica de Atuação</label>
+                        <input type="text" id="cad-cnpj" placeholder="00.000.000/0001-00">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>E-mail</label>
+                    <input type="email" id="cad-email" placeholder="seu@email.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Senha</label>
+                    <input type="password" id="cad-senha" placeholder="Crie uma senha forte" required>
+                </div>
+
+                <button type="submit" class="btn-auth">Cadastrar</button>
+                <p class="auth-link">Já possui cadastro? <a onclick="mostrarPagina('login')">Fazer login</a></p>
+            </form>
+        </div>
+    </main>
+
+
+    <div id="modal-descricao" class="modal-oculto">
+        <div class="auth-card" style="position: relative; max-width: 500px; margin: auto;">
+            <button class="btn-fechar-modal" onclick="fecharDescricao()">✖</button>
+
+            <h2 id="modal-titulo" style="color: #e83e8c;">Especialidade</h2>
+            <p id="modal-texto" style="color: #475569; font-size: 16px; line-height: 1.6; margin-bottom: 25px;">
+                Descrição do procedimento aparecerá aqui...</p>
+
+            <button class="btn-auth" onclick="fecharDescricao(); mostrarPagina('login');">Agendar Agora</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // === CONTROLE DO VÍDEO POR SCROLL ===
+        (function () {
+            const video = document.getElementById('bg-video');
+            if (!video) return;
+
+            let videoDuration = 0;
+            let ticking = false;
+
+            // Espera o vídeo carregar os metadados para saber a duração
+            video.addEventListener('loadedmetadata', function () {
+                videoDuration = video.duration;
+                // Garante que começa no frame 0
+                video.currentTime = 0;
+            });
+
+            // Função que calcula a posição do vídeo com base no scroll
+            function onScroll() {
+                if (!ticking) {
+                    requestAnimationFrame(function () {
+                        if (videoDuration <= 0) { ticking = false; return; }
+
+                        // Só controla o vídeo quando #home-view está visível
+                        const homeView = document.getElementById('home-view');
+                        if (!homeView || !homeView.classList.contains('view-ativa')) {
+                            ticking = false;
+                            return;
+                        }
+
+                        // Calcula o scroll máximo disponível
+                        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+                        if (maxScroll <= 0) { ticking = false; return; }
+
+                        // Mapeia a posição do scroll para o tempo do vídeo (0 a duração)
+                        const scrollFraction = Math.min(Math.max(scrollTop / maxScroll, 0), 1);
+                        const targetTime = scrollFraction * videoDuration;
+
+                        // Atualiza o frame do vídeo
+                        video.currentTime = targetTime;
+
+                        // Efeito de fade na indicação de scroll
+                        const scrollHint = document.querySelector('.scroll-hint');
+                        if (scrollHint) {
+                            scrollHint.style.opacity = Math.max(1 - (scrollFraction * 5), 0);
+                        }
+
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+        })();
+    </script>
+</body>
+
+</html>

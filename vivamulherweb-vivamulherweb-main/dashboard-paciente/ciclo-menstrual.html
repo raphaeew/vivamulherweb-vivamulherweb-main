@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciclo Menstrual - Viva Mulher</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style-paciente.css">
+</head>
+<body>
+    <div class="dashboard-full-container">
+        
+        <aside class="sidebar">
+            <h3>Minha conta</h3>
+           <ul>
+                <li><a style="cursor: pointer;" onclick="navegarPara('dashboard.html')"><i class="fas fa-th-large" style="margin-right: 10px;"></i> Visão Geral</a></li>
+                <li><a style="cursor: pointer;" onclick="navegarPara('agendamentos.html')"><i class="fas fa-calendar-alt" style="margin-right: 10px;"></i> Agendamentos</a></li>
+                <li><a style="cursor: pointer;" onclick="navegarPara('ciclo-menstrual.html')"><i class="fas fa-venus" style="margin-right: 10px;"></i> Ciclo Menstrual</a></li>
+                <li><a style="cursor: pointer;" onclick="navegarPara('exames.html')"><i class="fas fa-file-medical" style="margin-right: 10px;"></i> Exames</a></li>
+                <li><a style="cursor: pointer;" onclick="navegarPara('configuracoes.html')"><i class="fas fa-cog" style="margin-right: 10px;"></i> Configurações</a></li>
+                <br>
+                <li><a style="cursor: pointer;" onclick="navegarPara('../index.html')" class="sair-link"><i class="fas fa-sign-out-alt" style="margin-right: 10px;"></i> Sair da conta</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            
+            <div class="header-banner">
+                <h2>Ciclo Menstrual</h2>
+                <p>Acompanhe o seu ciclo para prever a sua próxima menstruação e período fértil.</p>
+            </div>
+
+            <div class="card-flutuante" style="width: 100%; max-width: 500px;">
+                <h4>Calculadora de Ciclo</h4>
+                <p style="font-size: 14px; margin-bottom: 15px;">Selecione no calendário o <strong>primeiro dia</strong> da sua última menstruação:</p>
+                
+                <input type="date" id="data-menstruacao" class="input-calendario" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; margin-bottom: 15px;">
+                
+                <button class="btn-primary" style="padding: 10px 20px; font-size: 14px; width: 100%; background-color: #6b21a8; color: white; border: none; border-radius: 8px; cursor: pointer;" onclick="calcularCiclo()">Calcular O Meu Ciclo</button>
+
+                <div id="resultado-ciclo" style="display: none; margin-top: 20px; padding: 20px; background-color: #fdf4ff; border-left: 4px solid #c084fc; border-radius: 8px;">
+                    <h4 style="color: #6b21a8; margin-bottom: 10px; border-bottom: none;">Previsão do seu Ciclo</h4>
+                    <p style="font-family: 'Nunito', sans-serif; font-size: 15px; margin-bottom: 5px;">🩸 Próxima menstruação: <strong id="prox-menstruacao" style="color: #333;"></strong></p>
+                    <p style="font-family: 'Nunito', sans-serif; font-size: 15px;">🌸 Período mais fértil: <strong id="periodo-fertil" style="color: #333;"></strong></p>
+                    <p style="font-size: 12px; color: #888; margin-top: 15px;">*Cálculo baseado num ciclo padrão de 28 dias.</p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>
