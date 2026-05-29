@@ -79,6 +79,8 @@ body {
     object-fit: cover;
     z-index: 0;
     pointer-events: none; /* Impede cliques no vídeo */
+    will-change: transform; /* Promove para camada GPU */
+    transform: translateZ(0); /* Força aceleração por hardware */
 }
 
 /* Sobreposição escura para legibilidade do texto */

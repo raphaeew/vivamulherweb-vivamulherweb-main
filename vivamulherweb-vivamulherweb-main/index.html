@@ -165,60 +165,84 @@
 
     <script src="script.js"></script>
     <script>
-        // === CONTROLE DO VÍDEO POR SCROLL ===
+        // === CONTROLE SUAVE DO VÍDEO POR SCROLL (com interpolação) ===
         (function () {
             const video = document.getElementById('bg-video');
             if (!video) return;
 
             let videoDuration = 0;
-            let ticking = false;
+            let targetTime = 0;      // Tempo-alvo calculado pelo scroll
+            let currentSmooth = 0;   // Tempo atual suavizado (o que é exibido)
+            let animating = false;
+
+            // Fator de suavização: quanto menor, mais suave (0.04 – 0.12 bom range)
+            const LERP_FACTOR = 0.07;
+            // Limiar mínimo de diferença para evitar micro-seeks desnecessários
+            const SEEK_THRESHOLD = 0.015;
 
             // Espera o vídeo carregar os metadados para saber a duração
             video.addEventListener('loadedmetadata', function () {
                 videoDuration = video.duration;
-                // Garante que começa no frame 0
                 video.currentTime = 0;
+                currentSmooth = 0;
+                targetTime = 0;
             });
 
-            // Função que calcula a posição do vídeo com base no scroll
-            function onScroll() {
-                if (!ticking) {
-                    requestAnimationFrame(function () {
-                        if (videoDuration <= 0) { ticking = false; return; }
+            // Também tenta carregar se o vídeo já estiver pronto (cache)
+            if (video.readyState >= 1) {
+                videoDuration = video.duration;
+            }
 
-                        // Só controla o vídeo quando #home-view está visível
-                        const homeView = document.getElementById('home-view');
-                        if (!homeView || !homeView.classList.contains('view-ativa')) {
-                            ticking = false;
-                            return;
-                        }
+            // Atualiza o tempo-alvo com base na posição do scroll
+            function updateTarget() {
+                if (videoDuration <= 0) return;
 
-                        // Calcula o scroll máximo disponível
-                        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                const homeView = document.getElementById('home-view');
+                if (!homeView || !homeView.classList.contains('view-ativa')) return;
 
-                        if (maxScroll <= 0) { ticking = false; return; }
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                if (maxScroll <= 0) return;
 
-                        // Mapeia a posição do scroll para o tempo do vídeo (0 a duração)
-                        const scrollFraction = Math.min(Math.max(scrollTop / maxScroll, 0), 1);
-                        const targetTime = scrollFraction * videoDuration;
+                const scrollFraction = Math.min(Math.max(scrollTop / maxScroll, 0), 1);
+                targetTime = scrollFraction * videoDuration;
 
-                        // Atualiza o frame do vídeo
-                        video.currentTime = targetTime;
+                // Fade na indicação de scroll
+                const scrollHint = document.querySelector('.scroll-hint');
+                if (scrollHint) {
+                    scrollHint.style.opacity = Math.max(1 - (scrollFraction * 5), 0);
+                }
 
-                        // Efeito de fade na indicação de scroll
-                        const scrollHint = document.querySelector('.scroll-hint');
-                        if (scrollHint) {
-                            scrollHint.style.opacity = Math.max(1 - (scrollFraction * 5), 0);
-                        }
-
-                        ticking = false;
-                    });
-                    ticking = true;
+                // Inicia o loop de animação se ainda não estiver rodando
+                if (!animating) {
+                    animating = true;
+                    requestAnimationFrame(smoothSeek);
                 }
             }
 
-            window.addEventListener('scroll', onScroll, { passive: true });
+            // Loop de animação contínuo que interpola suavemente para o alvo
+            function smoothSeek() {
+                // Interpolação linear (lerp)
+                currentSmooth += (targetTime - currentSmooth) * LERP_FACTOR;
+
+                // Só faz seek de verdade se a diferença for significativa
+                const diff = Math.abs(currentSmooth - video.currentTime);
+                if (diff > SEEK_THRESHOLD) {
+                    video.currentTime = currentSmooth;
+                }
+
+                // Continua animando enquanto não chegar perto o bastante do alvo
+                if (Math.abs(targetTime - currentSmooth) > 0.001) {
+                    requestAnimationFrame(smoothSeek);
+                } else {
+                    // Ajuste final exato
+                    currentSmooth = targetTime;
+                    video.currentTime = targetTime;
+                    animating = false;
+                }
+            }
+
+            window.addEventListener('scroll', updateTarget, { passive: true });
         })();
     </script>
 </body>
