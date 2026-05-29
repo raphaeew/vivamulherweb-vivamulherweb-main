@@ -185,8 +185,9 @@ function calcularCiclo() {
 // === SISTEMA DE CARROSSEL DE SERVIÇOS ===
 function moverCarrossel(direcao) {
     const carrossel = document.getElementById('servicos-carousel');
-    // Pega a largura do container visível e rola meia tela (ou 1 card por vez)
-    const scrollAmount = 280 * direcao; 
+    // Pega a largura de 1 card dinamicamente + o gap (20px)
+    const card = carrossel.querySelector('.servico-card');
+    const scrollAmount = (card.offsetWidth + 20) * direcao; 
     carrossel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
 }
 

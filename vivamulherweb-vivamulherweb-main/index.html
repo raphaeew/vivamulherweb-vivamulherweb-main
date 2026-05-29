@@ -61,7 +61,7 @@
                     <h1 class="hero-title-clean">VIVA MULHER</h1>
                     <div class="hero-features-clean">
                         <span class="feature-item-clean"><i class="fas fa-clock"></i> Menos filas</span>
-                        <span class="feature-item-clean"><i class="fas fa-shield-heart"></i> Mais prevenção</span>
+                        <span class="feature-item-clean"><i class="fas fa-shield-alt"></i> Mais prevenção</span>
                         <span class="feature-item-clean"><i class="fas fa-hand-holding-medical"></i> Mais cuidado</span>
                     </div>
                 </div>
@@ -210,7 +210,13 @@
 
         <!-- SEÇÃO: SOBRE O PROJETO -->
         <section class="sobre-section">
-            <div class="container-padrao">
+            <!-- Vídeo de Fundo -->
+            <video class="sobre-bg-video" autoplay loop muted playsinline preload="auto">
+                <source src="assets/video/saquaremabck.mp4" type="video/mp4">
+            </video>
+            <!-- Overlay para garantir a leitura do texto -->
+            <div class="sobre-video-overlay"></div>
+            <div class="container-padrao" style="position: relative; z-index: 10;">
                 <div class="sobre-grid">
                     <div class="sobre-texto">
                         <h2 class="section-title">O que é o <span class="highlight-pink">Viva Mulher</span>?</h2>
@@ -248,18 +254,27 @@
 
         <!-- SEÇÃO: EQUIPE DE DESENVOLVIMENTO -->
         <section class="equipe-section">
-            <div class="container-padrao">
-                <h2 class="section-title text-center">Nossa <span class="highlight-teal">Equipe</span></h2>
-                <p class="section-subtitle text-center"
-                    style="max-width: 800px; margin: 0 auto 50px auto; line-height: 1.6; color: #475569;">
-                    Nós somos alunos da <strong>Universidade de Vassouras (Univassouras)</strong> e bolsistas do projeto
-                    <strong>Conexão Universitária</strong>.
-                    Este software está sendo desenvolvido pelo nosso grupo de Práticas Extensionistas com o objetivo de
-                    promover o avanço tecnológico na área da saúde da cidade,
-                    retornando o investimento da Prefeitura em inovação e qualidade de vida para a população.
-                </p>
+            <div class="container-padrao" style="position: relative; z-index: 1;">
+                <!-- Layout dividido para balancear a tela -->
+                <div class="equipe-layout-split">
+                    <!-- Lado do Título (Esquerda) -->
+                    <div class="equipe-title-side">
+                        <div class="equipe-title-card">
+                            <h2 class="section-title text-left" style="color: white; margin-bottom: 15px;">Nossa Equipe</h2>
+                            <p class="section-subtitle text-left"
+                                style="margin-bottom: 0; line-height: 1.6; color: #f1f5f9;">
+                                Nós somos alunos da <strong>Universidade de Vassouras (Univassouras)</strong> e bolsistas do projeto
+                                <strong>Conexão Universitária</strong>.
+                                Este software está sendo desenvolvido pelo nosso grupo de Práticas Extensionistas com o objetivo de
+                                promover o avanço tecnológico na área da saúde da cidade,
+                                retornando o investimento da Prefeitura em inovação e qualidade de vida para a população.
+                            </p>
+                        </div>
+                    </div>
 
-                <div class="equipe-grid">
+                    <!-- Lado dos Cards (Direita) -->
+                    <div class="equipe-grid-side">
+                        <div class="equipe-grid">
                     <div class="equipe-card">
                         <div class="membro-avatar"
                             style="background: linear-gradient(135deg, #fbcfe8 0%, #e83e8c 100%);">
@@ -316,7 +331,9 @@
                         <h3>Marília Caetano</h3>
                         <p class="cargo">Requisitos (Func. e Não Func.)</p>
                     </div>
-                </div>
+                </div> <!-- Fim equipe-grid -->
+                </div> <!-- Fim equipe-grid-side -->
+                </div> <!-- Fim equipe-layout-split -->
             </div>
         </section>
     </main>

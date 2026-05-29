@@ -25,17 +25,17 @@ body {
     position: absolute;
     top: 0;
     width: 100%;
-    padding: 10px 5%; /* Reduzido o padding para ocupar menos espaço vertical */
+    padding: 35px 5% 10px 5%; /* Mais espaço no topo para descer os botões */
     display: flex;
     justify-content: flex-end;
     align-items: center;
     z-index: 100;
-    background-color: transparent; /* Caixa branca removida */
+    background-color: transparent;
     transition: all 0.3s ease;
 }
 
 .logo-container {
-    position: fixed;
+    position: absolute;
     top: 10px;
     left: 5%;
     z-index: 101;
@@ -248,7 +248,6 @@ body {
     display: flex;
     gap: 20px;
     overflow-x: auto; /* Permite rolagem */
-    scroll-behavior: smooth; /* Rolagem suave ao clicar nas setas */
     padding: 10px 5px 60px 5px; /* Espaço para expansão sanfona e sombra */
     flex: 1;
     align-items: start;
@@ -262,19 +261,24 @@ body {
 }
 
 .servico-card {
-    flex: 0 0 calc(25% - 15px); /* 4 cards por tela no PC */
+    flex: 0 0 calc(30% - 15px);
     background: white;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-    transition: all 0.4s ease;
+    /* Transição apenas em propriedades GPU - sem layout reflow */
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.35s ease,
+                border-color 0.35s ease;
     cursor: pointer;
     border: 1px solid #f1f5f9;
+    /* Avisa o browser para preparar o elemento na GPU */
+    will-change: transform;
 }
 
 .servico-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 25px 50px rgba(0,0,0,0.15); /* Sombra neutra sem o verde */
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
     border-color: #0d9488;
 }
 
@@ -289,7 +293,8 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: 0.5s ease;
+    transition: transform 0.45s ease;
+    will-change: transform;
 }
 
 .servico-card:hover .servico-img img {
@@ -299,10 +304,12 @@ body {
 .servico-conteudo {
     padding: 20px;
     text-align: center;
+    /* position relative para o detalhe ficar posicionado corretamente */
+    position: relative;
 }
 
 .servico-conteudo h3 {
-    color: #0d9488; /* Verde Teal */
+    color: #0d9488;
     font-family: 'Montserrat', sans-serif;
     font-size: 18px;
     margin-bottom: 10px;
@@ -315,13 +322,23 @@ body {
     margin-bottom: 0;
 }
 
-/* --- Efeito Sanfona (Accordion) no Hover --- */
+/* --- Efeito de Detalhes no Hover (sem reflow de layout) --- */
 .servico-detalhes {
-    max-height: 0;
+    /* Escondido via opacity e transform, não max-height */
+    /* Isso evita recalculo de layout (reflow) e garante fluidez total */
     opacity: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease, opacity 0.5s ease;
+    transform: translateY(8px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
     text-align: left;
+    /* Reserva o espaço fisicamente para não mudar o layout ao aparecer */
+    visibility: hidden;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 0 20px 20px 20px;
+    border-radius: 0 0 20px 20px;
 }
 
 .servico-detalhes p {
@@ -329,13 +346,14 @@ body {
     color: #475569;
     border-top: 1px solid #e2e8f0;
     padding-top: 15px;
-    margin-top: 15px;
+    margin-top: 0;
     line-height: 1.6;
 }
 
 .servico-card:hover .servico-detalhes {
-    max-height: 250px; /* Altura suficiente para expandir o texto oculto */
     opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
 }
 
 /* Responsividade do Split Hero e Servicos */
@@ -539,6 +557,31 @@ body {
 /* Sobre o Projeto */
 .sobre-section {
     background-color: #ffffff;
+    position: relative;
+    overflow: hidden; /* Mantém as formas limitadas dentro da seção */
+}
+
+/* --- Vídeo de Fundo --- */
+.sobre-bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    transform: scale(1.3); /* Zoom maior para esconder totalmente a marca d'água */
+}
+
+.sobre-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Overlay mais escuro/sutil para o vídeo de fundo brilhar, mas garantir o contraste */
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
 }
 
 .sobre-grid {
@@ -549,13 +592,13 @@ body {
 }
 
 .sobre-texto {
-    background: rgba(14, 165, 233, 0.08); /* Fundo azul bem suave e transparente */
+    background: rgba(255, 255, 255, 0.9); /* Fundo branco mais sólido para garantir a leitura sobre o vídeo */
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(14, 165, 233, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 24px;
     padding: 40px;
-    box-shadow: 0 15px 35px rgba(14, 165, 233, 0.1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
 .sobre-texto p {
@@ -640,61 +683,106 @@ body {
 
 /* Equipe de Desenvolvimento */
 .equipe-section {
-    background-color: #f8fafc;
+    position: relative;
+    overflow: hidden;
+    /* Imagem cobrindo a tela toda com um filtro mais escurinho via pseudo-elemento */
+    background: url('assets/img/faculdade.jpg') center / cover no-repeat;
     border-top: 1px solid #e2e8f0;
+    padding: 80px 0; /* Espaço para o conteúdo respirar */
+}
+
+.equipe-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65); /* Filtro escuro para tirar o brilho da foto */
+    z-index: 0;
+}
+
+.equipe-layout-split {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.equipe-title-side {
+    flex: 1 1 300px;
+    max-width: 40%;
+}
+
+.equipe-grid-side {
+    flex: 1 1 500px;
+}
+
+.equipe-title-card {
+    background: rgba(255, 255, 255, 0.15); /* Fundo transparente */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Removido margin-bottom, pois agora fica lado a lado */
 }
 
 .equipe-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Cards menores */
+    gap: 15px; /* Espaço menor entre os cards */
+    margin-top: 0;
 }
 
 .equipe-card {
-    background: white;
-    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.15); /* Transparente para ver a foto */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 20px 15px; /* Cards reduzidos */
     border-radius: 20px;
     text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .equipe-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    border-color: rgba(255, 255, 255, 0.4);
 }
 
 .membro-avatar {
-    width: 100px;
-    height: 100px;
+    width: 80px; /* Fotos menores */
+    height: 80px;
     border-radius: 50%;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 15px auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 40px;
+    font-size: 30px;
     color: white;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    overflow: hidden; /* Impede que a foto quadrada saia do círculo */
-    background: #e2e8f0; /* Fundo cinza suave de fallback */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    overflow: hidden;
+    background: #e2e8f0;
 }
 
 .membro-avatar img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Mantém a proporção da foto sem distorcer */
+    object-fit: cover;
 }
 
 .equipe-card h3 {
-    font-size: 18px;
-    color: #1e293b;
+    font-size: 16px; /* Letra menor */
+    color: #ffffff; /* Letra branca para ler no escuro */
     margin-bottom: 5px;
 }
 
 .equipe-card .cargo {
-    font-size: 14px;
-    color: #0d9488;
+    font-size: 13px;
+    color: #ffffff; /* Branco, conforme solicitado */
     font-weight: bold;
 }
 
