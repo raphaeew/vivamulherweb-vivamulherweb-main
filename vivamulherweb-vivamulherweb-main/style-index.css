@@ -9,7 +9,7 @@
 }
 
 body {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     overflow-x: hidden;
     background-color: #f0fdfa; /* Fundo de fallback */
 }
@@ -19,22 +19,24 @@ body {
 .view-oculta { display: none !important; }
 
 /* ========================================================
-   CABEÇALHO TRANSPARENTE E NAVEGAÇÃO
+   CABEÇALHO FIXO E NAVEGAÇÃO
    ======================================================== */
 .header-transparente {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 20px 5%;
+    padding: 10px 5%; /* Reduzido o padding para ocupar menos espaço vertical */
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 100%);
+    background-color: transparent; /* Caixa branca removida */
+    transition: all 0.3s ease;
 }
 
 .logo-img {
-    height: 60px; /* Ajuste o tamanho da sua logo aqui */
+    height: 125px; /* Logo maior, conforme solicitado */
+    transition: 0.3s ease;
 }
 
 #main-nav ul {
@@ -44,167 +46,332 @@ body {
 }
 
 #main-nav ul li a {
-    color: white;
-    font-weight: 900;
-    font-size: 16px;
+    color: #000000; /* Letras pretas para leitura num fundo transparente que pode ser branco */
+    font-weight: 700;
+    font-size: 15px;
     text-transform: uppercase;
     cursor: pointer;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.3); /* Sombra para ler bem em cima da foto */
+    text-shadow: 0px 1px 3px rgba(255, 255, 255, 0.5);
     transition: 0.3s;
+    letter-spacing: 1px;
 }
 
 #main-nav ul li a:hover {
-    color: #db2777; /* Fica rosa ao passar o rato */
+    color: #e83e8c; /* Fica rosa ao passar o mouse */
+    transform: translateY(-2px);
+    display: inline-block;
 }
 
 /* ========================================================
-   TELA 1: A PÁGINA INICIAL COM VÍDEO (HERO)
+   TELA 1: A PÁGINA INICIAL COM VÍDEO (HERO SPLIT)
    ======================================================== */
 #home-view {
-    min-height: 300vh; /* Altura extra para dar espaço ao scroll controlar o vídeo */
+    width: 100%;
     flex-direction: column;
-    justify-content: center;
-    padding: 0 10%;
+}
+
+.hero-section.modern-split {
     position: relative;
-    background-color: #0a0a0a; /* Fallback enquanto o vídeo carrega */
-}
-
-/* O vídeo de fundo fixo */
-#bg-video {
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100vh;
-    object-fit: cover;
-    z-index: 0;
-    pointer-events: none; /* Impede cliques no vídeo */
-    will-change: transform; /* Promove para camada GPU */
-    transform: translateZ(0); /* Força aceleração por hardware */
-}
-
-/* Sobreposição escura para legibilidade do texto */
-.video-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.25) 0%,
-        rgba(0, 0, 0, 0.10) 40%,
-        rgba(0, 0, 0, 0.35) 100%
-    );
-    z-index: 1;
-    pointer-events: none;
-}
-
-/* Indicador de scroll animado */
-.scroll-hint {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 8px;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    background-color: #f8fafc; /* Fundo off-white */
+    padding: 100px 5% 80px 5%; /* Espaço para o header e botões */
+    overflow: hidden;
+}
+
+/* --- Metade Esquerda: Texto --- */
+.hero-texto-split {
+    flex: 1;
+    padding-right: 40px;
     z-index: 10;
-    transition: opacity 0.3s ease;
-}
-
-.scroll-hint i {
-    font-size: 20px;
-    animation: bounceDown 1.8s ease-in-out infinite;
-}
-
-@keyframes bounceDown {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(8px); }
-}
-
-/* As Pílulas de Texto (Badges) */
-.hero-conteudo {
-    position: fixed;
-    top: 50%;
-    left: 10%;
-    transform: translateY(-50%);
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    z-index: 5;
+    justify-content: flex-start;
 }
 
-.badge-teal {
-    background-color: #0d9488; /* Verde Água escuro */
-    color: white;
-    font-weight: 700;
-    font-size: 20px;
-    padding: 8px 30px;
-    border-radius: 50px;
-    margin-left: 20px; /* Para o efeito sobreposto */
-    margin-bottom: -15px; /* Puxa a caixa rosa para cima dela */
-    z-index: 2;
+.conteudo-clean {
+    max-width: 600px;
+    animation: fadeInLeft 1s ease-out;
 }
 
-.badge-pink {
-    background-color: #e83e8c; /* O Rosa Viva Mulher */
-    color: white;
-    font-weight: 900;
-    font-size: 60px; /* Letra GIGANTE */
-    padding: 10px 50px;
-    border-radius: 60px;
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.hero-subtitle-clean {
+    color: #64748b;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
     text-transform: uppercase;
-    margin-bottom: 20px;
-    z-index: 1;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
-.hero-texto {
-    color: white;
+.hero-title-clean {
+    background: linear-gradient(135deg, #e83e8c 0%, #0d9488 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 70px;
     font-weight: 900;
-    font-size: 20px;
-    line-height: 1.4;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.6); /* Sombra preta para não se perder na foto da cidade */
-    margin-left: 20px;
+    margin-bottom: 35px;
+    line-height: 1.1;
 }
 
-/* Os botões brancos no fundo */
-.botoes-fundo {
-    position: fixed;
-    bottom: 60px;
-    left: 0;
-    width: 100%;
+.hero-features-clean {
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 0 20px;
-    z-index: 5;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
-.btn-pilula {
-    background-color: rgba(248, 250, 252, 0.95);
-    color: black;
-    font-weight: 900;
-    font-size: 16px;
-    padding: 15px 40px;
+.feature-item-clean {
+    background: white;
+    color: #334155;
+    padding: 12px 24px;
     border-radius: 50px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
     transition: 0.3s;
 }
 
-.btn-pilula:hover {
-    background-color: #0d9488;
+.feature-item-clean:hover {
+    transform: translateY(-3px);
+    border-color: #0d9488;
+    color: #0d9488;
+}
+
+.feature-item-clean i {
+    color: #e83e8c; /* Rosa para destaque */
+}
+
+/* --- Metade Direita: Vídeo (Abinha) --- */
+.hero-video-split {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 5;
+}
+
+.video-janela {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: 450px;
+    border-radius: 30px; /* Abinha/janela arredondada */
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+    animation: fadeInRight 1.2s ease-out;
+}
+
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+#bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Degradê que começa o vídeo na base */
+.video-degrade-inferior {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, rgba(248, 250, 252, 1), transparent);
+    pointer-events: none;
+}
+
+/* ========================================================
+   SEÇÃO DE SERVIÇOS (CARDS)
+   ======================================================== */
+.servicos-section {
+    position: relative;
+    z-index: 20;
+    margin-top: -150px; /* Sobrepõe o final do hero mais acima */
+    padding: 0 5% 50px 5%;
+}
+
+/* --- Carrossel de Serviços --- */
+.carousel-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 15px;
+}
+
+.carousel-btn {
+    background: white;
+    color: #0d9488;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: 0.3s ease;
+    z-index: 10;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-btn:hover {
+    background: #0d9488;
     color: white;
-    transform: translateY(-5px);
+    transform: scale(1.1);
+}
+
+.servicos-carousel {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto; /* Permite rolagem */
+    scroll-behavior: smooth; /* Rolagem suave ao clicar nas setas */
+    padding: 10px 5px 60px 5px; /* Espaço para expansão sanfona e sombra */
+    flex: 1;
+    align-items: start;
+    /* Esconder scrollbar nativa para design limpo */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.servicos-carousel::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
+
+.servico-card {
+    flex: 0 0 calc(25% - 15px); /* 4 cards por tela no PC */
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    border: 1px solid #f1f5f9;
+}
+
+.servico-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15); /* Sombra neutra sem o verde */
+    border-color: #0d9488;
+}
+
+.servico-img {
+    width: 100%;
+    height: 160px;
+    background-color: #e2e8f0;
+    overflow: hidden;
+}
+
+.servico-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s ease;
+}
+
+.servico-card:hover .servico-img img {
+    transform: scale(1.05);
+}
+
+.servico-conteudo {
+    padding: 20px;
+    text-align: center;
+}
+
+.servico-conteudo h3 {
+    color: #0d9488; /* Verde Teal */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.servico-resumo {
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+/* --- Efeito Sanfona (Accordion) no Hover --- */
+.servico-detalhes {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+    text-align: left;
+}
+
+.servico-detalhes p {
+    font-size: 13px;
+    color: #475569;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 15px;
+    margin-top: 15px;
+    line-height: 1.6;
+}
+
+.servico-card:hover .servico-detalhes {
+    max-height: 250px; /* Altura suficiente para expandir o texto oculto */
+    opacity: 1;
+}
+
+/* Responsividade do Split Hero e Servicos */
+@media (max-width: 900px) {
+    .hero-section.modern-split {
+        flex-direction: column;
+        padding-top: 120px;
+        text-align: center;
+    }
+    .hero-texto-split {
+        padding-right: 0;
+        margin-bottom: 40px;
+        justify-content: center;
+    }
+    .hero-features-clean {
+        justify-content: center;
+    }
+    .hero-title-clean {
+        font-size: 50px;
+    }
+    .video-janela {
+        height: 300px;
+    }
+    .servico-card {
+        flex: 0 0 calc(50% - 10px); /* 2 cards no Tablet */
+    }
+    .servicos-section {
+        margin-top: 20px; /* Remove sobreposição no mobile */
+    }
+}
+
+@media (max-width: 600px) {
+    .servico-card {
+        flex: 0 0 100%; /* 1 card no Mobile */
+    }
+    .carousel-wrapper {
+        gap: 5px;
+    }
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
 }
 
 /* ========================================================
@@ -228,7 +395,7 @@ body {
 }
 
 .auth-card h2 {
-    font-family: 'Lora', serif;
+    font-family: 'Montserrat', sans-serif;
     color: #0d9488;
     font-size: 32px;
     margin-bottom: 25px;
@@ -251,7 +418,7 @@ body {
     padding: 12px 15px;
     border: 1px solid #cbd5e1;
     border-radius: 8px;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     background-color: #f8fafc;
     transition: 0.3s;
@@ -337,6 +504,194 @@ body {
 }
 
 /* ========================================================
+   SEÇÕES: SOBRE E EQUIPE (SCROLL)
+   ======================================================== */
+.container-padrao {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+}
+
+.section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 40px;
+    color: #1e293b;
+    margin-bottom: 20px;
+}
+
+.section-subtitle {
+    font-size: 18px;
+    color: #64748b;
+    margin-bottom: 50px;
+}
+
+.text-center { text-align: center; }
+.highlight-pink { color: #e83e8c; }
+.highlight-teal { color: #0d9488; }
+
+/* Sobre o Projeto */
+.sobre-section {
+    background-color: #ffffff;
+}
+
+.sobre-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.sobre-texto {
+    background: rgba(14, 165, 233, 0.08); /* Fundo azul bem suave e transparente */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(14, 165, 233, 0.2);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(14, 165, 233, 0.1);
+}
+
+.sobre-texto p {
+    font-size: 18px;
+    color: #334155; /* Texto um pouco mais escuro para melhor leitura no azul */
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.estatisticas-sobre {
+    display: flex;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.stat-item h3 {
+    font-size: 28px;
+    color: #0ea5e9; /* Azul sólido para combinar com o card */
+    font-family: 'Montserrat', sans-serif;
+}
+
+.stat-item p {
+    font-size: 14px;
+    font-weight: bold;
+    color: #64748b;
+    margin-top: 5px;
+}
+
+.sobre-imagem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.imagem-clinica-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 550px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    /* Estado inicial para a animação (invisível e abaixado) */
+    transform: translateY(50px);
+    opacity: 0;
+    transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.img-clinica {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.8s ease;
+}
+
+/* Quando a classe 'revelado' for adicionada pelo JavaScript */
+.sobre-imagem.revelado .imagem-clinica-wrapper {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.img-gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Gradiente verde água subindo */
+    background: linear-gradient(to top, rgba(13, 148, 136, 0.5), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+}
+
+.imagem-clinica-wrapper:hover .img-clinica {
+    transform: scale(1.05); /* Zoom sutil na imagem */
+}
+
+.imagem-clinica-wrapper:hover .img-gradient-overlay {
+    opacity: 1; /* Mostra o gradiente no hover */
+}
+
+/* Equipe de Desenvolvimento */
+.equipe-section {
+    background-color: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+}
+
+.equipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.equipe-card {
+    background: white;
+    padding: 40px 20px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.equipe-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.membro-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    overflow: hidden; /* Impede que a foto quadrada saia do círculo */
+    background: #e2e8f0; /* Fundo cinza suave de fallback */
+}
+
+.membro-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantém a proporção da foto sem distorcer */
+}
+
+.equipe-card h3 {
+    font-size: 18px;
+    color: #1e293b;
+    margin-bottom: 5px;
+}
+
+.equipe-card .cargo {
+    font-size: 14px;
+    color: #0d9488;
+    font-weight: bold;
+}
+
+/* ========================================================
    AJUSTE DE CABEÇALHO E BOTÕES PARA MOBILE (MAX 768px)
    ======================================================== */
 @media (max-width: 768px) {
@@ -360,30 +715,39 @@ body {
 
     /* Ajuste da Hero Section para centralizar no celular */
     .hero-conteudo {
-        left: 5% !important;
-        right: 5% !important;
-        text-align: center !important;
-        align-items: center !important;
+        margin-top: 0;
+        justify-content: center; /* Centraliza o cartão inteiro no mobile */
     }
 
-    .badge-pink {
-        font-size: 24px !important;
-        width: 90% !important;
-        margin: 0 auto !important;
-        padding: 10px 20px !important;
+    .glass-card {
+        padding: 30px 20px;
+        border-radius: 20px;
+        width: 100%;
+        text-align: center; /* Volta a centralizar o texto no mobile */
     }
 
-    .badge-teal {
-        margin-left: 0 !important;
+    .hero-title {
+        font-size: 40px !important;
+        margin-bottom: 25px;
+    }
+
+    .hero-subtitle {
+        font-size: 16px !important;
+    }
+    
+    .hero-features {
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
     }
 
     /* Botões de especialidades empilhados no celular */
     .botoes-fundo {
-        position: fixed !important;
+        position: absolute !important;
         flex-direction: column !important;
         gap: 8px !important;
         padding: 0 10% !important;
-        bottom: 50px !important;
+        bottom: 30px !important;
     }
 
     .btn-pilula {
@@ -392,10 +756,13 @@ body {
         padding: 12px 20px !important;
     }
 
-    /* Esconde a dica de scroll no mobile para não poluir */
-    .scroll-hint {
-        bottom: 10px;
-        font-size: 11px;
+    .sobre-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .section-title {
+        font-size: 30px;
     }
 }
 

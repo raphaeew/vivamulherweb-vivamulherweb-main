@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Viva Mulher - Início</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Nunito:wght@400;700;900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
@@ -17,7 +19,7 @@
 
     <header class="header-transparente">
         <div class="logo-container">
-            <img src="logo1.png" alt="Logo Viva Mulher" class="logo-img">
+            <img src="assets/img/logo1.png" alt="Logo Viva Mulher" class="logo-img">
         </div>
         <nav id="main-nav">
             <ul>
@@ -51,33 +53,272 @@
         }
     </style>
     <main id="home-view" class="view-ativa">
-        <video id="bg-video" muted playsinline preload="auto">
-            <source src="backgroundvideo.mp4" type="video/mp4">
-        </video>
-        <div class="video-overlay"></div>
-
-        <div class="hero-conteudo">
-            <div class="badge-teal">Bem vinda ao</div>
-            <div class="badge-pink">VIVA MULHER</div>
-
-            <div class="hero-texto">
-                <p>Menos filas.</p>
-                <p>Mais prevenção.</p>
-                <p>Mais cuidado.</p>
+        <section class="hero-section modern-split">
+            <!-- Metade Texto (Off-White) -->
+            <div class="hero-texto-split">
+                <div class="conteudo-clean">
+                    <h2 class="hero-subtitle-clean">Bem-vinda ao</h2>
+                    <h1 class="hero-title-clean">VIVA MULHER</h1>
+                    <div class="hero-features-clean">
+                        <span class="feature-item-clean"><i class="fas fa-clock"></i> Menos filas</span>
+                        <span class="feature-item-clean"><i class="fas fa-shield-heart"></i> Mais prevenção</span>
+                        <span class="feature-item-clean"><i class="fas fa-hand-holding-medical"></i> Mais cuidado</span>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="botoes-fundo">
-            <button class="btn-pilula" onclick="abrirDescricao('ginecologia')">GINECOLOGIA</button>
-            <button class="btn-pilula" onclick="abrirDescricao('obstetricia')">OBSTETRÍCIA</button>
-            <button class="btn-pilula" onclick="abrirDescricao('mastologia')">MASTOLOGIA</button>
-            <button class="btn-pilula" onclick="abrirDescricao('cirurgias')">CIRURGIAS</button>
-        </div>
+            <!-- Metade Vídeo (Janela/Abinha com Degradê) -->
+            <div class="hero-video-split">
+                <div class="video-janela">
+                    <video id="bg-video" autoplay loop muted playsinline preload="auto">
+                        <source src="assets/video/backgroundvideo.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-degrade-inferior"></div>
+                </div>
+            </div>
 
-        <div class="scroll-hint">
-            <i class="fas fa-chevron-down"></i>
-            <span>Role para explorar</span>
-        </div>
+        </section>
+
+        <!-- SEÇÃO: SERVIÇOS / ESPECIALIDADES EM CARDS -->
+        <section class="servicos-section">
+            <div class="container-padrao">
+                <div class="carousel-wrapper">
+                    <button class="carousel-btn left" onclick="moverCarrossel(-1)"><i
+                            class="fas fa-chevron-left"></i></button>
+
+                    <div class="servicos-carousel" id="servicos-carousel">
+                        <div class="servico-card" onclick="abrirDescricao('ginecologia')">
+                            <div class="servico-img">
+                                <img src="assets/img/ginecologia.jpg" alt="Ginecologia">
+                            </div>
+                            <div class="servico-conteudo">
+                                <h3>Ginecologia</h3>
+                                <p class="servico-resumo">Prevenção, diagnóstico e tratamento focado na saúde íntima da
+                                    mulher.</p>
+                                <div class="servico-detalhes">
+                                    <p>Realizamos exames de rotina preventivos, tratamento de patologias, planejamento
+                                        familiar e inserção de contraceptivos (DIU/Implantes).</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="servico-card" onclick="abrirDescricao('obstetricia')">
+                            <div class="servico-img">
+                                <img src="assets/img/obstetricia.jpg" alt="Obstetrícia">
+                            </div>
+                            <div class="servico-conteudo">
+                                <h3>Obstetrícia</h3>
+                                <p class="servico-resumo">Acompanhamento humanizado e seguro durante toda a gestação e
+                                    parto.</p>
+                                <div class="servico-detalhes">
+                                    <p>Assistência pré-natal completa, exames de ultrassonografia morfológica e
+                                        acompanhamento de gestações de alto risco.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="servico-card" onclick="abrirDescricao('mastologia')">
+                            <div class="servico-img">
+                                <img src="assets/img/Mastologia.jpg" alt="Mastologia">
+                            </div>
+                            <div class="servico-conteudo">
+                                <h3>Mastologia</h3>
+                                <p class="servico-resumo">Cuidado das glândulas mamárias, com ênfase na prevenção do
+                                    câncer.</p>
+                                <div class="servico-detalhes">
+                                    <p>Prevenção, diagnóstico precoce e tratamento clínico/cirúrgico, além do
+                                        acompanhamento de nódulos e cistos.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="servico-card" onclick="abrirDescricao('cirurgias')">
+                            <div class="servico-img">
+                                <img src="assets/img/Cirurgias.jpg" alt="Cirurgias">
+                            </div>
+                            <div class="servico-conteudo">
+                                <h3>Cirurgias</h3>
+                                <p class="servico-resumo">Procedimentos minimamente invasivos com equipe especializada.
+                                </p>
+                                <div class="servico-detalhes">
+                                    <p>Procedimentos cirúrgicos (videolaparoscopia e histeroscopia) para tratamento de
+                                        miomas e endometriose com rápida recuperação.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Novos Cards -->
+                        <div class="servico-card" onclick="abrirDescricao('pediatria')">
+                            <div class="servico-img">
+                                <img src="assets/img/Pediatria.jpg" alt="Pediatria">
+                            </div>
+                            <div class="servico-conteudo">
+                                <h3>Pediatria</h3>
+                                <p class="servico-resumo">Cuidado dedicado ao desenvolvimento infantil desde os
+                                    primeiros dias.</p>
+                                <div class="servico-detalhes">
+                                    <p>Acompanhamento de rotina, vacinação, orientação nutricional e tratamento das
+                                        principais doenças da infância.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="servico-card" onclick="abrirDescricao('nutricao')">
+                            <div class="servico-img">
+                                <img src="assets/img/Nutrição.jpg" alt="Nutrição">
+                            </div>
+                            <div class="servico-conteudo">
+                                <h3>Nutrição</h3>
+                                <p class="servico-resumo">Planos alimentares personalizados para cada fase da sua vida.
+                                </p>
+                                <div class="servico-detalhes">
+                                    <p>Acompanhamento nutricional focado em emagrecimento saudável, gestação, menopausa
+                                        e controle de doenças crônicas.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="servico-card" onclick="abrirDescricao('endocrinologia')">
+                            <div class="servico-img">
+                                <img src="assets/img/Endocrinologia.jpg" alt="Endocrinologia">
+                            </div>
+                            <div class="servico-conteudo">
+                                <h3>Endocrinologia</h3>
+                                <p class="servico-resumo">Tratamento de distúrbios hormonais e metabólicos com precisão.
+                                </p>
+                                <div class="servico-detalhes">
+                                    <p>Especialistas em distúrbios da tireoide, diabetes, obesidade e acompanhamento
+                                        especializado durante a menopausa.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="servico-card" onclick="abrirDescricao('psicologia')">
+                            <div class="servico-img">
+                                <img src="assets/img/Psicologia.jpg" alt="Psicologia">
+                            </div>
+                            <div class="servico-conteudo">
+                                <h3>Psicologia</h3>
+                                <p class="servico-resumo">Apoio emocional e saúde mental voltado para a mulher.</p>
+                                <div class="servico-detalhes">
+                                    <p>Acolhimento humanizado para depressão pós-parto, ansiedade, transições de vida e
+                                        terapia individual e familiar.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="carousel-btn right" onclick="moverCarrossel(1)"><i
+                            class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: SOBRE O PROJETO -->
+        <section class="sobre-section">
+            <div class="container-padrao">
+                <div class="sobre-grid">
+                    <div class="sobre-texto">
+                        <h2 class="section-title">O que é o <span class="highlight-pink">Viva Mulher</span>?</h2>
+                        <p>O <strong>Viva Mulher</strong> é um projeto inovador focado em otimizar e transformar o
+                            atendimento à saúde feminina. Nosso principal objetivo é reduzir filas de espera e facilitar
+                            o acesso a consultas e exames preventivos, como ginecologia, mastologia e obstetrícia.</p>
+                        <p>Através da nossa plataforma, clínicas e pacientes se conectam de forma mais rápida, humana e
+                            eficiente, garantindo que o foco principal seja sempre o cuidado e a prevenção.</p>
+                        <div class="estatisticas-sobre">
+                            <div class="stat-item">
+                                <h3>+ Rapidez</h3>
+                                <p>Agendamentos simplificados</p>
+                            </div>
+                            <div class="stat-item">
+                                <h3>100%</h3>
+                                <p>Foco na saúde da mulher</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sobre-imagem scroll-reveal">
+                        <div class="imagem-clinica-wrapper"
+                            onclick="document.getElementById('modal-mapa').className='modal-ativo'"
+                            style="cursor: pointer;" title="Clique para ver no mapa">
+                            <img src="assets/img/clinicadamulher.jpg" alt="Clínica da Mulher" class="img-clinica">
+                            <div class="img-gradient-overlay"
+                                style="display: flex; justify-content: center; align-items: center;">
+                                <i class="fas fa-map-marker-alt"
+                                    style="color: white; font-size: 50px; text-shadow: 0 4px 15px rgba(0,0,0,0.4);"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: EQUIPE DE DESENVOLVIMENTO -->
+        <section class="equipe-section">
+            <div class="container-padrao">
+                <h2 class="section-title text-center">Nossa <span class="highlight-teal">Equipe</span></h2>
+                <p class="section-subtitle text-center"
+                    style="max-width: 800px; margin: 0 auto 50px auto; line-height: 1.6; color: #475569;">
+                    Nós somos alunos da <strong>Universidade de Vassouras (Univassouras)</strong> e bolsistas do projeto
+                    <strong>Conexão Universitária</strong>.
+                    Este software está sendo desenvolvido pelo nosso grupo de Práticas Extensionistas com o objetivo de
+                    promover o avanço tecnológico na área da saúde da cidade,
+                    retornando o investimento da Prefeitura em inovação e qualidade de vida para a população.
+                </p>
+
+                <div class="equipe-grid">
+                    <div class="equipe-card">
+                        <div class="membro-avatar"
+                            style="background: linear-gradient(135deg, #fbcfe8 0%, #e83e8c 100%);">
+                            <img src="assets/img/foto-aluno1.jpg" alt="Foto Aluno 1">
+                        </div>
+                        <h3>Nome do Aluno 1</h3>
+                        <p class="cargo">Front-end & Design UX</p>
+                    </div>
+                    <div class="equipe-card">
+                        <div class="membro-avatar"
+                            style="background: linear-gradient(135deg, #ccfbf1 0%, #0d9488 100%);">
+                            <img src="assets/img/foto-aluno2.jpg" alt="Foto Aluno 2">
+                        </div>
+                        <h3>Nome do Aluno 2</h3>
+                        <p class="cargo">Desenvolvedor Back-end</p>
+                    </div>
+                    <div class="equipe-card">
+                        <div class="membro-avatar"
+                            style="background: linear-gradient(135deg, #fef3c7 0%, #d97706 100%);">
+                            <img src="assets/img/foto-aluno3.jpg" alt="Foto Aluno 3">
+                        </div>
+                        <h3>Nome do Aluno 3</h3>
+                        <p class="cargo">Documentação</p>
+                    </div>
+                    <div class="equipe-card">
+                        <div class="membro-avatar"
+                            style="background: linear-gradient(135deg, #e0e7ff 0%, #4f46e5 100%);">
+                            <img src="assets/img/foto-aluno4.jpg" alt="Foto Aluno 4">
+                        </div>
+                        <h3>Nome do Aluno 4</h3>
+                        <p class="cargo">Desenvolvedor Back-end</p>
+                    </div>
+                    <div class="equipe-card">
+                        <div class="membro-avatar"
+                            style="background: linear-gradient(135deg, #f1f5f9 0%, #475569 100%);">
+                            <img src="assets/img/foto-aluno5.jpg" alt="Foto Aluno 5">
+                        </div>
+                        <h3>Nome do Aluno 5</h3>
+                        <p class="cargo">Tech Lead</p>
+                    </div>
+                    <div class="equipe-card">
+                        <div class="membro-avatar"
+                            style="background: linear-gradient(135deg, #fef08a 0%, #ca8a04 100%);">
+                            <img src="assets/img/foto-aluno6.jpg" alt="Foto Aluno 6">
+                        </div>
+                        <h3>Nome do Aluno 6</h3>
+                        <p class="cargo">Diagramas de Arquitetura</p>
+                    </div>
+                    <div class="equipe-card">
+                        <div class="membro-avatar"
+                            style="background: linear-gradient(135deg, #dcfce7 0%, #16a34a 100%);">
+                            <img src="assets/img/foto-aluno7.jpg" alt="Foto Aluno 7">
+                        </div>
+                        <h3>Nome do Aluno 7</h3>
+                        <p class="cargo">Requisitos (Func. e Não Func.)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <main id="login-view" class="view-oculta view-auth">
@@ -150,100 +391,60 @@
         </div>
     </main>
 
-
-    <div id="modal-descricao" class="modal-oculto">
-        <div class="auth-card" style="position: relative; max-width: 500px; margin: auto;">
+    <!-- JANELA FLUTUANTE (MODAL) PARA DESCRIÇÕES -->
+    <div id="modal-info" class="modal-oculto">
+        <div class="auth-card" style="position: relative; max-width: 500px; text-align: center;">
             <button class="btn-fechar-modal" onclick="fecharDescricao()">✖</button>
-
             <h2 id="modal-titulo" style="color: #e83e8c;">Especialidade</h2>
             <p id="modal-texto" style="color: #475569; font-size: 16px; line-height: 1.6; margin-bottom: 25px;">
                 Descrição do procedimento aparecerá aqui...</p>
-
             <button class="btn-auth" onclick="fecharDescricao(); mostrarPagina('login');">Agendar Agora</button>
+        </div>
+    </div>
+
+    <!-- JANELA FLUTUANTE (MODAL) PARA O MAPA -->
+    <div id="modal-mapa" class="modal-oculto">
+        <div class="auth-card"
+            style="position: relative; max-width: 700px; width: 95%; padding: 30px; text-align: center;">
+            <button class="btn-fechar-modal"
+                onclick="document.getElementById('modal-mapa').className='modal-oculto'">✖</button>
+            <h2 style="color: #0d9488; font-family: 'Montserrat', sans-serif; font-size: 26px; margin-bottom: 20px;">
+                Nossa Localização</h2>
+            <div
+                style="width: 100%; height: 350px; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.15);">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.4132013048666!2d-42.48161320321049!3d-22.89812540000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x975f002698c093%3A0x2dc6fb2bb6e6caf2!2sCl%C3%ADnica%20da%20Mulher!5e0!3m2!1spt-BR!2sbr!4v1780066619282!5m2!1spt-BR!2sbr"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <button class="btn-auth" style="margin-top: 25px; font-family: 'Open Sans', sans-serif;"
+                onclick="window.open('https://maps.google.com/?q=-23.54019185,-46.66668385', '_blank')">Abrir rota no
+                Google Maps</button>
         </div>
     </div>
 
     <script src="script.js"></script>
     <script>
-        // === CONTROLE SUAVE DO VÍDEO POR SCROLL (com interpolação) ===
-        (function () {
-            const video = document.getElementById('bg-video');
-            if (!video) return;
+        // O controle pelo scroll foi removido para garantir a fluidez total.
+        // O vídeo agora usa autoplay e loop nativos do navegador.
 
-            let videoDuration = 0;
-            let targetTime = 0;      // Tempo-alvo calculado pelo scroll
-            let currentSmooth = 0;   // Tempo atual suavizado (o que é exibido)
-            let animating = false;
-
-            // Fator de suavização: quanto menor, mais suave (0.04 – 0.12 bom range)
-            const LERP_FACTOR = 0.07;
-            // Limiar mínimo de diferença para evitar micro-seeks desnecessários
-            const SEEK_THRESHOLD = 0.015;
-
-            // Espera o vídeo carregar os metadados para saber a duração
-            video.addEventListener('loadedmetadata', function () {
-                videoDuration = video.duration;
-                video.currentTime = 0;
-                currentSmooth = 0;
-                targetTime = 0;
+        // === EFEITO DE APARECER (SCROLL REVEAL) ===
+        document.addEventListener("DOMContentLoaded", function () {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revelado');
+                        // Se quiser que anime toda vez que rolar, basta remover a linha abaixo.
+                        // observer.unobserve(entry.target); 
+                    }
+                });
+            }, {
+                threshold: 0.2, // 20% visível para disparar
+                rootMargin: "0px 0px -50px 0px" // Dispara um pouco antes
             });
 
-            // Também tenta carregar se o vídeo já estiver pronto (cache)
-            if (video.readyState >= 1) {
-                videoDuration = video.duration;
-            }
-
-            // Atualiza o tempo-alvo com base na posição do scroll
-            function updateTarget() {
-                if (videoDuration <= 0) return;
-
-                const homeView = document.getElementById('home-view');
-                if (!homeView || !homeView.classList.contains('view-ativa')) return;
-
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-                if (maxScroll <= 0) return;
-
-                const scrollFraction = Math.min(Math.max(scrollTop / maxScroll, 0), 1);
-                targetTime = scrollFraction * videoDuration;
-
-                // Fade na indicação de scroll
-                const scrollHint = document.querySelector('.scroll-hint');
-                if (scrollHint) {
-                    scrollHint.style.opacity = Math.max(1 - (scrollFraction * 5), 0);
-                }
-
-                // Inicia o loop de animação se ainda não estiver rodando
-                if (!animating) {
-                    animating = true;
-                    requestAnimationFrame(smoothSeek);
-                }
-            }
-
-            // Loop de animação contínuo que interpola suavemente para o alvo
-            function smoothSeek() {
-                // Interpolação linear (lerp)
-                currentSmooth += (targetTime - currentSmooth) * LERP_FACTOR;
-
-                // Só faz seek de verdade se a diferença for significativa
-                const diff = Math.abs(currentSmooth - video.currentTime);
-                if (diff > SEEK_THRESHOLD) {
-                    video.currentTime = currentSmooth;
-                }
-
-                // Continua animando enquanto não chegar perto o bastante do alvo
-                if (Math.abs(targetTime - currentSmooth) > 0.001) {
-                    requestAnimationFrame(smoothSeek);
-                } else {
-                    // Ajuste final exato
-                    currentSmooth = targetTime;
-                    video.currentTime = targetTime;
-                    animating = false;
-                }
-            }
-
-            window.addEventListener('scroll', updateTarget, { passive: true });
-        })();
+            document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+        });
     </script>
 </body>
 

@@ -182,6 +182,14 @@ function calcularCiclo() {
 }
 
 
+// === SISTEMA DE CARROSSEL DE SERVIÇOS ===
+function moverCarrossel(direcao) {
+    const carrossel = document.getElementById('servicos-carousel');
+    // Pega a largura do container visível e rola meia tela (ou 1 card por vez)
+    const scrollAmount = 280 * direcao; 
+    carrossel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+}
+
 // === SISTEMA DE DESCRIÇÕES DE ESPECIALIDADES (MODAL) ===
 
 // Aqui guardamos os textos de cada botão
@@ -201,6 +209,22 @@ const descricoes = {
     'cirurgias': {
         titulo: 'Cirurgias Ginecológicas',
         texto: 'Realizamos procedimentos cirúrgicos de alta precisão e minimamente invasivos (como laparoscopia e histeroscopia) para o tratamento eficaz de miomas, endometriose e outras condições.'
+    },
+    'pediatria': {
+        titulo: 'Pediatria',
+        texto: 'Acompanhamento dedicado ao desenvolvimento infantil desde o nascimento. Consultas de rotina, vacinação, orientação nutricional e tratamento das principais doenças da infância com todo o carinho e paciência.'
+    },
+    'nutricao': {
+        titulo: 'Nutrição',
+        texto: 'Atendimento nutricional especializado na saúde da mulher. Planos alimentares personalizados para emagrecimento, gestação, lactação, menopausa e acompanhamento de condições como a endometriose e SOP.'
+    },
+    'endocrinologia': {
+        titulo: 'Endocrinologia',
+        texto: 'Diagnóstico e tratamento de desordens hormonais e metabólicas. Foco no tratamento de doenças da tireoide, diabetes, obesidade e acompanhamento especializado durante a menopausa.'
+    },
+    'psicologia': {
+        titulo: 'Psicologia',
+        texto: 'Apoio emocional e mental com psicólogas especializadas na saúde da mulher. Acolhimento em casos de depressão pós-parto, ansiedade, estresse e auxílio para as transições de vida.'
     }
 };
 
