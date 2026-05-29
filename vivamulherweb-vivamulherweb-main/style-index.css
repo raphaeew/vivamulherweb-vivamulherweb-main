@@ -22,16 +22,23 @@ body {
    CABEÇALHO FIXO E NAVEGAÇÃO
    ======================================================== */
 .header-transparente {
-    position: fixed;
+    position: absolute;
     top: 0;
     width: 100%;
     padding: 10px 5%; /* Reduzido o padding para ocupar menos espaço vertical */
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     z-index: 100;
     background-color: transparent; /* Caixa branca removida */
     transition: all 0.3s ease;
+}
+
+.logo-container {
+    position: fixed;
+    top: 10px;
+    left: 5%;
+    z-index: 101;
 }
 
 .logo-img {
@@ -699,7 +706,13 @@ body {
     header {
         flex-direction: column !important;
         padding: 10px !important;
+        padding-top: 140px !important;
         height: auto !important;
+    }
+
+    .logo-container {
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     nav ul {
