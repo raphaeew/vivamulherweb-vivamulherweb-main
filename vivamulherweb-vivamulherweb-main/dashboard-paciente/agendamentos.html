@@ -34,7 +34,10 @@
             </div>
 
             <div class="card-flutuante" style="width: 100%;">
-                <h4>Histórico Completo</h4>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h4 style="margin: 0;">Histórico Completo</h4>
+                    <button onclick="abrirModalAgendamento()" style="background-color: #6b21a8; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 8px; transition: 0.3s;"><i class="fas fa-plus"></i> Agendar Consulta</button>
+                </div>
                 <table class="tabela-consultas">
                     <thead>
                         <tr>
@@ -42,6 +45,7 @@
                             <th>Especialidade</th>
                             <th>Médico(a)</th>
                             <th>Status</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,15 +54,55 @@
                             <td>Ginecologia</td>
                             <td>Dra. Silva</td>
                             <td><span style="color: green; font-weight: bold;">Realizada</span></td>
+                            <td style="text-align: center; color: #888;">-</td>
                         </tr>
                         <tr>
                             <td>22/08/2026</td>
                             <td>Mastologia</td>
                             <td>Dr. Roberto</td>
-                            <td><span style="color: #0d9488; font-weight: bold;">Agendada</span></td>
+                            <td><span class="status-badge" style="color: #0d9488; font-weight: bold;">Agendada</span></td>
+                            <td style="text-align: center;">
+                                <button onclick="cancelarConsultaDaTabela(this)" style="background-color: #ef4444; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: bold; transition: 0.3s;"><i class="fas fa-times"></i> Cancelar</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+
+            <!-- Modal Agendamento -->
+            <div id="modal-agendamento" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background-color: rgba(15, 23, 42, 0.85); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(5px);">
+                <div style="background-color: white; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
+                    <h3 style="color: #6b21a8; margin-top: 0; margin-bottom: 20px;">Agendar Nova Consulta</h3>
+                    <form id="form-novo-agendamento" onsubmit="salvarAgendamento(event)">
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Especialidade</label>
+                            <select id="nova-especialidade" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-family: 'Nunito', sans-serif;">
+                                <option value="">Selecione...</option>
+                                <option value="Ginecologia">Ginecologia</option>
+                                <option value="Mastologia">Mastologia</option>
+                                <option value="Obstetrícia">Obstetrícia</option>
+                                <option value="Nutrição">Nutrição</option>
+                            </select>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Médico(a)</label>
+                            <select id="novo-medico" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-family: 'Nunito', sans-serif;">
+                                <option value="">Selecione...</option>
+                                <option value="Dra. Silva">Dra. Silva</option>
+                                <option value="Dr. Roberto">Dr. Roberto</option>
+                                <option value="Dra. Ana">Dra. Ana</option>
+                            </select>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Data</label>
+                            <input type="date" id="nova-data" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-family: 'Nunito', sans-serif; box-sizing: border-box;">
+                        </div>
+                        <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                            <button type="button" onclick="fecharModalAgendamento()" style="padding: 10px 20px; border-radius: 8px; border: 1px solid #ccc; background: transparent; cursor: pointer; font-weight: bold; color: #666;">Cancelar</button>
+                            <button type="submit" style="padding: 10px 20px; border-radius: 8px; border: none; background: #6b21a8; color: white; cursor: pointer; font-weight: bold;">Confirmar</button>
+                        </div>
+                    </form>
+                </div>
             </div>
 
         </main>

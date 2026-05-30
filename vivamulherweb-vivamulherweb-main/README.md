@@ -17,23 +17,17 @@ Sistema web responsivo com foco em saúde da mulher, oferecendo agendamento de c
 - **Campos Condicionais**: Exibição de campos específicos (Registro Profissional, CNPJ) para profissionais e clínicas.
 
 ### 📅 Agendamento Online
-- **Dashboard do Paciente**: Visualização de agendamentos futuros e passados.
-- **Marcar Consulta**: Fluxo guiado para seleção de especialidade, data e horário.
-- **Filtros Inteligentes**: Exibição apenas de horários disponíveis.
+- **Dashboard do Paciente**: Visualização interativa do histórico de agendamentos.
+- **Marcar Consulta**: Modal de agendamento que adiciona consultas dinamicamente à tabela.
+- **Cancelar Consulta**: Opção para o paciente cancelar consultas agendadas, atualizando o status em tempo real.
 
-### 👩‍⚕️ Corpo Clínico
-- **Visualização da Equipe**: Listagem de médicos com detalhes (CRM, Especialidade, Foto).
-- **Gestão de Profissionais**:
-  - Adicionar novos médicos.
-  - Editar informações existentes.
-  - Excluir (com confirmação visual).
+### 🏢 Clínicas e Unidades
+- **Rede de Saúde**: Visualização de um painel integrado ("Clínicas") apresentando a Clínica da Mulher, Hospital Municipal e Postos de Saúde da Família (ESF).
+- **Mapa Interativo**: Botão para abrir a localização exata das unidades no Google Maps.
 
-### 🏢 Clínica
-- **Visualização da Clínica**: Informações da clínica e endereço.
-- **Gestão de Clínicas**:
-  - Adicionar novas clínicas.
-  - Editar informações existentes.
-  - Excluir (com confirmação visual).
+### 🔐 Segurança e Performance
+- **Login Dinâmico**: Ao se cadastrar, o usuário é logado e redirecionado automaticamente para o seu painel de controle (sem necessidade de login extra).
+- **Ofuscação de Código**: O código JavaScript de produção (`script.js`) foi mascarado e ofuscado, garantindo segurança contra engenharia reversa. O código legível de desenvolvimento está mantido em `script_dev.js`.
 
 ## 🚀 Como Executar
 

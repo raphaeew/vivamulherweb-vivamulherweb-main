@@ -25,7 +25,7 @@
             <ul>
                 <li><a onclick="mostrarPagina('home')">INÍCIO</a></li>
                 <li><a onclick="mostrarPagina('login')">AGENDAMENTO</a></li>
-                <li><a onclick="mostrarPagina('login')">CLÍNICAS</a></li>
+                <li><a onclick="mostrarPagina('clinicas')" style="cursor: pointer;">CLÍNICAS</a></li>
                 <li><a onclick="mostrarPagina('login')" class="nav-destaque">LOGIN/CADASTRO</a></li>
             </ul>
         </nav>
@@ -336,6 +336,45 @@
                 </div> <!-- Fim equipe-layout-split -->
             </div>
         </section>
+    </main>
+
+    <main id="clinicas-view" class="view-oculta" style="padding: 120px 0 60px 0; background-color: #f8fafc; min-height: 100vh;">
+        <div class="container-padrao">
+            <h2 class="section-title text-center" style="margin-bottom: 20px; color: #0d9488;">Clínicas e Unidades Atendidas</h2>
+            <p class="section-subtitle text-center" style="margin-bottom: 50px; color: #475569;">O nosso alvo é que a rede Viva Mulher atenda a toda a saúde de Saquarema, englobando hospitais, clínicas, postos de saúde da família e demais unidades de atendimento.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <!-- Clínica 1 -->
+                <div style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <img src="assets/img/clinicadamulher.jpg" alt="Clínica da Mulher" style="width: 100%; height: 220px; object-fit: cover;">
+                    <div style="padding: 30px;">
+                        <h3 style="color: #333; margin-bottom: 15px; font-size: 22px;">Clínica da Mulher</h3>
+                        <p style="color: #666; font-size: 15px; margin-bottom: 25px; line-height: 1.6;">Referência no atendimento integral à saúde feminina em Saquarema. Especialidades variadas e exames preventivos em um só lugar.</p>
+                        <button onclick="document.getElementById('modal-mapa').className='modal-ativo'" class="btn-auth" style="padding: 12px 25px; font-size: 15px; width: auto; border-radius: 8px;">Ver Localização</button>
+                    </div>
+                </div>
+                
+                <!-- Clínica 2 -->
+                <div style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <img src="assets/img/hospital_municipal.png" alt="Hospital Municipal" style="width: 100%; height: 220px; object-fit: cover;">
+                    <div style="padding: 30px;">
+                        <h3 style="color: #333; margin-bottom: 15px; font-size: 22px;">Hospital Municipal N. Sra. de Nazareth</h3>
+                        <p style="color: #666; font-size: 15px; margin-bottom: 25px; line-height: 1.6;">Atendimentos de urgência, emergência, maternidade e cirurgias especializadas com infraestrutura completa.</p>
+                        <button onclick="document.getElementById('modal-mapa').className='modal-ativo'" class="btn-auth" style="padding: 12px 25px; font-size: 15px; width: auto; border-radius: 8px; background-color: #0d9488;">Ver Localização</button>
+                    </div>
+                </div>
+
+                <!-- Clínica 3 -->
+                <div style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <img src="assets/img/posto_saude.png" alt="Postos de Saúde" style="width: 100%; height: 220px; object-fit: cover;">
+                    <div style="padding: 30px;">
+                        <h3 style="color: #333; margin-bottom: 15px; font-size: 22px;">Postos de Saúde da Família (ESF)</h3>
+                        <p style="color: #666; font-size: 15px; margin-bottom: 25px; line-height: 1.6;">Atendimento primário e preventivo distribuído por todos os bairros do município, garantindo acesso facilitado à saúde.</p>
+                        <button onclick="document.getElementById('modal-mapa').className='modal-ativo'" class="btn-auth" style="padding: 12px 25px; font-size: 15px; width: auto; border-radius: 8px; background-color: #6b21a8;">Ver Localização</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <main id="login-view" class="view-oculta view-auth">
