@@ -1,65 +1,30 @@
-# Viva Mulher - Plataforma de Saúde Feminina
+# Viva Mulher - Sistema Integrado de Saúde Feminina 🌸
 
-Sistema web responsivo com foco em saúde da mulher, oferecendo agendamento de consultas, gestão de pacientes e clínica.
+Bem-vindo ao repositório do projeto **Viva Mulher**, um protótipo de plataforma digital inovadora desenvolvida para modernizar e unificar o atendimento à saúde feminina no município de Saquarema.
 
-## 🎨 Funcionalidades Principais
+## 🎯 Objetivo do Projeto
 
-### 🏠 Tela Inicial
-- **Hero Section**: Vídeo de fundo com efeito de paralaxe controlado pelo scroll.
-- **Navegação**: Menu fixo no topo com links para Login, Agendamento e Clínicas.
-- **Badges Interativos**: Títulos "Viva Mulher" com efeito de destaque.
-- **Pílulas de Especialidades**: Botões com design diferenciado que acionam modais informativos.
-- **Indicador de Scroll**: Seta animada sugerindo rolagem para interagir com o conteúdo.
+O alvo do projeto é demonstrar que a rede Viva Mulher tem potencial para atender a toda a saúde de Saquarema, englobando hospitais, clínicas, postos de saúde da família e demais unidades de atendimento, promovendo:
+- **Menos filas**
+- **Mais prevenção**
+- **Mais cuidado focado na mulher**
 
-### 🔐 Autenticação
-- Telas separadas para **Login** e **Cadastro**.
-- **Seleção de Perfil**: Paciente, Médico(a)/Gestão e Recepção.
-- **Campos Condicionais**: Exibição de campos específicos (Registro Profissional, CNPJ) para profissionais e clínicas.
+## ✨ Principais Funcionalidades
 
-### 📅 Agendamento Online
-- **Dashboard do Paciente**: Visualização interativa do histórico de agendamentos.
-- **Marcar Consulta**: Modal de agendamento que adiciona consultas dinamicamente à tabela.
-- **Cancelar Consulta**: Opção para o paciente cancelar consultas agendadas, atualizando o status em tempo real.
+- **Design Premium e Responsivo**: Interface web moderna construída do zero, com uma abordagem imersiva (vídeo em plano de fundo com transição suave em degradê) inspirada em grandes empresas de tecnologia.
+- **Página de Clínicas Dedicada**: Catálogo de unidades de atendimento (Hospital Municipal, Clínica da Mulher, Postos ESF) integradas diretamente à API do Google Maps para facilitar a localização das pacientes.
+- **Agendamento Inteligente**: Sistema de simulação de login, cadastro e marcação de consultas intuitivo para reduzir gargalos de espera.
+- **Dashboard da Paciente**: Um painel exclusivo onde a usuária pode visualizar suas próximas consultas (com alerta de antecedência) e histórico médico.
+- **Apresentação Institucional**: Seção sobre a proposta de valor, estatísticas de infraestrutura (leitos, ambulâncias) e membros do projeto.
 
-### 🏢 Clínicas e Unidades
-- **Rede de Saúde**: Visualização de um painel integrado ("Clínicas") apresentando a Clínica da Mulher, Hospital Municipal e Postos de Saúde da Família (ESF).
-- **Mapa Interativo**: Botão para abrir a localização exata das unidades no Google Maps.
+## 💻 Tecnologias Utilizadas
 
-### 🔐 Segurança e Performance
-- **Login Dinâmico**: Ao se cadastrar, o usuário é logado e redirecionado automaticamente para o seu painel de controle (sem necessidade de login extra).
-- **Ofuscação de Código**: O código JavaScript de produção (`script.js`) foi mascarado e ofuscado, garantindo segurança contra engenharia reversa. O código legível de desenvolvimento está mantido em `script_dev.js`.
+Este projeto foi construído focando na máxima fluidez e segurança:
+- **HTML5 & CSS3 Vanilla**: Código limpo, componentizado em CSS flexbox e grid, sem frameworks pesados, garantindo carregamento instantâneo.
+- **JavaScript (ES6)**: Controle de fluxo entre views (Single Page Application - SPA simulado), animações e lógicas de interação de interface.
+- **Google Maps Embed API**: Integração com mapas reais para visualização das unidades médicas.
+- **Ofuscação de Código**: O arquivo `script.js` de produção é ofuscado via rotinas automatizadas em Python, protegendo a lógica do sistema contra cópias indevidas e simula técnicas reais de segurança de mercado.
 
 ## 🚀 Como Executar
 
-### Pré-requisitos
-- Navegador web compatível (Chrome, Firefox, Safari, Edge).
-
-### Instalação
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/raphaelsantosx/vivamulherweb.git
-   ```
-
-2. Abra o arquivo `index.html` no seu navegador:
-   ```bash
-   # Exemplo usando o servidor embutido do Python
-   cd vivamulherweb
-   python -m http.server 8000
-   
-   # Depois abra no navegador
-   http://localhost:8000
-   ```
-
-## 🛠️ Tecnologias Utilizadas
-- **HTML5**: Estrutura semântica.
-- **CSS3**: Estilização moderna com flexbox, gradientes e media queries.
-- **JavaScript (Vanilla)**: Lógica de negócio, manipulação do DOM e controle do vídeo.
-- **Font Awesome**: Ícones de interface.
-
-## 📱 Responsividade
-O site é totalmente responsivo e otimizado para dispositivos móveis:
-- **Desktop**: Layout com vídeo em tela cheia e navegação horizontal.
-- **Mobile**: Menu retrátil, conteúdo empilhado e botões de fácil toque.
-
-## 📝 Licença
-Este projeto é de código aberto e disponível sob a licença MIT.
+Por ser um projeto web "client-side", a execução é extremamente simples:
