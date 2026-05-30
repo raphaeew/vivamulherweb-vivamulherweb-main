@@ -124,8 +124,8 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    /* Degradê mais curto: sólido até 45% (cobre o texto) e totalmente transparente em 65% (revela o vídeo) */
-    background: linear-gradient(to right, #f8fafc 45%, rgba(248, 250, 252, 0) 65%);
+    /* Degradê ainda menor: sólido só até 35% e some totalmente na metade da tela (50%) */
+    background: linear-gradient(to right, #f8fafc 35%, rgba(248, 250, 252, 0) 50%);
     z-index: 1;
     pointer-events: none;
 }
