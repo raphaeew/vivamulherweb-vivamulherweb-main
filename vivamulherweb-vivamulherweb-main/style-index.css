@@ -524,6 +524,13 @@ body {
     padding: 80px 20px;
 }
 
+.container-carrossel {
+    max-width: 1600px; /* Mais largo para caber mais cards */
+    width: 96%;
+    margin: 0 auto;
+    padding: 80px 20px 20px 20px; /* Menos padding inferior para não afastar tanto */
+}
+
 .section-title {
     font-family: 'Montserrat', sans-serif;
     font-size: 40px;
