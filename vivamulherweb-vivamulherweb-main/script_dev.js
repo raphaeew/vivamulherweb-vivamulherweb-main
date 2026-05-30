@@ -438,8 +438,40 @@ function cancelarConsultaDaTabela(btn) {
             statusSpan.style.color = '#ef4444';
         }
         
-        const tdAcoes = btn.parentElement;
-        tdAcoes.innerHTML = '<span style="color: #888;">-</span>';
-        alert('Consulta cancelada com sucesso!');
-    }
 }
+}
+
+// === GSAP VIDEO SCRUBBING (SCROLL-CONTROLLED VIDEO) ===
+document.addEventListener("DOMContentLoaded", function() {
+    // Verifica se o GSAP carregou e se o vídeo existe na tela
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+        
+        const video = document.getElementById('bg-video');
+        if (video) {
+            // Aguarda o vídeo carregar os metadados (como a duração) para fazer o cálculo
+            video.addEventListener('loadedmetadata', function() {
+                // Cria a trava (pin) e o controle do tempo do vídeo
+                ScrollTrigger.create({
+                    trigger: ".hero-section", // A seção que será travada
+                    start: "top top", // Quando o topo da seção encosta no topo da tela
+                    end: "+=3000", // O usuário precisa rolar 3000px para terminar a animação
+                    pin: true, // Trava a tela
+                    scrub: 1, // Suaviza o controle do tempo (1 segundo de inércia)
+                    onUpdate: (self) => {
+                        // Atualiza o tempo do vídeo proporcionalmente ao scroll (de 0 a 1)
+                        if(video.duration) {
+                            video.currentTime = self.progress * video.duration;
+                        }
+                    }
+                });
+            });
+            
+            // Força o disparo caso o vídeo já tenha carregado antes do listener ser criado
+            if(video.readyState >= 1) {
+                let event = new Event('loadedmetadata');
+                video.dispatchEvent(event);
+            }
+        }
+    }
+});
