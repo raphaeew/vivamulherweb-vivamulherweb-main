@@ -53,34 +53,28 @@
         }
     </style>
     <main id="home-view" class="view-ativa">
-        <section class="hero-section modern-split">
-            <!-- Metade Texto (Off-White) -->
-            <div class="hero-texto-split">
-                <div class="conteudo-clean">
-                    <h2 class="hero-subtitle-clean">Bem-vinda ao</h2>
-                    <h1 class="hero-title-clean">VIVA MULHER</h1>
-                    <div class="hero-features-clean">
+        <section class="hero-section hero-fullscreen-video">
+            <video id="bg-video" class="fullscreen-bg-video" muted playsinline preload="auto">
+                <source src="assets/video/backgroundvideo.mp4" type="video/mp4">
+            </video>
+            <!-- Overlay Escuro para o texto ficar legível -->
+            <div class="video-overlay"></div>
+
+            <div class="hero-content-center">
+                <div class="conteudo-clean" style="display: flex; flex-direction: column; align-items: center;">
+                    <h2 class="hero-subtitle-clean" style="color: #f1f5f9; text-shadow: 0px 2px 5px rgba(0,0,0,0.5);">Bem-vinda ao</h2>
+                    <h1 class="hero-title-clean" style="color: white; background: none; -webkit-text-fill-color: white; text-shadow: 0px 4px 10px rgba(0,0,0,0.5);">VIVA MULHER</h1>
+                    <div class="hero-features-clean" style="justify-content: center;">
                         <span class="feature-item-clean"><i class="fas fa-clock"></i> Menos filas</span>
                         <span class="feature-item-clean"><i class="fas fa-shield-alt"></i> Mais prevenção</span>
                         <span class="feature-item-clean"><i class="fas fa-hand-holding-medical"></i> Mais cuidado</span>
                     </div>
-                    <div class="scroll-indicator" style="margin-top: 40px; animation: bounce 2s infinite; opacity: 0.8;">
-                        <span style="display: block; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">Role a tela para interagir com o vídeo</span>
-                        <i class="fas fa-chevron-down" style="font-size: 24px; color: #0d9488;"></i>
+                    <div class="scroll-indicator" style="margin-top: 40px; animation: bounce 2s infinite; opacity: 0.9;">
+                        <span style="display: block; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; color: white; text-shadow: 0px 2px 4px rgba(0,0,0,0.8);">Role a tela para o vídeo fluir</span>
+                        <i class="fas fa-chevron-down" style="font-size: 24px; color: #38b2ac; text-shadow: 0px 2px 4px rgba(0,0,0,0.8);"></i>
                     </div>
                 </div>
             </div>
-
-            <!-- Metade Vídeo (Janela/Abinha com Degradê) -->
-            <div class="hero-video-split">
-                <div class="video-janela">
-                    <video id="bg-video" muted playsinline preload="auto">
-                        <source src="assets/video/backgroundvideo.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-degrade-inferior"></div>
-                </div>
-            </div>
-
         </section>
 
         <!-- SEÇÃO: SERVIÇOS / ESPECIALIDADES EM CARDS -->

@@ -53,7 +53,7 @@ body {
 }
 
 #main-nav ul li a {
-    color: #000000; /* Letras pretas para leitura num fundo transparente que pode ser branco */
+    color: #ffffff; /* Letras brancas para leitura sobre o vídeo escurecido */
     font-weight: 700;
     font-size: 15px;
     text-transform: uppercase;
@@ -77,39 +77,56 @@ body {
     flex-direction: column;
 }
 
-.hero-section.modern-split {
+.hero-fullscreen-video {
     position: relative;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
-    flex-direction: row;
     align-items: center;
-    background-color: #f8fafc; /* Fundo off-white */
-    padding: 100px 5% 80px 5%; /* Espaço para o header e botões */
+    justify-content: center;
     overflow: hidden;
+    background-color: #000;
 }
 
-/* --- Metade Esquerda: Texto --- */
-.hero-texto-split {
-    flex: 1;
-    padding-right: 40px;
-    z-index: 10;
-    display: flex;
-    justify-content: flex-start;
+.fullscreen-bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Escurece o vídeo para o texto aparecer */
+    z-index: 1;
+}
+
+.hero-content-center {
+    position: relative;
+    z-index: 2; /* Fica acima do vídeo e do overlay */
+    width: 100%;
+    max-width: 800px;
+    padding: 0 20px;
 }
 
 .conteudo-clean {
-    max-width: 600px;
-    animation: fadeInLeft 1s ease-out;
+    animation: fadeIn 1.5s ease-out;
 }
 
-@keyframes fadeInLeft {
-    from { opacity: 0; transform: translateX(-30px); }
-    to { opacity: 1; transform: translateX(0); }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .hero-subtitle-clean {
-    color: #64748b;
+    color: #f1f5f9;
     font-family: 'Open Sans', sans-serif;
     font-size: 22px;
     font-weight: 600;
@@ -119,14 +136,13 @@ body {
 }
 
 .hero-title-clean {
-    background: linear-gradient(135deg, #e83e8c 0%, #0d9488 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: white;
     font-family: 'Montserrat', sans-serif;
     font-size: 70px;
     font-weight: 900;
     margin-bottom: 35px;
     line-height: 1.1;
+    text-align: center;
 }
 
 .hero-features-clean {
@@ -136,8 +152,10 @@ body {
 }
 
 .feature-item-clean {
-    background: white;
-    color: #334155;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    color: white;
     padding: 12px 24px;
     border-radius: 50px;
     font-size: 15px;
@@ -145,61 +163,18 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    border: 1px solid #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     transition: 0.3s;
 }
 
 .feature-item-clean:hover {
     transform: translateY(-3px);
-    border-color: #0d9488;
-    color: #0d9488;
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #38b2ac;
 }
 
 .feature-item-clean i {
-    color: #e83e8c; /* Rosa para destaque */
-}
-
-/* --- Metade Direita: Vídeo (Abinha) --- */
-.hero-video-split {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    z-index: 5;
-}
-
-.video-janela {
-    position: relative;
-    width: 100%;
-    max-width: 600px;
-    height: 450px;
-    border-radius: 30px; /* Abinha/janela arredondada */
-    overflow: hidden;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-    animation: fadeInRight 1.2s ease-out;
-}
-
-@keyframes fadeInRight {
-    from { opacity: 0; transform: translateX(30px); }
-    to { opacity: 1; transform: translateX(0); }
-}
-
-#bg-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Degradê que começa o vídeo na base */
-.video-degrade-inferior {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 40%;
-    background: linear-gradient(to top, rgba(248, 250, 252, 1), transparent);
-    pointer-events: none;
+    color: #38b2ac; /* Verde água para destaque */
 }
 
 /* ========================================================
@@ -356,26 +331,13 @@ body {
     visibility: visible;
 }
 
-/* Responsividade do Split Hero e Servicos */
+/* Responsividade do Hero e Servicos */
 @media (max-width: 900px) {
-    .hero-section.modern-split {
-        flex-direction: column;
-        padding-top: 120px;
-        text-align: center;
-    }
-    .hero-texto-split {
-        padding-right: 0;
-        margin-bottom: 40px;
-        justify-content: center;
-    }
-    .hero-features-clean {
-        justify-content: center;
-    }
     .hero-title-clean {
-        font-size: 50px;
+        font-size: 45px;
     }
-    .video-janela {
-        height: 300px;
+    .hero-subtitle-clean {
+        font-size: 18px;
     }
     .servico-card {
         flex: 0 0 calc(50% - 10px); /* 2 cards no Tablet */
