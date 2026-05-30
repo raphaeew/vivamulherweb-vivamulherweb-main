@@ -77,56 +77,64 @@ body {
     flex-direction: column;
 }
 
-.hero-fullscreen-video {
+.hero-gradient-split {
     position: relative;
     width: 100%;
     height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
     overflow: hidden;
-    background-color: #000;
+    background-color: #f8fafc; /* Fundo off-white na esquerda */
 }
 
-.fullscreen-bg-video {
+.hero-video-bg {
     position: absolute;
+    right: 0;
     top: 0;
-    left: 0;
-    width: 100%;
+    width: 65%; /* O vídeo ocupa a parte direita */
     height: 100%;
-    object-fit: cover;
     z-index: 0;
 }
 
-.video-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
+.hero-video-bg video {
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* Escurece o vídeo para o texto aparecer */
-    z-index: 1;
+    object-fit: cover;
 }
 
-.hero-content-center {
-    position: relative;
-    z-index: 2; /* Fica acima do vídeo e do overlay */
+.hero-video-gradient {
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 100%;
-    max-width: 800px;
-    padding: 0 20px;
+    height: 100%;
+    /* Degradê que vai do #f8fafc sólido até ficar transparente em cima do vídeo */
+    background: linear-gradient(to right, #f8fafc 40%, rgba(248, 250, 252, 0.9) 50%, rgba(248, 250, 252, 0) 85%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hero-content-container {
+    position: relative;
+    z-index: 2;
+    width: 50%; /* O conteúdo restrito à esquerda */
+    padding-left: 5%;
+    display: flex;
+    justify-content: flex-start;
 }
 
 .conteudo-clean {
-    animation: fadeIn 1.5s ease-out;
+    max-width: 600px;
+    animation: fadeInLeft 1.5s ease-out;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
 }
 
 .hero-subtitle-clean {
-    color: #f1f5f9;
+    color: #64748b;
     font-family: 'Open Sans', sans-serif;
     font-size: 22px;
     font-weight: 600;
@@ -136,13 +144,15 @@ body {
 }
 
 .hero-title-clean {
-    color: white;
+    background: linear-gradient(135deg, #e83e8c 0%, #0d9488 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-family: 'Montserrat', sans-serif;
     font-size: 70px;
     font-weight: 900;
     margin-bottom: 35px;
     line-height: 1.1;
-    text-align: center;
+    text-align: left;
 }
 
 .hero-features-clean {
@@ -152,10 +162,8 @@ body {
 }
 
 .feature-item-clean {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    color: white;
+    background: white;
+    color: #334155;
     padding: 12px 24px;
     border-radius: 50px;
     font-size: 15px;
@@ -163,18 +171,19 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
     transition: 0.3s;
 }
 
 .feature-item-clean:hover {
     transform: translateY(-3px);
-    background: rgba(255, 255, 255, 0.2);
-    border-color: #38b2ac;
+    border-color: #0d9488;
+    color: #0d9488;
 }
 
 .feature-item-clean i {
-    color: #38b2ac; /* Verde água para destaque */
+    color: #e83e8c; /* Rosa para destaque */
 }
 
 /* ========================================================
