@@ -22,27 +22,28 @@ body {
    CABEÇALHO FIXO E NAVEGAÇÃO
    ======================================================== */
 .header-transparente {
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
-    padding: 35px 5% 10px 5%; /* Mais espaço no topo para descer os botões */
+    padding: 10px 5%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
-    z-index: 100;
-    background-color: transparent;
+    z-index: 9999;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     transition: all 0.3s ease;
 }
 
 .logo-container {
-    position: absolute;
-    top: 10px;
-    left: 5%;
+    position: relative;
     z-index: 101;
 }
 
 .logo-img {
-    height: 125px; /* Logo maior, conforme solicitado */
+    height: 70px; /* Logo ajustada para o header fixo */
     transition: 0.3s ease;
 }
 
@@ -190,16 +191,74 @@ body {
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     border: 1px solid #e2e8f0;
     transition: 0.3s;
+    position: relative;
+    cursor: pointer;
+    outline: none;
 }
 
-.feature-item-clean:hover {
+.feature-item-clean:hover, .feature-item-clean:focus {
     transform: translateY(-3px);
     border-color: #0d9488;
     color: #0d9488;
+    z-index: 100;
 }
 
 .feature-item-clean i {
     color: #e83e8c; /* Rosa para destaque */
+}
+
+/* Tooltip dos Benefícios (Abre no hover ou click/focus) */
+.feature-details {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(15px);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(13, 148, 136, 0.2);
+    border-radius: 12px;
+    padding: 15px;
+    width: 250px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    color: #475569;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 50;
+    pointer-events: none;
+}
+
+.feature-details::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-left: 1px solid rgba(13, 148, 136, 0.2);
+    border-top: 1px solid rgba(13, 148, 136, 0.2);
+}
+
+@media (hover: hover) {
+    .feature-item-clean:hover .feature-details {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(10px);
+    }
+}
+
+.feature-item-clean:focus .feature-details,
+.feature-item-clean:active .feature-details {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(10px);
 }
 
 /* ========================================================
@@ -739,6 +798,18 @@ body {
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     border: 1px solid rgba(255, 255, 255, 0.15);
     transition: transform 0.3s, box-shadow 0.3s;
+    
+    /* Fix for iOS Safari disappearing content bug */
+    position: relative;
+    z-index: 1;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+}
+
+/* Força os elementos internos a renderizarem acima do blur no Safari */
+.equipe-card > * {
+    position: relative;
+    z-index: 2;
 }
 
 .equipe-card:hover {
@@ -785,70 +856,110 @@ body {
    ======================================================== */
 @media (max-width: 768px) {
     /* Ajuste do Cabeçalho para não esmagar os links */
-    header {
-        flex-direction: column !important;
-        padding: 10px !important;
-        padding-top: 140px !important;
+    header.header-transparente {
+        padding: 15px 20px !important;
         height: auto !important;
+        background-color: white !important; /* to be readable when menu is open */
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        position: fixed !important;
+        display: flex;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        flex-wrap: wrap;
+        z-index: 9999;
     }
 
     .logo-container {
-        left: 50%;
-        transform: translateX(-50%);
+        position: relative !important;
+        left: 0 !important;
+        top: 0 !important;
+        transform: none !important;
     }
 
-    nav ul {
-        flex-direction: row !important;
-        justify-content: center !important;
-        gap: 10px !important;
+    .logo-img {
+        height: 50px !important; /* Logo menor no celular */
+    }
+
+    .btn-mobile {
+        display: block !important;
+        background: #0d9488;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    /* Menu oculto por padrão no mobile */
+    #main-nav {
+        display: none; 
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    /* Menu exibido ao clicar no btn-mobile */
+    #main-nav.ativo {
+        display: block !important;
+    }
+
+    #main-nav ul {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 15px !important;
         padding: 10px 0 !important;
     }
 
-    nav ul li a {
-        font-size: 12px !important;
+    #main-nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+
+    #main-nav ul li a {
+        display: block;
+        font-size: 14px !important;
+        padding: 15px !important;
     }
 
     /* Ajuste da Hero Section para centralizar no celular */
-    .hero-conteudo {
-        margin-top: 0;
-        justify-content: center; /* Centraliza o cartão inteiro no mobile */
-    }
-
-    .glass-card {
-        padding: 30px 20px;
-        border-radius: 20px;
+    .hero-video-bg {
         width: 100%;
-        text-align: center; /* Volta a centralizar o texto no mobile */
-    }
-
-    .hero-title {
-        font-size: 40px !important;
-        margin-bottom: 25px;
-    }
-
-    .hero-subtitle {
-        font-size: 16px !important;
     }
     
-    .hero-features {
-        flex-direction: column;
+    .hero-video-gradient {
+        background: linear-gradient(to top, #f8fafc 10%, rgba(248, 250, 252, 0.85) 60%, rgba(248, 250, 252, 0.95) 100%);
+    }
+
+    .hero-content-container {
+        width: 100%;
+        padding: 120px 20px 40px 20px;
+        justify-content: center;
+    }
+
+    .conteudo-clean {
+        text-align: center;
+    }
+
+    .hero-title-clean {
+        font-size: 40px !important;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .hero-subtitle-clean {
+        font-size: 16px !important;
+        text-align: center;
+    }
+    
+    .hero-features-clean {
         justify-content: center;
         gap: 10px;
     }
 
-    /* Botões de especialidades empilhados no celular */
-    .botoes-fundo {
-        position: absolute !important;
-        flex-direction: column !important;
-        gap: 8px !important;
-        padding: 0 10% !important;
-        bottom: 30px !important;
-    }
-
-    .btn-pilula {
-        width: 100% !important;
-        font-size: 14px !important;
-        padding: 12px 20px !important;
+    .feature-item-clean {
+        font-size: 13px;
+        padding: 10px 16px;
     }
 
     .sobre-grid {
@@ -858,6 +969,14 @@ body {
     
     .section-title {
         font-size: 30px;
+    }
+    
+    .equipe-layout-split {
+        flex-direction: column;
+    }
+    
+    .equipe-title-side, .equipe-grid-side {
+        max-width: 100%;
     }
 }
 

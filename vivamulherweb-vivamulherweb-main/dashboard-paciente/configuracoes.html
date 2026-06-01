@@ -38,25 +38,63 @@
                 
                 <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; padding-bottom: 15px;">
                     <span style="font-family: 'Nunito', sans-serif; color: #333; font-weight: 600;"><i class="fas fa-bell" style="color: #6b21a8; margin-right: 10px;"></i> Receber notificações de consultas (SMS/Email)</span>
-                    <input type="checkbox" checked style="width: 20px; height: 20px; cursor: pointer;">
+                    <input type="checkbox" id="config-notif" checked style="width: 20px; height: 20px; cursor: pointer;">
                 </div>
                 
                 <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; padding-bottom: 15px;">
                     <span style="font-family: 'Nunito', sans-serif; color: #333; font-weight: 600;"><i class="fas fa-volume-up" style="color: #6b21a8; margin-right: 10px;"></i> Sons da aplicação</span>
-                    <input type="checkbox" checked style="width: 20px; height: 20px; cursor: pointer;">
+                    <input type="checkbox" id="config-sons" checked style="width: 20px; height: 20px; cursor: pointer;">
                 </div>
 
                 <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; padding-bottom: 15px;">
                     <span style="font-family: 'Nunito', sans-serif; color: #333; font-weight: 600;"><i class="fas fa-shield-alt" style="color: #6b21a8; margin-right: 10px;"></i> Partilhar dados anónimos (Privacidade)</span>
-                    <input type="checkbox" style="width: 20px; height: 20px; cursor: pointer;">
+                    <input type="checkbox" id="config-privacidade" style="width: 20px; height: 20px; cursor: pointer;">
                 </div>
 
-                <button style="margin-top: 20px; width: 100%; padding: 12px; background-color: #6b21a8; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;" onclick="alert('Configurações guardadas com sucesso!')">Guardar Configurações</button>
+                <button style="margin-top: 20px; width: 100%; padding: 12px; background-color: #6b21a8; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;" onclick="salvarConfiguracoes()">Guardar Configurações</button>
             </div>
 
         </main>
     </div>
 
     <script src="../script.js"></script>
+    <script>
+        function getUsuarioLogado() {
+            return JSON.parse(localStorage.getItem('vivaMulherUsuarioAtivo'));
+        }
+
+        function getConfigKey() {
+            const user = getUsuarioLogado();
+            if (user && user.email) {
+                return 'configuracoes_vivaMulher_' + user.email;
+            }
+            return 'configuracoes_vivaMulher_visitante';
+        }
+
+        function carregarConfiguracoes() {
+            const configKey = getConfigKey();
+            const config = JSON.parse(localStorage.getItem(configKey));
+            
+            if (config) {
+                document.getElementById('config-notif').checked = config.notificacoes;
+                document.getElementById('config-sons').checked = config.sons;
+                document.getElementById('config-privacidade').checked = config.privacidade;
+            }
+        }
+
+        function salvarConfiguracoes() {
+            const configKey = getConfigKey();
+            const configuracoes = {
+                notificacoes: document.getElementById('config-notif').checked,
+                sons: document.getElementById('config-sons').checked,
+                privacidade: document.getElementById('config-privacidade').checked
+            };
+            
+            localStorage.setItem(configKey, JSON.stringify(configuracoes));
+            alert('Configurações salvas com sucesso para o seu perfil!');
+        }
+
+        window.onload = carregarConfiguracoes;
+    </script>
 </body>
 </html>

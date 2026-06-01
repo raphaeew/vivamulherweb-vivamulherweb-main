@@ -29,29 +29,12 @@
                 <li><a onclick="mostrarPagina('login')" class="nav-destaque">LOGIN/CADASTRO</a></li>
             </ul>
         </nav>
+        <button class="btn-mobile" onclick="toggleMenuMain()" style="display: none;">
+            <i class="fas fa-bars"></i>
+        </button>
     </header>
-    <button class="btn-mobile" onclick="toggleMenuMain()" style="display: none;">
-        <i class="fas fa-bars"></i>
-    </button>
 
-    <style>
-        /* CSS rápido para o botão aparecer apenas no mobile */
-        @media (max-width: 768px) {
-            .btn-mobile {
-                display: block !important;
-                position: fixed;
-                top: 15px;
-                right: 15px;
-                background: #0d9488;
-                color: white;
-                border: none;
-                padding: 10px 15px;
-                border-radius: 5px;
-                z-index: 10000;
-                cursor: pointer;
-            }
-        }
-    </style>
+
     <main id="home-view" class="view-ativa">
         <section class="hero-section hero-gradient-split">
             <!-- Camada 1: Vídeo posicionado à direita -->
@@ -70,9 +53,18 @@
                     <h2 class="hero-subtitle-clean">Bem-vinda ao</h2>
                     <h1 class="hero-title-clean">VIVA MULHER</h1>
                     <div class="hero-features-clean">
-                        <span class="feature-item-clean"><i class="fas fa-clock"></i> Menos filas</span>
-                        <span class="feature-item-clean"><i class="fas fa-shield-alt"></i> Mais prevenção</span>
-                        <span class="feature-item-clean"><i class="fas fa-hand-holding-medical"></i> Mais cuidado</span>
+                        <div class="feature-item-clean" tabindex="0" onclick="this.focus()">
+                            <span class="feature-header"><i class="fas fa-clock"></i> Menos filas</span>
+                            <div class="feature-details">Agendamento rápido e inteligente, reduzindo o tempo de espera nas unidades de saúde.</div>
+                        </div>
+                        <div class="feature-item-clean" tabindex="0" onclick="this.focus()">
+                            <span class="feature-header"><i class="fas fa-shield-alt"></i> Mais prevenção</span>
+                            <div class="feature-details">Foco no rastreio precoce e na realização periódica de exames essenciais.</div>
+                        </div>
+                        <div class="feature-item-clean" tabindex="0" onclick="this.focus()">
+                            <span class="feature-header"><i class="fas fa-hand-holding-medical"></i> Mais cuidado</span>
+                            <div class="feature-details">Atendimento humanizado com equipe especializada e dedicada a você.</div>
+                        </div>
                     </div>
                 </div>
             </div>
