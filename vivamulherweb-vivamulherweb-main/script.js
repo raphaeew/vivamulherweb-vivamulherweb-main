@@ -1,11 +1,448 @@
-// =========================================================================
-// AQUI VOCÊ EXPLICA PARA O PROFESSOR:
-// O código abaixo foi "Ofuscado" (mascarado e protegido).
-// Essa é uma técnica real de segurança usada pelas empresas no mercado
-// para esconder a lógica do sistema e dificultar cópias ou invasões.
-// O navegador Chrome lê e executa perfeitamente, mas humanos não.
-// (A versão legível original está salva no arquivo script_dev.js no projeto)
-// =========================================================================
+// Função para alternar APENAS entre Home, Login e Cadastro no index.html
+// === SISTEMA DE NAVEGAÇÃO DA PÁGINA INICIAL ===
+function mostrarPagina(paginaId) {
+    // Esconde todas as telas primeiro
+    document.getElementById('home-view').classList.replace('view-ativa', 'view-oculta');
+    document.getElementById('login-view').classList.replace('view-ativa', 'view-oculta');
+    document.getElementById('cadastro-view').classList.replace('view-ativa', 'view-oculta');
+    
+    const clinicasView = document.getElementById('clinicas-view');
+    if (clinicasView) {
+        clinicasView.classList.replace('view-ativa', 'view-oculta');
+    }
+    
+    // Mostra apenas a tela que foi clicada
+    document.getElementById(paginaId + '-view').classList.replace('view-oculta', 'view-ativa');
+}
 
-var _0x539a=["\x65\x76\x61\x6C","\x64\x65\x63\x6F\x64\x65\x55\x52\x49\x43\x6F\x6D\x70\x6F\x6E\x65\x6E\x74","\x65\x73\x63\x61\x70\x65","\x61\x74\x6F\x62"];
-window[_0x539a[0]](decodeURIComponent(escape(window[_0x539a[3]]("Ly8gRnVuw6fDo28gcGFyYSBhbHRlcm5hciBBUEVOQVMgZW50cmUgSG9tZSwgTG9naW4gZSBDYWRhc3RybyBubyBpbmRleC5odG1sCi8vID09PSBTSVNURU1BIERFIE5BVkVHQcOHw4NPIERBIFDDgUdJTkEgSU5JQ0lBTCA9PT0KZnVuY3Rpb24gbW9zdHJhclBhZ2luYShwYWdpbmFJZCkgewogICAgLy8gRXNjb25kZSB0b2RhcyBhcyB0ZWxhcyBwcmltZWlybwogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2hvbWUtdmlldycpLmNsYXNzTGlzdC5yZXBsYWNlKCd2aWV3LWF0aXZhJywgJ3ZpZXctb2N1bHRhJyk7CiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnbG9naW4tdmlldycpLmNsYXNzTGlzdC5yZXBsYWNlKCd2aWV3LWF0aXZhJywgJ3ZpZXctb2N1bHRhJyk7CiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnY2FkYXN0cm8tdmlldycpLmNsYXNzTGlzdC5yZXBsYWNlKCd2aWV3LWF0aXZhJywgJ3ZpZXctb2N1bHRhJyk7CiAgICBjb25zdCBjbGluaWNhc1ZpZXcgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnY2xpbmljYXMtdmlldycpOwogICAgaWYgKGNsaW5pY2FzVmlldykgewogICAgICAgIGNsaW5pY2FzVmlldy5jbGFzc0xpc3QucmVwbGFjZSgndmlldy1hdGl2YScsICd2aWV3LW9jdWx0YScpOwogICAgfQogICAgLy8gTW9zdHJhIGFwZW5hcyBhIHRlbGEgcXVlIGZvaSBjbGljYWRhCiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChwYWdpbmFJZCArICctdmlldycpLmNsYXNzTGlzdC5yZXBsYWNlKCd2aWV3LW9jdWx0YScsICd2aWV3LWF0aXZhJyk7Cn0KLy8gPT09IFNJU1RFTUEgREUgQ0FEQVNUUk8gUkVBTCAoTW9jayBjb20gTG9jYWxTdG9yYWdlKSBSRjAyID09PQpmdW5jdGlvbiByZWFsaXphckNhZGFzdHJvKGV2ZW50KSB7CiAgICBldmVudC5wcmV2ZW50RGVmYXVsdCgpOwogICAgLy8gMS4gUmVjb2xoZXIgb3MgZGFkb3MgZGlnaXRhZG9zCiAgICBjb25zdCB0aXBvID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3RpcG8tY2FkYXN0cm8nKS52YWx1ZTsKICAgIGNvbnN0IG5vbWUgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnY2FkLW5vbWUnKS52YWx1ZTsKICAgIGNvbnN0IGVtYWlsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2NhZC1lbWFpbCcpLnZhbHVlOwogICAgY29uc3Qgc2VuaGEgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnY2FkLXNlbmhhJykudmFsdWU7CiAgICAvLyBDYXB0dXJhciByZWdpc3RvIHNlIGV4aXN0aXIKICAgIGNvbnN0IHJlZ2lzdHJvSW5wdXQgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnaW5wdXQtcmVnaXN0cm8nKTsKICAgIGNvbnN0IHJlZ2lzdHJvID0gcmVnaXN0cm9JbnB1dCA/IHJlZ2lzdHJvSW5wdXQudmFsdWUgOiAnJzsKICAgIC8vIDIuIEJ1c2NhciBhIGxpc3RhIGRlIHV0aWxpemFkb3JlcyBqw6EgZ3VhcmRhZG9zIG5hIG1lbcOzcmlhIChvdSBjcmlhciB2YXppYSBzZSBuw6NvIGhvdXZlcikKICAgIGxldCB1c3VhcmlvcyA9IEpTT04ucGFyc2UobG9jYWxTdG9yYWdlLmdldEl0ZW0oJ3ZpdmFNdWxoZXJVc3VhcmlvcycpKSB8fCBbXTsKICAgIC8vIDMuIFZlcmlmaWNhciBzZSBvIGUtbWFpbCBqw6EgZm9pIHJlZ2lzdGFkbwogICAgY29uc3QgdXN1YXJpb0V4aXN0ZSA9IHVzdWFyaW9zLmZpbmQodXNlciA9PiB1c2VyLmVtYWlsID09PSBlbWFpbCk7CiAgICBpZiAodXN1YXJpb0V4aXN0ZSkgewogICAgICAgIGFsZXJ0KCdFcnJvOiBFc3RlIGUtbWFpbCBqw6EgZXN0w6EgY2FkYXN0cmFkbyBubyBzaXN0ZW1hLiBQb3IgZmF2b3IsIGZhw6dhIGxvZ2luLicpOwogICAgICAgIHJldHVybjsgLy8gUMOhcmEgbyBwcm9jZXNzbyBhcXVpCiAgICB9CiAgICAvLyA0LiBDcmlhciBhICJmaWNoYSIgZG8gbm92byB1dGlsaXphZG9yCiAgICBjb25zdCBub3ZvVXN1YXJpbyA9IHsKICAgICAgICB0aXBvOiB0aXBvLAogICAgICAgIG5vbWU6IG5vbWUsCiAgICAgICAgZW1haWw6IGVtYWlsLAogICAgICAgIHNlbmhhOiBzZW5oYSwKICAgICAgICByZWdpc3RybzogcmVnaXN0cm8KICAgIH07CiAgICAvLyA1LiBHdWFyZGFyIG8gdXRpbGl6YWRvciBubyBMb2NhbFN0b3JhZ2UgZG8gbmF2ZWdhZG9yCiAgICB1c3Vhcmlvcy5wdXNoKG5vdm9Vc3VhcmlvKTsKICAgIGxvY2FsU3RvcmFnZS5zZXRJdGVtKCd2aXZhTXVsaGVyVXN1YXJpb3MnLCBKU09OLnN0cmluZ2lmeSh1c3VhcmlvcykpOwogICAgLy8gR3VhcmRhIG8gdXRpbGl6YWRvciByZWPDqW0tY2FkYXN0cmFkbyBjb21vIG8gdXRpbGl6YWRvciBhdGl2byBubyBtb21lbnRvCiAgICBsb2NhbFN0b3JhZ2Uuc2V0SXRlbSgndml2YU11bGhlclVzdWFyaW9BdGl2bycsIEpTT04uc3RyaW5naWZ5KG5vdm9Vc3VhcmlvKSk7CiAgICBhbGVydCgi8J+OiSBDYWRhc3RybyByZWFsaXphZG8gY29tIHN1Y2Vzc28hIFJlZGlyZWNpb25hbmRvIHBhcmEgbyBzZXUgcGFpbmVsLi4uIik7CiAgICAvLyBSZWRpcmVjaW9uYSBwYXJhIG8gcGFpbmVsIGNvcnJldG8KICAgIGlmICh0aXBvID09PSAnbWVkaWNvJykgewogICAgICAgIHdpbmRvdy5sb2NhdGlvbi5ocmVmID0gJ2Rhc2hib2FyZC1tZWRpY28vZGFzaGJvYXJkLW1lZGljby5odG1sJzsKICAgIH0gZWxzZSBpZiAodGlwbyA9PT0gJ3JlY2VwY2FvJykgeyAKICAgICAgICB3aW5kb3cubG9jYXRpb24uaHJlZiA9ICdkYXNoYm9hcmQtcmVjZXBjYW8vZGFzaGJvYXJkLXJlY2VwY2FvLmh0bWwnOwogICAgfSBlbHNlIHsKICAgICAgICB3aW5kb3cubG9jYXRpb24uaHJlZiA9ICdkYXNoYm9hcmQtcGFjaWVudGUvZGFzaGJvYXJkLmh0bWwnOwogICAgfQp9Ci8vID09PSBTSVNURU1BIERFIExPR0lOIFJFQUwgKE1vY2sgY29tIExvY2FsU3RvcmFnZSkgUkYwMyA9PT0KZnVuY3Rpb24gcmVhbGl6YXJMb2dpbihldmVudCkgewogICAgZXZlbnQucHJldmVudERlZmF1bHQoKTsgCiAgICAvLyAxLiBSZWNvbGhlciBvcyBkYWRvcyB0ZW50YWRvcyBubyBsb2dpbgogICAgY29uc3QgdGlwb0FjZXNzbyA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCd0aXBvLWFjZXNzbycpLnZhbHVlOwogICAgY29uc3QgZW1haWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnbG9naW4tZW1haWwnKS52YWx1ZTsKICAgIGNvbnN0IHNlbmhhID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2xvZ2luLXNlbmhhJykudmFsdWU7CiAgICAvLyAyLiBCdXNjYXIgYSBsaXN0YSBkZSB1dGlsaXphZG9yZXMgZGEgbWVtw7NyaWEKICAgIGxldCB1c3VhcmlvcyA9IEpTT04ucGFyc2UobG9jYWxTdG9yYWdlLmdldEl0ZW0oJ3ZpdmFNdWxoZXJVc3VhcmlvcycpKSB8fCBbXTsKICAgIC8vIDMuIFZlcmlmaWNhciBzZSBleGlzdGUgYWxndcOpbSBjb20gYXF1ZWxlIGUtbWFpbCwgc2VuaGEgRSB0aXBvIGRlIHBlcmZpbCBleGF0b3MKICAgIGNvbnN0IHVzdWFyaW9WYWxpZG8gPSB1c3Vhcmlvcy5maW5kKHVzZXIgPT4gdXNlci5lbWFpbCA9PT0gZW1haWwgJiYgdXNlci5zZW5oYSA9PT0gc2VuaGEgJiYgdXNlci50aXBvID09PSB0aXBvQWNlc3NvKTsKICAgIGlmICh1c3VhcmlvVmFsaWRvKSB7CiAgICAgICAgLy8gR3VhcmRhIG5hIG1lbcOzcmlhICJxdWVtIiBlc3TDoSBsaWdhZG8gYWdvcmEgKHBhcmEgbyBjYXNvIGRlIHF1ZXJlcm1vcyBleGliaXIgbyBub21lIGRhIHBlc3NvYSBubyBEYXNoYm9hcmQgbm8gZnV0dXJvKQogICAgICAgIGxvY2FsU3RvcmFnZS5zZXRJdGVtKCd2aXZhTXVsaGVyVXN1YXJpb0F0aXZvJywgSlNPTi5zdHJpbmdpZnkodXN1YXJpb1ZhbGlkbykpOwogICAgICAgIC8vIEVudmlhIHBhcmEgbyBwYWluZWwgY29ycmV0bwogICAgICAgIGlmICh0aXBvQWNlc3NvID09PSAnbWVkaWNvJykgewogICAgICAgICAgICB3aW5kb3cubG9jYXRpb24uaHJlZiA9ICdkYXNoYm9hcmQtbWVkaWNvL2Rhc2hib2FyZC1tZWRpY28uaHRtbCc7CiAgICAgICAgfSBlbHNlIGlmICh0aXBvQWNlc3NvID09PSAncmVjZXBjYW8nKSB7IAogICAgICAgICAgICB3aW5kb3cubG9jYXRpb24uaHJlZiA9ICdkYXNoYm9hcmQtcmVjZXBjYW8vZGFzaGJvYXJkLXJlY2VwY2FvLmh0bWwnOwogICAgICAgIH0gZWxzZSB7CiAgICAgICAgICAgIHdpbmRvdy5sb2NhdGlvbi5ocmVmID0gJ2Rhc2hib2FyZC1wYWNpZW50ZS9kYXNoYm9hcmQuaHRtbCc7CiAgICAgICAgfQogICAgfSBlbHNlIHsKICAgICAgICAvLyBGYWxoYSBubyBsb2dpbgogICAgICAgIGFsZXJ0KCIgRGFkb3MgaW5jb3JyZXRvcyEgVmVyaWZpcXVlIHNlIG8gRS1tYWlsLCBhIFNlbmhhIGUgbyBQZXJmaWwgZGUgQWNlc3NvIGVzdMOjbyBjZXJ0b3MuIik7CiAgICB9Cn0KLy8gRnVuw6fDo28gcGFyYSBvIE1lbnUgZGEgUMOhZ2luYSBJbmljaWFsCmZ1bmN0aW9uIHRvZ2dsZU1lbnVNYWluKCkgewogICAgY29uc3QgbWFpbk5hdiA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdtYWluLW5hdicpOwogICAgaWYgKG1haW5OYXYpIHsKICAgICAgICBtYWluTmF2LmNsYXNzTGlzdC50b2dnbGUoJ2F0aXZvJyk7CiAgICB9Cn0KLy8gRnVuw6fDtWVzIGRvIENhbGVuZMOhcmlvIEludGVyYXRpdm8gbm8gRGFzaGJvYXJkCmZ1bmN0aW9uIGNvbmZpcm1hckFnZW5kYW1lbnRvKCkgewogICAgY29uc3QgZGF0YSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdkYXRhLWNvbnN1bHRhJykudmFsdWU7CiAgICBjb25zdCBob3JhID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2hvcmEtY29uc3VsdGEnKS52YWx1ZTsKICAgIC8vIFZlcmlmaWNhIHNlIGEgcGFjaWVudGUgcHJlZW5jaGV1IHR1ZG8KICAgIGlmKCFkYXRhIHx8ICFob3JhKSB7CiAgICAgICAgYWxlcnQoIlBvciBmYXZvciwgc2VsZWNpb25lIHVtYSBkYXRhIGUgdW0gaG9yw6FyaW8gcGFyYSBhZ2VuZGFyLiIpOwogICAgICAgIHJldHVybjsKICAgIH0KICAgIC8vIEZvcm1hdGEgYSBkYXRhIGRlIEFBQUEtTU0tREQgcGFyYSBERC9NTS9BQUFBIHBhcmEgZmljYXIgbm8gcGFkcsOjbyBicmFzaWxlaXJvCiAgICBjb25zdCBwYXJ0ZXNEYXRhID0gZGF0YS5zcGxpdCgnLScpOwogICAgY29uc3QgZGF0YUZvcm1hdGFkYSA9IGAke3BhcnRlc0RhdGFbMl19LyR7cGFydGVzRGF0YVsxXX0vJHtwYXJ0ZXNEYXRhWzBdfWA7CiAgICAvLyBBdHVhbGl6YSBvIHRleHRvIG5hIHRlbGEgZGUgc3VjZXNzbwogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2RldGFsaGVzLWNvbnN1bHRhJykuaW5uZXJUZXh0ID0gYERhdGE6ICR7ZGF0YUZvcm1hdGFkYX0gw6BzICR7aG9yYX1gOwogICAgLy8gRXNjb25kZSBvIGZvcm11bMOhcmlvIGUgbW9zdHJhIG8gc3VjZXNzbwogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2Zvcm0tYWdlbmRhbWVudG8nKS5zdHlsZS5kaXNwbGF5ID0gJ25vbmUnOwogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3N1Y2Vzc28tYWdlbmRhbWVudG8nKS5zdHlsZS5kaXNwbGF5ID0gJ2Jsb2NrJzsKICAgIC8vIEF0dWFsaXphIG8gdMOtdHVsbyBkbyBjYXJ0w6NvCiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCcjdGl0dWxvLWFnZW5kYW1lbnRvJykuaW5uZXJUZXh0ID0gJ1Byw7N4aW1hIENvbnN1bHRhJzsKfQpmdW5jdGlvbiBjYW5jZWxhckFnZW5kYW1lbnRvKCkgewogICAgLy8gUGVkZSB1bWEgY29uZmlybWHDp8OjbyBhbnRlcyBkZSBjYW5jZWxhcgogICAgaWYoY29uZmlybSgiVGVtIGNlcnRlemEgcXVlIGRlc2VqYSBjYW5jZWxhciBlc3RhIGNvbnN1bHRhPyIpKSB7CiAgICAgICAgLy8gTGltcGEgb3MgY2FtcG9zCiAgICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2RhdGEtY29uc3VsdGEnKS52YWx1ZSA9ICcnOwogICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdob3JhLWNvbnN1bHRhJykudmFsdWUgPSAnJzsKICAgICAgICAvLyBNb3N0cmEgbyBmb3JtdWzDoXJpbyBkZSB2b2x0YSBlIGVzY29uZGUgYSBtZW5zYWdlbSBkZSBzdWNlc3NvCiAgICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2Zvcm0tYWdlbmRhbWVudG8nKS5zdHlsZS5kaXNwbGF5ID0gJ2Jsb2NrJzsKICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnc3VjZXNzby1hZ2VuZGFtZW50bycpLnN0eWxlLmRpc3BsYXkgPSAnbm9uZSc7CiAgICAgICAgLy8gVm9sdGEgbyB0w610dWxvIG9yaWdpbmFsCiAgICAgICAgZG9jdW1lbnQucXVlcnlTZWxlY3RvcignI2NhcmQtYWdlbmRhbWVudG8nKS5pbm5lclRleHQgPSAnQWdlbmRhciBOb3ZhIENvbnN1bHRhJzsKICAgIH0KfQovLyBGdW7Dp8OjbyBwYXJhIFJlYWdlbmRhbWVudG8gZGUgQ29uc3VsdGFzIChSRjA2KQpmdW5jdGlvbiByZWFnZW5kYXJDb25zdWx0YSgpIHsKICAgIC8vIEVzY29uZGUgYSBtZW5zYWdlbSBkZSBzdWNlc3NvIGUgbW9zdHJhIG8gZm9ybXVsw6FyaW8gbm92YW1lbnRlCiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnc3VjZXNzby1hZ2VuZGFtZW50bycpLnN0eWxlLmRpc3BsYXkgPSAnbm9uZSc7CiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZm9ybS1hZ2VuZGFtZW50bycpLnN0eWxlLmRpc3BsYXkgPSAnYmxvY2snOwogICAgLy8gQWx0ZXJhIG8gdMOtdHVsbyBwYXJhIGluZGljYXIgcXVlIMOpIHVtIHJlYWdlbmRhbWVudG8KICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCd0aXR1bG8tYWdlbmRhbWVudG8nKS5pbm5lclRleHQgPSAnUmVhZ2VuZGFyIENvbnN1bHRhJzsKICAgIC8vIEFsZXJ0YSB2aXN1YWwgZGlzY3JldG8gcGFyYSBvcmllbnRhciBhIHBhY2llbnRlCiAgICBhbGVydCgiU2VsZWNpb25lIGEgbm92YSBkYXRhIGUgaG9yw6FyaW8gZGVzZWphZG9zIGUgY2xpcXVlIGVtIENvbmZpcm1hci4iKTsKfQovLyAtLS0gRlVOw4fDg08gRE8gQ0lDTE8gTUVOU1RSVUFMIC0tLQpmdW5jdGlvbiBjYWxjdWxhckNpY2xvKCkgewogICAgLy8gMS4gUGVnYSBhIGRhdGEgcXVlIGEgdXN1w6FyaWEgZGlnaXRvdSBubyBpbnB1dAogICAgY29uc3QgZGF0YUlucHV0ID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2RhdGEtbWVuc3RydWFjYW8nKS52YWx1ZTsKICAgIGlmKCFkYXRhSW5wdXQpIHsKICAgICAgICBhbGVydCgiUG9yIGZhdm9yLCBzZWxlY2lvbmUgYSBkYXRhIGRhIHN1YSDDumx0aW1hIG1lbnN0cnVhw6fDo28gbm8gY2FsZW5kw6FyaW8uIik7CiAgICAgICAgcmV0dXJuOwogICAgfQogICAgLy8gMi4gVHJhbnNmb3JtYSBvIHRleHRvIGVtIHVtYSBEYXRhIHJlYWwgcGFyYSBvIEphdmFzY3JpcHQgZmF6ZXIgYXMgY29udGFzCiAgICBjb25zdCBkYXRhSW5pY2lhbCA9IG5ldyBEYXRlKGRhdGFJbnB1dCk7CiAgICBkYXRhSW5pY2lhbC5zZXREYXRlKGRhdGFJbmljaWFsLmdldERhdGUoKSArIDEpOyAvLyBBanVzdGUgZGUgZnVzbyBob3LDoXJpbyBwYWRyw6NvCiAgICAvLyAzLiBDYWxjdWxhIGEgUHLDs3hpbWEgTWVuc3RydWHDp8OjbyAoc29tYSAyOCBkaWFzKQogICAgY29uc3QgcHJveE1lbnN0cnVhY2FvID0gbmV3IERhdGUoZGF0YUluaWNpYWwpOwogICAgcHJveE1lbnN0cnVhY2FvLnNldERhdGUocHJveE1lbnN0cnVhY2FvLmdldERhdGUoKSArIDI4KTsKICAgIC8vIDQuIENhbGN1bGEgbyBQZXLDrW9kbyBGw6lydGlsIChkaWEgMTIgYW8gZGlhIDE2IGRvIGNpY2xvKQogICAgY29uc3QgZmVydGlsSW5pY2lvID0gbmV3IERhdGUoZGF0YUluaWNpYWwpOwogICAgZmVydGlsSW5pY2lvLnNldERhdGUoZmVydGlsSW5pY2lvLmdldERhdGUoKSArIDEyKTsKICAgIGNvbnN0IGZlcnRpbEZpbSA9IG5ldyBEYXRlKGRhdGFJbmljaWFsKTsKICAgIGZlcnRpbEZpbS5zZXREYXRlKGZlcnRpbEZpbS5nZXREYXRlKCkgKyAxNik7CiAgICAvLyA1LiBNb3N0cmEgb3MgcmVzdWx0YWRvcyBuYSB0ZWxhIGNvbSBvIGZvcm1hdG8gZGUgZGF0YSBCcmFzaWxlaXJvIChERC9NTS9BQUFBKQogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3Byb3gtbWVuc3RydWFjYW8nKS5pbm5lclRleHQgPSBwcm94TWVuc3RydWFjYW8udG9Mb2NhbGVEYXRlU3RyaW5nKCdwdC1CUicpOwogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3BlcmlvZG8tZmVydGlsJykuaW5uZXJUZXh0ID0gYCR7ZmVydGlsSW5pY2lvLnRvTG9jYWxlRGF0ZVN0cmluZygncHQtQlInKX0gYSAke2ZlcnRpbEZpbS50b0xvY2FsZURhdGVTdHJpbmcoJ3B0LUJSJyl9YDsKICAgIC8vIDYuIEZheiBhIGNhaXhhIHJvc2EgZGUgcmVzdWx0YWRvcyBhcGFyZWNlciEKICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdyZXN1bHRhZG8tY2ljbG8nKS5zdHlsZS5kaXNwbGF5ID0gJ2Jsb2NrJzsKfQovLyA9PT0gU0lTVEVNQSBERSBDQVJST1NTRUwgREUgU0VSVknDh09TID09PQpmdW5jdGlvbiBtb3ZlckNhcnJvc3NlbChkaXJlY2FvKSB7CiAgICBjb25zdCBjYXJyb3NzZWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnc2Vydmljb3MtY2Fyb3VzZWwnKTsKICAgIC8vIFBlZ2EgYSBsYXJndXJhIGRlIDEgY2FyZCBkaW5hbWljYW1lbnRlICsgbyBnYXAgKDIwcHgpCiAgICBjb25zdCBjYXJkID0gY2Fycm9zc2VsLnF1ZXJ5U2VsZWN0b3IoJy5zZXJ2aWNvLWNhcmQnKTsKICAgIGNvbnN0IHNjcm9sbEFtb3VudCA9IChjYXJkLm9mZnNldFdpZHRoICsgMjApICogZGlyZWNhbzsgCiAgICBjYXJyb3NzZWwuc2Nyb2xsQnkoeyBsZWZ0OiBzY3JvbGxBbW91bnQsIGJlaGF2aW9yOiAnc21vb3RoJyB9KTsKfQovLyA9PT0gU0lTVEVNQSBERSBERVNDUknDh8OVRVMgREUgRVNQRUNJQUxJREFERVMgKE1PREFMKSA9PT0KLy8gQXF1aSBndWFyZGFtb3Mgb3MgdGV4dG9zIGRlIGNhZGEgYm90w6NvCmNvbnN0IGRlc2NyaWNvZXMgPSB7CiAgICAnZ2luZWNvbG9naWEnOiB7CiAgICAgICAgdGl0dWxvOiAnR2luZWNvbG9naWEnLAogICAgICAgIHRleHRvOiAnQ3VpZGFkbyBpbnRlZ3JhbCBjb20gYSBzYcO6ZGUgZG8gc2lzdGVtYSByZXByb2R1dG9yIGZlbWluaW5vLiBSZWFsaXphbW9zIGV4YW1lcyBwcmV2ZW50aXZvcyAoY29tbyBvIFBhcGFuaWNvbGF1KSwgZGlhZ27Ds3N0aWNvIGUgdHJhdGFtZW50byBkZSBkb2Vuw6dhcywgYWzDqW0gZGUgb3JpZW50YcOnw6NvIHNvYnJlIG3DqXRvZG9zIGNvbnRyYWNldGl2b3MgZSBtZW5vcGF1c2EuJwogICAgfSwKICAgICdvYnN0ZXRyaWNpYSc6IHsKICAgICAgICB0aXR1bG86ICdPYnN0ZXRyw61jaWEnLAogICAgICAgIHRleHRvOiAnQWNvbXBhbmhhbWVudG8gY29tcGxldG8gZSBodW1hbml6YWRvIGRhIHN1YSBnZXN0YcOnw6NvLCBkZXNkZSBvIHByw6ktbmF0YWwgYW8gcMOzcy1wYXJ0by4gQSBub3NzYSBlcXVpcGEgZ2FyYW50ZSBhIG3DoXhpbWEgc2VndXJhbsOnYSwgY3VpZGFkbyBlIGJlbS1lc3RhciBwYXJhIGEgbcOjZSBlIHBhcmEgbyBiZWLDqSBlbSB0b2RhcyBhcyBmYXNlcy4nCiAgICB9LAogICAgJ21hc3RvbG9naWEnOiB7CiAgICAgICAgdGl0dWxvOiAnTWFzdG9sb2dpYScsCiAgICAgICAgdGV4dG86ICdFc3BlY2lhbGlkYWRlIGRlZGljYWRhIGFvIGVzdHVkbywgcHJldmVuw6fDo28sIGRpYWduw7NzdGljbyBlIHRyYXRhbWVudG8gZGFzIGRvZW7Dp2FzIGRhIG1hbWEuIFByb21vdmVtb3MgbyByYXN0cmVpbyBwcmVjb2NlIGUgb2ZlcmVjZW1vcyB0cmF0YW1lbnRvcyBtb2Rlcm5vcyBudW0gYW1iaWVudGUgYWNvbGhlZG9yIGUgc2VndXJvLicKICAgIH0sCiAgICAnY2lydXJnaWFzJzogewogICAgICAgIHRpdHVsbzogJ0NpcnVyZ2lhcyBHaW5lY29sw7NnaWNhcycsCiAgICAgICAgdGV4dG86ICdSZWFsaXphbW9zIHByb2NlZGltZW50b3MgY2lyw7pyZ2ljb3MgZGUgYWx0YSBwcmVjaXPDo28gZSBtaW5pbWFtZW50ZSBpbnZhc2l2b3MgKGNvbW8gbGFwYXJvc2NvcGlhIGUgaGlzdGVyb3Njb3BpYSkgcGFyYSBvIHRyYXRhbWVudG8gZWZpY2F6IGRlIG1pb21hcywgZW5kb21ldHJpb3NlIGUgb3V0cmFzIGNvbmRpw6fDtWVzLicKICAgIH0sCiAgICAncGVkaWF0cmlhJzogewogICAgICAgIHRpdHVsbzogJ1BlZGlhdHJpYScsCiAgICAgICAgdGV4dG86ICdBY29tcGFuaGFtZW50byBkZWRpY2FkbyBhbyBkZXNlbnZvbHZpbWVudG8gaW5mYW50aWwgZGVzZGUgbyBuYXNjaW1lbnRvLiBDb25zdWx0YXMgZGUgcm90aW5hLCB2YWNpbmHDp8Ojbywgb3JpZW50YcOnw6NvIG51dHJpY2lvbmFsIGUgdHJhdGFtZW50byBkYXMgcHJpbmNpcGFpcyBkb2Vuw6dhcyBkYSBpbmbDom5jaWEgY29tIHRvZG8gbyBjYXJpbmhvIGUgcGFjacOqbmNpYS4nCiAgICB9LAogICAgJ251dHJpY2FvJzogewogICAgICAgIHRpdHVsbzogJ051dHJpw6fDo28nLAogICAgICAgIHRleHRvOiAnQXRlbmRpbWVudG8gbnV0cmljaW9uYWwgZXNwZWNpYWxpemFkbyBuYSBzYcO6ZGUgZGEgbXVsaGVyLiBQbGFub3MgYWxpbWVudGFyZXMgcGVyc29uYWxpemFkb3MgcGFyYSBlbWFncmVjaW1lbnRvLCBnZXN0YcOnw6NvLCBsYWN0YcOnw6NvLCBtZW5vcGF1c2EgZSBhY29tcGFuaGFtZW50byBkZSBjb25kacOnw7VlcyBjb21vIGEgZW5kb21ldHJpb3NlIGUgU09QLicKICAgIH0sCiAgICAnZW5kb2NyaW5vbG9naWEnOiB7CiAgICAgICAgdGl0dWxvOiAnRW5kb2NyaW5vbG9naWEnLAogICAgICAgIHRleHRvOiAnRGlhZ27Ds3N0aWNvIGUgdHJhdGFtZW50byBkZSBkZXNvcmRlbnMgaG9ybW9uYWlzIGUgbWV0YWLDs2xpY2FzLiBGb2NvIG5vIHRyYXRhbWVudG8gZGUgZG9lbsOnYXMgZGEgdGlyZW9pZGUsIGRpYWJldGVzLCBvYmVzaWRhZGUgZSBhY29tcGFuaGFtZW50byBlc3BlY2lhbGl6YWRvIGR1cmFudGUgYSBtZW5vcGF1c2EuJwogICAgfSwKICAgICdwc2ljb2xvZ2lhJzogewogICAgICAgIHRpdHVsbzogJ1BzaWNvbG9naWEnLAogICAgICAgIHRleHRvOiAnQXBvaW8gZW1vY2lvbmFsIGUgbWVudGFsIGNvbSBwc2ljw7Nsb2dhcyBlc3BlY2lhbGl6YWRhcyBuYSBzYcO6ZGUgZGEgbXVsaGVyLiBBY29saGltZW50byBlbSBjYXNvcyBkZSBkZXByZXNzw6NvIHDDs3MtcGFydG8sIGFuc2llZGFkZSwgZXN0cmVzc2UgZSBhdXjDrWxpbyBwYXJhIGFzIHRyYW5zacOnw7VlcyBkZSB2aWRhLicKICAgIH0KfTsKZnVuY3Rpb24gYWJyaXJEZXNjcmljYW8oZXNwZWNpYWxpZGFkZSkgewogICAgLy8gQWx0ZXJhIG8gdMOtdHVsbyBlIG8gdGV4dG8gZG8gbW9kYWwgY29tIGJhc2UgbmEgZXNwZWNpYWxpZGFkZSBjbGljYWRhCiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnbW9kYWwtdGl0dWxvJykuaW5uZXJUZXh0ID0gZGVzY3JpY29lc1tlc3BlY2lhbGlkYWRlXS50aXR1bG87CiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnbW9kYWwtdGV4dG8nKS5pbm5lclRleHQgPSBkZXNjcmljb2VzW2VzcGVjaWFsaWRhZGVdLnRleHRvOwogICAgLy8gTW9zdHJhIGEgamFuZWxhIGZsdXR1YW50ZQogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ21vZGFsLWRlc2NyaWNhbycpLmNsYXNzTGlzdC5yZXBsYWNlKCdtb2RhbC1vY3VsdG8nLCAnbW9kYWwtYXRpdm8nKTsKfQpmdW5jdGlvbiBmZWNoYXJEZXNjcmljYW8oKSB7CiAgICAvLyBFc2NvbmRlIGEgamFuZWxhIGZsdXR1YW50ZQogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ21vZGFsLWRlc2NyaWNhbycpLmNsYXNzTGlzdC5yZXBsYWNlKCdtb2RhbC1hdGl2bycsICdtb2RhbC1vY3VsdG8nKTsKfQovLyA9PT0gU0lTVEVNQSBERSBHUsOBRklDT1MgREUgR0VTVMODTyAoUkYxOCkgPT09Ci8vIEZ1bsOnw6NvIHF1ZSBzZXLDoSBhdGl2YWRhIGF1dG9tYXRpY2FtZW50ZSBxdWFuZG8gYXMgcMOhZ2luYXMgZGUgZ2VzdMOjbyBhYnJpcmVtCmZ1bmN0aW9uIHJlbmRlcml6YXJHcmFmaWNvcygpIHsKICAgIC8vIDEuIEdyw6FmaWNvIGRlIEJhcnJhcyAoQXRlbmRpbWVudG9zIHBvciBNw6pzKQogICAgY29uc3QgY3R4QXRlbmRpbWVudG9zID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2dyYWZpY29BdGVuZGltZW50b3MnKTsKICAgIGlmIChjdHhBdGVuZGltZW50b3MpIHsKICAgICAgICBuZXcgQ2hhcnQoY3R4QXRlbmRpbWVudG9zLCB7CiAgICAgICAgICAgIHR5cGU6ICdiYXInLAogICAgICAgICAgICBkYXRhOiB7CiAgICAgICAgICAgICAgICBsYWJlbHM6IFsnSmFuJywgJ0ZldicsICdNYXInLCAnQWJyJywgJ01haScsICdKdW4nXSwKICAgICAgICAgICAgICAgIGRhdGFzZXRzOiBbewogICAgICAgICAgICAgICAgICAgIGxhYmVsOiAnTsK6IGRlIENvbnN1bHRhcycsCiAgICAgICAgICAgICAgICAgICAgZGF0YTogWzQ1LCA1OSwgODAsIDgxLCA1NiwgOTVdLCAvLyBEYWRvcyBzaW11bGFkb3MKICAgICAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kQ29sb3I6ICdyZ2JhKDEzLCAxNDgsIDEzNiwgMC43KScsIC8vIENvciBWZXJkZSDDgWd1YSBkbyBWaXZhIE11bGhlcgogICAgICAgICAgICAgICAgICAgIGJvcmRlckNvbG9yOiAncmdiYSgxMywgMTQ4LCAxMzYsIDEpJywKICAgICAgICAgICAgICAgICAgICBib3JkZXJXaWR0aDogMSwKICAgICAgICAgICAgICAgICAgICBib3JkZXJSYWRpdXM6IDQKICAgICAgICAgICAgICAgIH1dCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgIG9wdGlvbnM6IHsKICAgICAgICAgICAgICAgIHJlc3BvbnNpdmU6IHRydWUsCiAgICAgICAgICAgICAgICBwbHVnaW5zOiB7CiAgICAgICAgICAgICAgICAgICAgbGVnZW5kOiB7IGRpc3BsYXk6IGZhbHNlIH0gLy8gRXNjb25kZSBhIGxlZ2VuZGEgcGFyYSBmaWNhciBtYWlzIGxpbXBvCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgIH0KICAgICAgICB9KTsKICAgIH0KICAgIC8vIDIuIEdyw6FmaWNvIENpcmN1bGFyIChDb25zdWx0YXMgcG9yIEVzcGVjaWFsaWRhZGUpCiAgICBjb25zdCBjdHhFc3BlY2lhbGlkYWRlcyA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdncmFmaWNvRXNwZWNpYWxpZGFkZXMnKTsKICAgIGlmIChjdHhFc3BlY2lhbGlkYWRlcykgewogICAgICAgIG5ldyBDaGFydChjdHhFc3BlY2lhbGlkYWRlcywgewogICAgICAgICAgICB0eXBlOiAnZG91Z2hudXQnLAogICAgICAgICAgICBkYXRhOiB7CiAgICAgICAgICAgICAgICBsYWJlbHM6IFsnR2luZWNvbG9naWEnLCAnT2JzdGV0csOtY2lhJywgJ01hc3RvbG9naWEnLCAnQ2lydXJnaWFzJ10sCiAgICAgICAgICAgICAgICBkYXRhc2V0czogW3sKICAgICAgICAgICAgICAgICAgICBkYXRhOiBbNDAsIDI1LCAyMCwgMTVdLCAvLyBQZXJjZW50YWdlbnMgc2ltdWxhZGFzCiAgICAgICAgICAgICAgICAgICAgYmFja2dyb3VuZENvbG9yOiBbCiAgICAgICAgICAgICAgICAgICAgICAgICcjZGIyNzc3JywgLy8gUm9zYQogICAgICAgICAgICAgICAgICAgICAgICAnIzBkOTQ4OCcsIC8vIFZlcmRlIMOBZ3VhCiAgICAgICAgICAgICAgICAgICAgICAgICcjZjQ3MmI2JywgLy8gUm9zYSBDbGFybwogICAgICAgICAgICAgICAgICAgICAgICAnIzVhYjRiMicgIC8vIFZlcmRlIENsYXJvCiAgICAgICAgICAgICAgICAgICAgXSwKICAgICAgICAgICAgICAgICAgICBib3JkZXJXaWR0aDogMAogICAgICAgICAgICAgICAgfV0KICAgICAgICAgICAgfSwKICAgICAgICAgICAgb3B0aW9uczogewogICAgICAgICAgICAgICAgcmVzcG9uc2l2ZTogdHJ1ZSwKICAgICAgICAgICAgICAgIG1haW50YWluQXNwZWN0UmF0aW86IGZhbHNlCiAgICAgICAgICAgIH0KICAgICAgICB9KTsKICAgIH0KfQovLyBQZXF1ZW5vIHRydXF1ZSBwYXJhIGdhcmFudGlyIHF1ZSBvcyBncsOhZmljb3MgY2FycmVnYW0gYXNzaW0gcXVlIGEgcMOhZ2luYSBhYnJlCmRvY3VtZW50LmFkZEV2ZW50TGlzdGVuZXIoJ0RPTUNvbnRlbnRMb2FkZWQnLCBmdW5jdGlvbigpIHsKICAgIHJlbmRlcml6YXJHcmFmaWNvcygpOwp9KTsKLy8gPT09IFNJU1RFTUEgREUgQ0FNUE9TIERJTsOCTUlDT1MgTk8gQ0FEQVNUUk8gPT09CmZ1bmN0aW9uIG11ZGFyQ2FtcG9zQ2FkYXN0cm8oKSB7CiAgICBjb25zdCB0aXBvID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3RpcG8tY2FkYXN0cm8nKS52YWx1ZTsKICAgIGNvbnN0IGNhbXBvc0V4dHJhcyA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdjYW1wb3MtcHJvZmlzc2lvbmFpcycpOwogICAgY29uc3QgbGFiZWxSZWdpc3RybyA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdsYWJlbC1yZWdpc3RybycpOwogICAgY29uc3QgaW5wdXRSZWdpc3RybyA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdpbnB1dC1yZWdpc3RybycpOwogICAgaWYgKHRpcG8gPT09ICdwYWNpZW50ZScpIHsKICAgICAgICAvLyBTZSBmb3IgcGFjaWVudGUsIGVzY29uZGUgb3MgY2FtcG9zIGV4dHJhcwogICAgICAgIGNhbXBvc0V4dHJhcy5zdHlsZS5kaXNwbGF5ID0gJ25vbmUnOwogICAgfSBlbHNlIGlmICh0aXBvID09PSAnbWVkaWNvJykgewogICAgICAgIC8vIFNlIGZvciBtw6lkaWNvL2VuZmVybWVpcm8sIG1vc3RyYSBDUk0vQ09SRU4gZSBDTlBKCiAgICAgICAgY2FtcG9zRXh0cmFzLnN0eWxlLmRpc3BsYXkgPSAnYmxvY2snOwogICAgICAgIGxhYmVsUmVnaXN0cm8uaW5uZXJUZXh0ID0gJ1JlZ2lzdHJvIFByb2Zpc3Npb25hbCAoQ1JNIC8gQ09SRU4pJzsKICAgICAgICBpbnB1dFJlZ2lzdHJvLnBsYWNlaG9sZGVyID0gJ0V4OiBDUk0gMTIzNDUtUkonOwogICAgfSBlbHNlIGlmICh0aXBvID09PSAncmVjZXBjYW8nKSB7CiAgICAgICAgLy8gU2UgZm9yIENsw61uaWNhL1JlY2Vww6fDo28sIG1vc3RyYSBBbHZhcsOhIGUgQ05QSgogICAgICAgIGNhbXBvc0V4dHJhcy5zdHlsZS5kaXNwbGF5ID0gJ2Jsb2NrJzsKICAgICAgICBsYWJlbFJlZ2lzdHJvLmlubmVyVGV4dCA9ICdSZWdpc3RybyBkYSBDbMOtbmljYSAoQWx2YXLDoSAvIExpY2Vuw6dhKSc7CiAgICAgICAgaW5wdXRSZWdpc3Ryby5wbGFjZWhvbGRlciA9ICdOwrogZG8gQWx2YXLDoSBkZSBGdW5jaW9uYW1lbnRvJzsKICAgIH0KfQovLyA9PT0gVklTVUFMSVpBRE9SIERFIEVYQU1FUyAoUkYxMSkgPT09CmZ1bmN0aW9uIGFicmlyVmlzdWFsaXphZG9yRXhhbWUodGlwb0V4YW1lLCBkYXRhRXhhbWUsIHJlc3VsdGFkbykgewogICAgLy8gUHJlZW5jaGUgYSAiZm9saGEgZGUgcGFwZWwiIGNvbSBvcyBkYWRvcyBkbyBleGFtZSBjbGljYWRvCiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncGRmLXRpcG8nKS5pbm5lclRleHQgPSB0aXBvRXhhbWU7CiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncGRmLWRhdGEnKS5pbm5lclRleHQgPSBkYXRhRXhhbWU7CiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncGRmLXJlc3VsdGFkbycpLmlubmVyVGV4dCA9IHJlc3VsdGFkbzsKICAgIC8vIE1vc3RyYSBvIHZpc3VhbGl6YWRvciBubyBlY3LDowogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ21vZGFsLXZpc3VhbGl6YWRvcicpLmNsYXNzTGlzdC5yZXBsYWNlKCdtb2RhbC1leGFtZS1vY3VsdG8nLCAnbW9kYWwtZXhhbWUtYXRpdm8nKTsKfQpmdW5jdGlvbiBmZWNoYXJWaXN1YWxpemFkb3JFeGFtZSgpIHsKICAgIC8vIEVzY29uZGUgbyB2aXN1YWxpemFkb3IKICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdtb2RhbC12aXN1YWxpemFkb3InKS5jbGFzc0xpc3QucmVwbGFjZSgnbW9kYWwtZXhhbWUtYXRpdm8nLCAnbW9kYWwtZXhhbWUtb2N1bHRvJyk7Cn0KLy8gPT09IENBUlJFR0FSIERBRE9TIERPIFVUSUxJWkFET1IgQVRJVk8gPT09CmRvY3VtZW50LmFkZEV2ZW50TGlzdGVuZXIoJ0RPTUNvbnRlbnRMb2FkZWQnLCBmdW5jdGlvbigpIHsKICAgIC8vIDEuIFZhaSDDoCBtZW3Ds3JpYSBidXNjYXIgYSAiZmljaGEiIGRlIHF1ZW0gZmV6IGxvZ2luCiAgICBjb25zdCB1c3VhcmlvQXRpdm8gPSBKU09OLnBhcnNlKGxvY2FsU3RvcmFnZS5nZXRJdGVtKCd2aXZhTXVsaGVyVXN1YXJpb0F0aXZvJykpOwogICAgLy8gMi4gUHJvY3VyYSBzZSBleGlzdGUgbyBlc3Bhw6dvIHBhcmEgbyBub21lIG5vIGVjcsOjIGF0dWFsCiAgICBjb25zdCBlbGVtZW50b05vbWUgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnbm9tZS1wYWNpZW50ZS1sb2dhZG8nKTsKICAgIC8vIDMuIFNlIGVuY29udHJhciBvIHV0aWxpemFkb3IgZSBvIGVzcGHDp28gbm8gZWNyw6MsIGZheiBhIHN1YnN0aXR1acOnw6NvCiAgICBpZiAodXN1YXJpb0F0aXZvICYmIGVsZW1lbnRvTm9tZSkgewogICAgICAgIC8vIFBlZ2EgYXBlbmFzIG5vIHByaW1laXJvIG5vbWUgcGFyYSBmaWNhciBtYWlzIMOtbnRpbW8gZSBhbWlnw6F2ZWwKICAgICAgICBjb25zdCBwcmltZWlyb05vbWUgPSB1c3VhcmlvQXRpdm8ubm9tZS5zcGxpdCgnICcpWzBdOwogICAgICAgIGVsZW1lbnRvTm9tZS5pbm5lclRleHQgPSBwcmltZWlyb05vbWU7CiAgICB9Cn0pOwovLyA9PT0gRlVOw4fDg08gUEFSQSBBQlJJUi9GRUNIQVIgTUVOVSBOTyBDRUxVTEFSID09PQpmdW5jdGlvbiB0b2dnbGVNZW51KCkgewogICAgY29uc3Qgc2lkZWJhciA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoJy5zaWRlYmFyJyk7CiAgICBpZiAoc2lkZWJhcikgewogICAgICAgIHNpZGViYXIuY2xhc3NMaXN0LnRvZ2dsZSgnYWN0aXZlJyk7CiAgICB9Cn0KLy8gRmVjaGFyIG1lbnUgYXV0b21hdGljYW1lbnRlIGFvIG5hdmVnYXIgcGFyYSBvdXRyYSBww6FnaW5hCmZ1bmN0aW9uIG5hdmVnYXJQYXJhKHBhZ2luYSkgewogICAgY29uc3Qgc2lkZWJhciA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoJy5zaWRlYmFyJyk7CiAgICBpZiAoc2lkZWJhcikgc2lkZWJhci5jbGFzc0xpc3QucmVtb3ZlKCdhY3RpdmUnKTsKICAgIHdpbmRvdy5sb2NhdGlvbi5ocmVmID0gcGFnaW5hOwp9Ci8vID09PSBTSVNURU1BIERFIEFHRU5EQU1FTlRPIChSRjA1KSA9PT0KZnVuY3Rpb24gYWJyaXJNb2RhbEFnZW5kYW1lbnRvKCkgewogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ21vZGFsLWFnZW5kYW1lbnRvJykuc3R5bGUuZGlzcGxheSA9ICdmbGV4JzsKfQpmdW5jdGlvbiBmZWNoYXJNb2RhbEFnZW5kYW1lbnRvKCkgewogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ21vZGFsLWFnZW5kYW1lbnRvJykuc3R5bGUuZGlzcGxheSA9ICdub25lJzsKICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdmb3JtLW5vdm8tYWdlbmRhbWVudG8nKS5yZXNldCgpOwp9CmZ1bmN0aW9uIHNhbHZhckFnZW5kYW1lbnRvKGV2ZW50KSB7CiAgICBldmVudC5wcmV2ZW50RGVmYXVsdCgpOwogICAgY29uc3QgZXNwZWNpYWxpZGFkZSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdub3ZhLWVzcGVjaWFsaWRhZGUnKS52YWx1ZTsKICAgIGNvbnN0IG1lZGljbyA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdub3ZvLW1lZGljbycpLnZhbHVlOwogICAgY29uc3QgZGF0YUlucHV0ID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ25vdmEtZGF0YScpLnZhbHVlOwogICAgLy8gRm9ybWF0YXIgZGF0YSBwYXJhIEREL01NL0FBQUEKICAgIGNvbnN0IHBhcnRlcyA9IGRhdGFJbnB1dC5zcGxpdCgnLScpOwogICAgY29uc3QgZGF0YUZvcm1hdGFkYSA9IGAke3BhcnRlc1syXX0vJHtwYXJ0ZXNbMV19LyR7cGFydGVzWzBdfWA7CiAgICAvLyBBZGljaW9uYXIgbmEgdGFiZWxhIChzZSBleGlzdGlyKQogICAgY29uc3QgdGJvZHkgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCcudGFiZWxhLWNvbnN1bHRhcyB0Ym9keScpOwogICAgaWYgKHRib2R5KSB7CiAgICAgICAgY29uc3Qgbm92YUxpbmhhID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgndHInKTsKICAgICAgICBub3ZhTGluaGEuaW5uZXJIVE1MID0gYAogICAgICAgICAgICA8dGQ+JHtkYXRhRm9ybWF0YWRhfTwvdGQ+CiAgICAgICAgICAgIDx0ZD4ke2VzcGVjaWFsaWRhZGV9PC90ZD4KICAgICAgICAgICAgPHRkPiR7bWVkaWNvfTwvdGQ+CiAgICAgICAgICAgIDx0ZD48c3BhbiBjbGFzcz0ic3RhdHVzLWJhZGdlIiBzdHlsZT0iY29sb3I6ICMwZDk0ODg7IGZvbnQtd2VpZ2h0OiBib2xkOyI+QWdlbmRhZGE8L3NwYW4+PC90ZD4KICAgICAgICAgICAgPHRkIHN0eWxlPSJ0ZXh0LWFsaWduOiBjZW50ZXI7Ij4KICAgICAgICAgICAgICAgIDxidXR0b24gb25jbGljaz0iY2FuY2VsYXJDb25zdWx0YURhVGFiZWxhKHRoaXMpIiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjogI2VmNDQ0NDsgY29sb3I6IHdoaXRlOyBib3JkZXI6IG5vbmU7IHBhZGRpbmc6IDZweCAxMnB4OyBib3JkZXItcmFkaXVzOiA2cHg7IGN1cnNvcjogcG9pbnRlcjsgZm9udC1zaXplOiAxMnB4OyBmb250LXdlaWdodDogYm9sZDsgdHJhbnNpdGlvbjogMC4zczsiPjxpIGNsYXNzPSJmYXMgZmEtdGltZXMiPjwvaT4gQ2FuY2VsYXI8L2J1dHRvbj4KICAgICAgICAgICAgPC90ZD4KICAgICAgICBgOwogICAgICAgIHRib2R5LmFwcGVuZENoaWxkKG5vdmFMaW5oYSk7CiAgICB9CiAgICBmZWNoYXJNb2RhbEFnZW5kYW1lbnRvKCk7CiAgICBhbGVydCgnQ29uc3VsdGEgYWdlbmRhZGEgY29tIHN1Y2Vzc28hJyk7Cn0KZnVuY3Rpb24gY2FuY2VsYXJDb25zdWx0YURhVGFiZWxhKGJ0bikgewogICAgaWYoY29uZmlybSgiVGVtIGNlcnRlemEgcXVlIGRlc2VqYSBjYW5jZWxhciBlc3RhIGNvbnN1bHRhPyIpKSB7CiAgICAgICAgY29uc3QgdHIgPSBidG4uY2xvc2VzdCgndHInKTsKICAgICAgICBjb25zdCBzdGF0dXNTcGFuID0gdHIucXVlcnlTZWxlY3RvcignLnN0YXR1cy1iYWRnZScpOwogICAgICAgIGlmIChzdGF0dXNTcGFuKSB7CiAgICAgICAgICAgIHN0YXR1c1NwYW4uaW5uZXJUZXh0ID0gJ0NhbmNlbGFkYSc7CiAgICAgICAgICAgIHN0YXR1c1NwYW4uc3R5bGUuY29sb3IgPSAnI2VmNDQ0NCc7CiAgICAgICAgfQp9Cn0="))));
+// === SISTEMA DE CADASTRO REAL (Mock com LocalStorage) RF02 ===
+function realizarCadastro(event) {
+    event.preventDefault();
+
+    // 1. Recolher os dados digitados
+    const tipo = document.getElementById('tipo-cadastro').value;
+    const nome = document.getElementById('cad-nome').value;
+    const email = document.getElementById('cad-email').value;
+    const senha = document.getElementById('cad-senha').value;
+    
+    // Capturar registo se existir
+    const registroInput = document.getElementById('input-registro');
+    const registro = registroInput ? registroInput.value : '';
+
+    // 2. Buscar a lista de utilizadores já guardados na memória (ou criar vazia se não houver)
+    let usuarios = JSON.parse(localStorage.getItem('vivaMulherUsuarios')) || [];
+
+    // 3. Verificar se o e-mail já foi registado
+    const usuarioExiste = usuarios.find(user => user.email === email);
+    if (usuarioExiste) {
+        alert('Erro: Este e-mail já está cadastrado no sistema. Por favor, faça login.');
+        return; // Pára o processo aqui
+    }
+
+    // 4. Criar a "ficha" do novo utilizador
+    const novoUsuario = {
+        tipo: tipo,
+        nome: nome,
+        email: email,
+        senha: senha,
+        registro: registro
+    };
+
+    // 5. Guardar o utilizador no LocalStorage do navegador
+    usuarios.push(novoUsuario);
+    localStorage.setItem('vivaMulherUsuarios', JSON.stringify(usuarios));
+
+    // Guarda o utilizador recém-cadastrado como o utilizador ativo no momento
+    localStorage.setItem('vivaMulherUsuarioAtivo', JSON.stringify(novoUsuario));
+
+    alert("🎉 Cadastro realizado com sucesso! Redirecionando para o seu painel...");
+    
+    // Redireciona para o painel correto
+    if (tipo === 'medico') {
+        window.location.href = 'dashboard-medico/dashboard-medico.html';
+    } else if (tipo === 'recepcao') { 
+        window.location.href = 'dashboard-recepcao/dashboard-recepcao.html';
+    } else {
+        window.location.href = 'dashboard-paciente/dashboard.html';
+    }
+}
+
+// === SISTEMA DE LOGIN REAL (Mock com LocalStorage) RF03 ===
+function realizarLogin(event) {
+    event.preventDefault(); 
+    
+    // 1. Recolher os dados tentados no login
+    const tipoAcesso = document.getElementById('tipo-acesso').value;
+    const email = document.getElementById('login-email').value;
+    const senha = document.getElementById('login-senha').value;
+    
+    // 2. Buscar a lista de utilizadores da memória
+    let usuarios = JSON.parse(localStorage.getItem('vivaMulherUsuarios')) || [];
+
+    // 3. Verificar se existe alguém com aquele e-mail, senha E tipo de perfil exatos
+    const usuarioValido = usuarios.find(user => user.email === email && user.senha === senha && user.tipo === tipoAcesso);
+
+    if (usuarioValido) {
+        // Guarda na memória "quem" está ligado agora (para o caso de querermos exibir o nome da pessoa no Dashboard no futuro)
+        localStorage.setItem('vivaMulherUsuarioAtivo', JSON.stringify(usuarioValido));
+
+        // Envia para o painel correto
+        if (tipoAcesso === 'medico') {
+            window.location.href = 'dashboard-medico/dashboard-medico.html';
+        } else if (tipoAcesso === 'recepcao') { 
+            window.location.href = 'dashboard-recepcao/dashboard-recepcao.html';
+        } else {
+            window.location.href = 'dashboard-paciente/dashboard.html';
+        }
+    } else {
+        // Falha no login
+        alert(" Dados incorretos! Verifique se o E-mail, a Senha e o Perfil de Acesso estão certos.");
+    }
+}
+
+
+// Função para o Menu da Página Inicial
+function toggleMenuMain() {
+    const mainNav = document.getElementById('main-nav');
+    if (mainNav) {
+        mainNav.classList.toggle('ativo');
+    }
+}
+
+// Funções do Calendário Interativo no Dashboard
+function confirmarAgendamento() {
+    const data = document.getElementById('data-consulta').value;
+    const hora = document.getElementById('hora-consulta').value;
+
+    // Verifica se a paciente preencheu tudo
+    if(!data || !hora) {
+        alert("Por favor, selecione uma data e um horário para agendar.");
+        return;
+    }
+
+    // Formata a data de AAAA-MM-DD para DD/MM/AAAA para ficar no padrão brasileiro
+    const partesData = data.split('-');
+    const dataFormatada = `${partesData[2]}/${partesData[1]}/${partesData[0]}`;
+
+    // Atualiza o texto na tela de sucesso
+    document.getElementById('detalhes-consulta').innerText = `Data: ${dataFormatada} às ${hora}`;
+
+    // Esconde o formulário e mostra o sucesso
+    document.getElementById('form-agendamento').style.display = 'none';
+    document.getElementById('sucesso-agendamento').style.display = 'block';
+    
+    // Atualiza o título do cartão
+    document.querySelector('#titulo-agendamento').innerText = 'Próxima Consulta';
+}
+
+function cancelarAgendamento() {
+    // Pede uma confirmação antes de cancelar
+    if(confirm("Tem certeza que deseja cancelar esta consulta?")) {
+        // Limpa os campos
+        document.getElementById('data-consulta').value = '';
+        document.getElementById('hora-consulta').value = '';
+
+        // Mostra o formulário de volta e esconde a mensagem de sucesso
+        document.getElementById('form-agendamento').style.display = 'block';
+        document.getElementById('sucesso-agendamento').style.display = 'none';
+        
+        // Volta o título original
+        document.querySelector('#card-agendamento').innerText = 'Agendar Nova Consulta';
+    }
+}
+
+// Função para Reagendamento de Consultas (RF06)
+function reagendarConsulta() {
+    // Esconde a mensagem de sucesso e mostra o formulário novamente
+    document.getElementById('sucesso-agendamento').style.display = 'none';
+    document.getElementById('form-agendamento').style.display = 'block';
+    
+    // Altera o título para indicar que é um reagendamento
+    document.getElementById('titulo-agendamento').innerText = 'Reagendar Consulta';
+    
+    // Alerta visual discreto para orientar a paciente
+    alert("Selecione a nova data e horário desejados e clique em Confirmar.");
+}
+
+// --- FUNÇÃO DO CICLO MENSTRUAL ---
+function calcularCiclo() {
+    // 1. Pega a data que a usuária digitou no input
+    const dataInput = document.getElementById('data-menstruacao').value;
+    
+    if(!dataInput) {
+        alert("Por favor, selecione a data da sua última menstruação no calendário.");
+        return;
+    }
+
+    // 2. Transforma o texto em uma Data real para o Javascript fazer as contas
+    const dataInicial = new Date(dataInput);
+    dataInicial.setDate(dataInicial.getDate() + 1); // Ajuste de fuso horário padrão
+
+    // 3. Calcula a Próxima Menstruação (soma 28 dias)
+    const proxMenstruacao = new Date(dataInicial);
+    proxMenstruacao.setDate(proxMenstruacao.getDate() + 28);
+
+    // 4. Calcula o Período Fértil (dia 12 ao dia 16 do ciclo)
+    const fertilInicio = new Date(dataInicial);
+    fertilInicio.setDate(fertilInicio.getDate() + 12);
+    
+    const fertilFim = new Date(dataInicial);
+    fertilFim.setDate(fertilFim.getDate() + 16);
+
+    // 5. Mostra os resultados na tela com o formato de data Brasileiro (DD/MM/AAAA)
+    document.getElementById('prox-menstruacao').innerText = proxMenstruacao.toLocaleDateString('pt-BR');
+    document.getElementById('periodo-fertil').innerText = `${fertilInicio.toLocaleDateString('pt-BR')} a ${fertilFim.toLocaleDateString('pt-BR')}`;
+    
+    // 6. Faz a caixa rosa de resultados aparecer!
+    document.getElementById('resultado-ciclo').style.display = 'block';
+}
+
+
+// === SISTEMA DE CARROSSEL DE SERVIÇOS ===
+function moverCarrossel(direcao) {
+    const carrossel = document.getElementById('servicos-carousel');
+    // Pega a largura de 1 card dinamicamente + o gap (20px)
+    const card = carrossel.querySelector('.servico-card');
+    const scrollAmount = (card.offsetWidth + 20) * direcao; 
+    carrossel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+}
+
+// === SISTEMA DE DESCRIÇÕES DE ESPECIALIDADES (MODAL) ===
+
+// Aqui guardamos os textos de cada botão
+const descricoes = {
+    'ginecologia': {
+        titulo: 'Ginecologia',
+        texto: 'Cuidado integral com a saúde do sistema reprodutor feminino. Realizamos exames preventivos (como o Papanicolau), diagnóstico e tratamento de doenças, além de orientação sobre métodos contracetivos e menopausa.'
+    },
+    'obstetricia': {
+        titulo: 'Obstetrícia',
+        texto: 'Acompanhamento completo e humanizado da sua gestação, desde o pré-natal ao pós-parto. A nossa equipa garante a máxima segurança, cuidado e bem-estar para a mãe e para o bebé em todas as fases.'
+    },
+    'mastologia': {
+        titulo: 'Mastologia',
+        texto: 'Especialidade dedicada ao estudo, prevenção, diagnóstico e tratamento das doenças da mama. Promovemos o rastreio precoce e oferecemos tratamentos modernos num ambiente acolhedor e seguro.'
+    },
+    'cirurgias': {
+        titulo: 'Cirurgias Ginecológicas',
+        texto: 'Realizamos procedimentos cirúrgicos de alta precisão e minimamente invasivos (como laparoscopia e histeroscopia) para o tratamento eficaz de miomas, endometriose e outras condições.'
+    },
+    'pediatria': {
+        titulo: 'Pediatria',
+        texto: 'Acompanhamento dedicado ao desenvolvimento infantil desde o nascimento. Consultas de rotina, vacinação, orientação nutricional e tratamento das principais doenças da infância com todo o carinho e paciência.'
+    },
+    'nutricao': {
+        titulo: 'Nutrição',
+        texto: 'Atendimento nutricional especializado na saúde da mulher. Planos alimentares personalizados para emagrecimento, gestação, lactação, menopausa e acompanhamento de condições como a endometriose e SOP.'
+    },
+    'endocrinologia': {
+        titulo: 'Endocrinologia',
+        texto: 'Diagnóstico e tratamento de desordens hormonais e metabólicas. Foco no tratamento de doenças da tireoide, diabetes, obesidade e acompanhamento especializado durante a menopausa.'
+    },
+    'psicologia': {
+        titulo: 'Psicologia',
+        texto: 'Apoio emocional e mental com psicólogas especializadas na saúde da mulher. Acolhimento em casos de depressão pós-parto, ansiedade, estresse e auxílio para as transições de vida.'
+    }
+};
+
+function abrirDescricao(especialidade) {
+    // Altera o título e o texto do modal com base na especialidade clicada
+    document.getElementById('modal-titulo').innerText = descricoes[especialidade].titulo;
+    document.getElementById('modal-texto').innerText = descricoes[especialidade].texto;
+    
+    // Mostra a janela flutuante
+    document.getElementById('modal-descricao').classList.replace('modal-oculto', 'modal-ativo');
+}
+
+function fecharDescricao() {
+    // Esconde a janela flutuante
+    document.getElementById('modal-descricao').classList.replace('modal-ativo', 'modal-oculto');
+}
+
+// === SISTEMA DE GRÁFICOS DE GESTÃO (RF18) ===
+
+// Função que será ativada automaticamente quando as páginas de gestão abrirem
+function renderizarGraficos() {
+    // 1. Gráfico de Barras (Atendimentos por Mês)
+    const ctxAtendimentos = document.getElementById('graficoAtendimentos');
+    if (ctxAtendimentos) {
+        new Chart(ctxAtendimentos, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+                datasets: [{
+                    label: 'Nº de Consultas',
+                    data: [45, 59, 80, 81, 56, 95], // Dados simulados
+                    backgroundColor: 'rgba(13, 148, 136, 0.7)', // Cor Verde Água do Viva Mulher
+                    borderColor: 'rgba(13, 148, 136, 1)',
+                    borderWidth: 1,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false } // Esconde a legenda para ficar mais limpo
+                }
+            }
+        });
+    }
+
+    // 2. Gráfico Circular (Consultas por Especialidade)
+    const ctxEspecialidades = document.getElementById('graficoEspecialidades');
+    if (ctxEspecialidades) {
+        new Chart(ctxEspecialidades, {
+            type: 'doughnut',
+            data: {
+                labels: ['Ginecologia', 'Obstetrícia', 'Mastologia', 'Cirurgias'],
+                datasets: [{
+                    data: [40, 25, 20, 15], // Percentagens simuladas
+                    backgroundColor: [
+                        '#db2777', // Rosa
+                        '#0d9488', // Verde Água
+                        '#f472b6', // Rosa Claro
+                        '#5ab4b2'  // Verde Claro
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+    }
+}
+
+// Pequeno truque para garantir que os gráficos carregam assim que a página abre
+document.addEventListener('DOMContentLoaded', function() {
+    renderizarGraficos();
+});
+
+// === SISTEMA DE CAMPOS DINÂMICOS NO CADASTRO ===
+function mudarCamposCadastro() {
+    const tipo = document.getElementById('tipo-cadastro').value;
+    const camposExtras = document.getElementById('campos-profissionais');
+    const labelRegistro = document.getElementById('label-registro');
+    const inputRegistro = document.getElementById('input-registro');
+
+    if (tipo === 'paciente') {
+        // Se for paciente, esconde os campos extras
+        camposExtras.style.display = 'none';
+    } else if (tipo === 'medico') {
+        // Se for médico/enfermeiro, mostra CRM/COREN e CNPJ
+        camposExtras.style.display = 'block';
+        labelRegistro.innerText = 'Registro Profissional (CRM / COREN)';
+        inputRegistro.placeholder = 'Ex: CRM 12345-RJ';
+    } else if (tipo === 'recepcao') {
+        // Se for Clínica/Recepção, mostra Alvará e CNPJ
+        camposExtras.style.display = 'block';
+        labelRegistro.innerText = 'Registro da Clínica (Alvará / Licença)';
+        inputRegistro.placeholder = 'Nº do Alvará de Funcionamento';
+    }
+}
+
+// === VISUALIZADOR DE EXAMES (RF11) ===
+function abrirVisualizadorExame(tipoExame, dataExame, resultado) {
+    // Preenche a "folha de papel" com os dados do exame clicado
+    document.getElementById('pdf-tipo').innerText = tipoExame;
+    document.getElementById('pdf-data').innerText = dataExame;
+    document.getElementById('pdf-resultado').innerText = resultado;
+    
+    // Mostra o visualizador no ecrã
+    document.getElementById('modal-visualizador').classList.replace('modal-exame-oculto', 'modal-exame-ativo');
+}
+
+function fecharVisualizadorExame() {
+    // Esconde o visualizador
+    document.getElementById('modal-visualizador').classList.replace('modal-exame-ativo', 'modal-exame-oculto');
+}
+
+// === CARREGAR DADOS DO UTILIZADOR ATIVO ===
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. Vai à memória buscar a "ficha" de quem fez login
+    const usuarioAtivo = JSON.parse(localStorage.getItem('vivaMulherUsuarioAtivo'));
+    
+    // 2. Procura se existe o espaço para o nome no ecrã atual
+    const elementoNomePaciente = document.getElementById('nome-paciente-logado');
+    const elementoNomeMedico = document.getElementById('nome-medico-logado');
+    
+    // 3. Se encontrar o utilizador e o espaço no ecrã, faz a substituição
+    if (usuarioAtivo) {
+        // Pega apenas no primeiro nome para ficar mais íntimo e amigável
+        const primeiroNome = usuarioAtivo.nome.split(' ')[0];
+        if (elementoNomePaciente) {
+            elementoNomePaciente.innerText = primeiroNome;
+        }
+        if (elementoNomeMedico) {
+            elementoNomeMedico.innerText = `Dr(a). ${primeiroNome}`;
+        }
+    }
+});
+
+// === FUNÇÃO PARA ABRIR/FECHAR MENU NO CELULAR ===
+function toggleMenu() {
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar) {
+        sidebar.classList.toggle('active');
+    }
+}
+
+// Fechar menu automaticamente ao navegar para outra página
+function navegarPara(pagina) {
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar) sidebar.classList.remove('active');
+    window.location.href = pagina;
+}
+
+// === SISTEMA DE AGENDAMENTO (RF05) ===
+function abrirModalAgendamento() {
+    document.getElementById('modal-agendamento').style.display = 'flex';
+}
+
+function fecharModalAgendamento() {
+    document.getElementById('modal-agendamento').style.display = 'none';
+    document.getElementById('form-novo-agendamento').reset();
+}
+
+function salvarAgendamento(event) {
+    event.preventDefault();
+    const especialidade = document.getElementById('nova-especialidade').value;
+    const medico = document.getElementById('novo-medico').value;
+    const dataInput = document.getElementById('nova-data').value;
+    
+    // Formatar data para DD/MM/AAAA
+    const partes = dataInput.split('-');
+    const dataFormatada = `${partes[2]}/${partes[1]}/${partes[0]}`;
+
+    // Adicionar na tabela (se existir)
+    const tbody = document.querySelector('.tabela-consultas tbody');
+    if (tbody) {
+        const novaLinha = document.createElement('tr');
+        novaLinha.innerHTML = `
+            <td>${dataFormatada}</td>
+            <td>${especialidade}</td>
+            <td>${medico}</td>
+            <td><span class="status-badge" style="color: #0d9488; font-weight: bold;">Agendada</span></td>
+            <td style="text-align: center;">
+                <button onclick="cancelarConsultaDaTabela(this)" style="background-color: #ef4444; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: bold; transition: 0.3s;"><i class="fas fa-times"></i> Cancelar</button>
+            </td>
+        `;
+        tbody.appendChild(novaLinha);
+    }
+    
+    fecharModalAgendamento();
+    alert('Consulta agendada com sucesso!');
+}
+
+function cancelarConsultaDaTabela(btn) {
+    if(confirm("Tem certeza que deseja cancelar esta consulta?")) {
+        const tr = btn.closest('tr');
+        const statusSpan = tr.querySelector('.status-badge');
+        if (statusSpan) {
+            statusSpan.innerText = 'Cancelada';
+            statusSpan.style.color = '#ef4444';
+        }
+        
+}
+}

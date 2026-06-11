@@ -364,13 +364,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const usuarioAtivo = JSON.parse(localStorage.getItem('vivaMulherUsuarioAtivo'));
     
     // 2. Procura se existe o espaço para o nome no ecrã atual
-    const elementoNome = document.getElementById('nome-paciente-logado');
+    const elementoNomePaciente = document.getElementById('nome-paciente-logado');
+    const elementoNomeMedico = document.getElementById('nome-medico-logado');
     
     // 3. Se encontrar o utilizador e o espaço no ecrã, faz a substituição
-    if (usuarioAtivo && elementoNome) {
+    if (usuarioAtivo) {
         // Pega apenas no primeiro nome para ficar mais íntimo e amigável
         const primeiroNome = usuarioAtivo.nome.split(' ')[0];
-        elementoNome.innerText = primeiroNome;
+        if (elementoNomePaciente) {
+            elementoNomePaciente.innerText = primeiroNome;
+        }
+        if (elementoNomeMedico) {
+            elementoNomeMedico.innerText = `Dr(a). ${primeiroNome}`;
+        }
     }
 });
 
