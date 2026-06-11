@@ -1,0 +1,21 @@
+{
+  "name": "Viva Mulher",
+  "short_name": "Viva Mulher",
+  "description": "Sistema Integrado de Saude Viva Mulher",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0d9488",
+  "icons": [
+    {
+      "src": "./assets/img/logo1.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./assets/img/logo1.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
